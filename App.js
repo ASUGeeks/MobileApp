@@ -6,6 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>DREAm app is here</Text>
+      <Text>Hello world</Text>
       <StatusBar style="auto" />
     </View>
   );
