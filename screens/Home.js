@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import Preview from "../components/Preview"
 const RAINBOW = [
   { colorName: "Red", hexCode: "#FF0000" },
   { colorName: "Orange", hexCode: "#FF7F00" },
@@ -55,7 +56,8 @@ const Home = ({ navigation }) => {
               })
             }
           >
-            {data.item.name}
+              <Preview name={data.item.name} color={data.item.value}/>
+            {/* {data.item.name} */}
           </TouchableOpacity>
         )}
       />
