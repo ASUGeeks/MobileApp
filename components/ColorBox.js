@@ -19,7 +19,7 @@ const style = StyleSheet.create({
     borderRadius:5
   },
   text: {
-    color: "#eeeeee",
+    color: "#ff0000",
   },
 });
 export default ColBox;
