@@ -20,6 +20,7 @@ const style = StyleSheet.create({
   },
   text: {
     color: "#eeeeee",
+    color: "#ffffff",
   },
 });
 export default ColBox;
