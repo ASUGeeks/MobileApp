@@ -19,7 +19,6 @@ const style = StyleSheet.create({
     borderRadius:5
   },
   text: {
-    color: "#eeeeee",
     color: "#ffffff",
   },
 });
