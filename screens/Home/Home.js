@@ -1,11 +1,9 @@
 import React from "react";
 
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import Mybutton from "./Mybutton";
 import { createStackNavigator } from "@react-navigation/stack";
-import MyHome from "./MyHome";
-import TeacherDashboard from "../screens/TeacherDashboard.js";
-import StudentDashboard from "../screens/StudentDashboard.js";
+import MyHome from "./components/Main";
+import TeacherDashboard from "../TeacherDash/TeacherDashboard.js";
+import StudentDashboard from "../StudentDash/StudentDashboard";
 const Stack = createStackNavigator();
 
 const Home = () => {
