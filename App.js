@@ -7,7 +7,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 // screens
 import Home from "./screens/Home.js";
 
-
 import Bn from "./components/BottomNavigation";
 
 export default function App() {
