@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import MyBtn from "./Mybutton";
+import MyBtn from "../Mybutton";
 export default ({ navigation }) => {
   return (
     <View style={styles.root}>

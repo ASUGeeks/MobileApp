@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import {useTheme , Switch, Surface, Text, Chip ,Card, Title, Paragraph,Avatar ,Button} from "react-native-paper";
-import Mybutton from "./Mybutton";
+import Mybutton from "../../Mybutton";
 const Home = ({ navigation }) => {
   const { colors } = useTheme();
   return (
