@@ -1,6 +1,8 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
-import {useTheme , Switch, Surface, Text, Chip ,Card, Title, Paragraph,Avatar ,Button} from "react-native-paper";
+import { View, TouchableOpacity, StyleSheet ,Text} from "react-native";
+
+
+import {useTheme , Switch, Surface, Chip ,Card, Title, Paragraph,Avatar ,Button} from "react-native-paper";
 import Mybutton from "../../Mybutton";
 const Home = ({ navigation }) => {
   const { colors } = useTheme();
@@ -16,6 +18,12 @@ const Home = ({ navigation }) => {
         navigation={navigation}
         destination="StudentDashboard"
       />
+      <Mybutton
+        title="Login"
+        navigation={navigation}
+        destination="Login"
+      />
+      {/* 
       <Switch value={false} />
       <Text>THIS IS THE HOME PAGE lol</Text>
       <Surface style={styles.surface}>
@@ -23,7 +31,6 @@ const Home = ({ navigation }) => {
       </Surface>
       <Chip icon="home" onPress={() => console.log('Pressed')}>Example Chip</Chip>
       <Card>
-    {/* <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} /> */}
     <Card.Content>
       <Title>Card title</Title>
       <Paragraph>Card content</Paragraph>
@@ -36,7 +43,7 @@ const Home = ({ navigation }) => {
   </Card>
   <Button style={{color:colors.primary}} icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
     Press me
-  </Button>
+  </Button> */}
     </View>
   );
 };
