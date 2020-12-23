@@ -1,27 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import Main from "./screens/Main/Main";
+import Announce from "./screens/Announce/Announce"
+
+const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <View>
-      <Text style={styles.root}>THIS IS THE Teacher Dashboard</Text>
-    </View>
+    <Stack.Navigator >
+      <Stack.Screen name="TeacherDashboard" component={Main} />
+      <Stack.Screen name="CreateAnnouncement" component={Announce} />
+      {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}
+
+    </Stack.Navigator>
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    margin: 10,
-    backgroundColor: "#ccc",
-    color: "#933",
-    borderRadius: 10,
-    padding: 10,
-  },
-  btn: {
-    backgroundColor: "#333",
-    color: "#eee",
-    margin: 10,
-    padding: 10,
-    borderRadius: 100,
-  },
-});
