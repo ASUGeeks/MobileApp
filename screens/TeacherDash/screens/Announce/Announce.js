@@ -18,7 +18,7 @@ export default () => {
   return (
     <View style={styles.root}>
       <Input label="Title" value={Title} setValue={setTitle} />
-      <Input label="Body" value={Body} setValue={setBody} />
+      <Input label="Body" numberOfLines={3} value={Body} setValue={setBody} />
       <Submit handleSubmit={handleSubmit}/>
     </View>
   );
