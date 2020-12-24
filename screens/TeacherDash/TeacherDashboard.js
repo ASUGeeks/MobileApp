@@ -4,6 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Main from "./screens/Main/Main";
 import Announce from "./screens/Announce/Announce";
 import PostLearningMaterials from "./screens/PostLearningMaterials/PostLearningMaterials";
+import CourseSpecification from "./screens/CourseSpecification/CourseSpecification";
+
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
 
@@ -23,6 +25,11 @@ export default () => {
       <Stack.Screen
         name="PostLearningMaterials"
         component={PostLearningMaterials}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+      <Stack.Screen
+        name="CourseSpecification"
+        component={CourseSpecification}
         options={{ header: (props) => <Header {...props} /> }}
       />
       {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}
