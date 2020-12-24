@@ -18,25 +18,35 @@ import merge from "deepmerge";
 
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
+const PreferencesContext = React.createContext({
+  toggleTheme: () => {},
+  isThemeDark: false,
+});
 
-// const theme = {
-//   ...PaperDefaultTheme,
-//   colors: {
-//     ...PaperDefaultTheme.colors,
-//     background: "#f6f6f6",
-
-//     primary: "#1958a7",
-//     accent: "#f2806f",
-//     secondary: "#ddb92a",
-//     thrid: "#5c105d",
-//   },
-// };
 export default function App() {
+  const [isThemeDark, setIsThemeDark] = React.useState(false);
+
+  let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
+
+  const toggleTheme = React.useCallback(() => {
+    return setIsThemeDark(!isThemeDark);
+  }, [isThemeDark]);
+
+  const preferences = React.useMemo(
+    () => ({
+      toggleTheme,
+      isThemeDark,
+    }),
+    [toggleTheme, isThemeDark]
+  );
+
   return (
-    <PaperProvider theme={CombinedDarkTheme}>
-      <NavigationContainer theme={CombinedDarkTheme}>
-        <BottomNavigation />
-      </NavigationContainer>
-    </PaperProvider>
+    <PreferencesContext.Provider value={preferences}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={theme}>
+          <BottomNavigation />
+        </NavigationContainer>
+      </PaperProvider>
+    </PreferencesContext.Provider>
   );
 }
