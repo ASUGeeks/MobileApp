@@ -3,7 +3,6 @@ import "react-native-gesture-handler";
 import React from "react";
 
 import BottomNavigation from "./navigation/BottomNavigation";
-
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
@@ -15,16 +14,13 @@ import {
   Provider as PaperProvider,
 } from "react-native-paper";
 import merge from "deepmerge";
-
+import {PreferencesContext} from "./shared/PreferencesContext"
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
-const PreferencesContext = React.createContext({
-  toggleTheme: () => {},
-  isThemeDark: false,
-});
+
 
 export default function App() {
-  const [isThemeDark, setIsThemeDark] = React.useState(false);
+  const [isThemeDark, setIsThemeDark] = React.useState(true);
 
   let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
 
