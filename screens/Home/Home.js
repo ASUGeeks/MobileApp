@@ -14,22 +14,22 @@ const Home = () => {
       <Stack.Screen
         name="home"
         component={MyHome}
-        options={{ headerTitle: (props) => <Header {...props} /> }}
+        options={{ header: (props) => <Header {...props} /> }}
       />
       <Stack.Screen
         name="TeacherDashboard"
         component={TeacherDashboard}
-        options={{ headerTitle: (props) => <Header {...props} /> }}
+        options={{ header: (props) => <Header {...props} /> }}
       />
       <Stack.Screen
         name="StudentDashboard"
         component={StudentDashboard}
-        options={{ headerTitle: (props) => <Header {...props} /> }}
+        options={{ header: (props) => <Header {...props} /> }}
       />
       <Stack.Screen
         name="Login"
         component={Login}
-        options={{ headerTitle: (props) => <Header {...props} /> }}
+        options={{ header: (props) => <Header {...props} /> }}
       />
     </Stack.Navigator>
   );

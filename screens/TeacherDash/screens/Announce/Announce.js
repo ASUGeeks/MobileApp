@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import Input from "../../../../shared/Input";
-import Submit from "./components/Submit";
+import Submit from "../../../../shared/Submit";
 export default () => {
   const [Title, setTitle] = React.useState("");
   const [Body, setBody] = React.useState("");
@@ -12,6 +12,8 @@ export default () => {
       Title,
       Body,
     };
+    // TODO 
+    // make an http post request here
     console.log("HEEEEEEH , this is the announcet LOL", announcement);
   }
 

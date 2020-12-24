@@ -16,7 +16,7 @@ export default ({navigation}) => {
       <Button
         style={styles.Button}
         mode="outlined"
-        onPress={() => console.log("Pressed")}
+        onPress={() => navigation.navigate("PostLearningMaterials")}
       >
         post learning materials
       </Button>
