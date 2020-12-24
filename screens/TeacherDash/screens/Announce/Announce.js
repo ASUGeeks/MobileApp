@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import Input from "./components/Input";
+import Input from "../../../../shared/Input";
 import Submit from "./components/Submit";
 export default () => {
   const [Title, setTitle] = React.useState("");
