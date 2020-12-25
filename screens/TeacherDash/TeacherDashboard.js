@@ -5,13 +5,14 @@ import Main from "./screens/Main/Main";
 import Announce from "./screens/Announce/Announce";
 import PostLearningMaterials from "./screens/PostLearningMaterials/PostLearningMaterials";
 import CourseSpecification from "./screens/CourseSpecification/CourseSpecification";
+import Assignments from "./screens/Assignments/Assignments";
 
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="TeacherDashboard">
+    <Stack.Navigator initialRouteName="Assignments">
       <Stack.Screen
         name="TeacherDashboard"
         component={Main}
@@ -30,6 +31,11 @@ export default () => {
       <Stack.Screen
         name="CourseSpecification"
         component={CourseSpecification}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+      <Stack.Screen
+        name="Assignments"
+        component={Assignments}
         options={{ header: (props) => <Header {...props} /> }}
       />
       {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}

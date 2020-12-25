@@ -38,7 +38,7 @@ export default ({ navigation }) => {
         style={styles.Button}
         compact={true}
         mode="contained"
-        onPress={() => console.log("Pressed")}
+        onPress={() => navigation.navigate("Assignments")}
       >
         create assignments
       </Button>
@@ -55,7 +55,7 @@ export default ({ navigation }) => {
         mode="contained"
         onPress={() => console.log("Pressed")}
       >
-        enroll students to the course
+        Enroll students to the course
       </Button>
       {/* <Button
         style={styles.Button}
