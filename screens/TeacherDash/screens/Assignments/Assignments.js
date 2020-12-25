@@ -3,12 +3,13 @@ import { View, Text, StyleSheet } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 export default () => {
-  const [specifications, setspecifications] = useState("");
+  const [Title, setTitle] = useState("");
+  const [Details, setDetails] = useState("");
   const [Assignments, setAssignments] = useState([]);
   
   useEffect(() => {
     // TODO make http request to get course specification
-    // set the response body to setspecifications
+    // set the response body to setTitle
     // setAssignments("hello, this is the course specification");
   }, []);
 
@@ -20,13 +21,13 @@ export default () => {
     <View style={styles.root}>
       <Input
         label="AssignmentTitle"
-        value={specifications}
-        setValue={setspecifications}
+        value={Title}
+        setValue={setTitle}
       />
       <Input
         label="Assignment Description"
-        value={specifications}
-        setValue={setspecifications}
+        value={Details}
+        setValue={setDetails}
         numberOfLines={5}
       />
       <Submit handleSubmit={handleSubmit} />

@@ -1,26 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import MyBtn from "../Mybutton";
-export default ({ navigation }) => {
+import { createStackNavigator } from "@react-navigation/stack";
+
+import Main from "./screens/Main/Main";
+// import Announce from "./screens/Announce/Announce";
+
+
+import Header from "../../navigation/Header";
+const Stack = createStackNavigator();
+
+export default () => {
   return (
-    <View style={styles.root}>
-      <Text>THIS IS THE Student dashboard screen</Text>
-      <MyBtn
-        title="Teachhhhhher"
-        navigation={navigation}
-        destination="TeacherDashboard"
-        color="#aa0"
+    <Stack.Navigator initialRouteName="StudentDashboard">
+      <Stack.Screen
+        name="StudentDashboard"
+        component={Main}
+        options={{ header: (props) => <Header {...props} /> }}
       />
-    </View>
+      {/* <Stack.Screen
+        name="CreateAnnouncement"
+        component={Announce}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+      */}
+    </Stack.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    margin: 10,
-    backgroundColor: "#aaa",
-    color: "#333",
-    borderRadius: 3,
-    padding: 10,
-  },
-});
