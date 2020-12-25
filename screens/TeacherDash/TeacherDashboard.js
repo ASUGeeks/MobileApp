@@ -6,6 +6,7 @@ import Announce from "./screens/Announce/Announce";
 import PostLearningMaterials from "./screens/PostLearningMaterials/PostLearningMaterials";
 import CourseSpecification from "./screens/CourseSpecification/CourseSpecification";
 import Assignments from "./screens/Assignments/Assignments";
+import CreateQuiz from "./screens/CreateQuiz/CreateQuiz"
 
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
@@ -36,6 +37,11 @@ export default () => {
       <Stack.Screen
         name="Assignments"
         component={Assignments}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+            <Stack.Screen
+        name="CreateQuiz"
+        component={CreateQuiz}
         options={{ header: (props) => <Header {...props} /> }}
       />
       {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}

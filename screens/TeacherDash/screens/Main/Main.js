@@ -57,6 +57,15 @@ export default ({ navigation }) => {
       >
         Enroll students to the course
       </Button>
+
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("CreateQuiz")}
+      >
+        CreateQuiz
+      </Button>
+
       {/* <Button
         style={styles.Button}
         mode="contained"
