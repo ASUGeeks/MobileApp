@@ -12,12 +12,18 @@ const Header = ({ scene, navigation, previous }) => {
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
   const [visible, setVisible] = React.useState(false);
+  console.log("FUCKKKK", scene);
   function openMenu() {
     setVisible(true);
   }
+
   function closeMenu() {
     setVisible(false);
   }
+  const title =
+    scene.route.params !== undefined
+      ? scene.route.params.name
+      : scene.route.name;
   return (
     <Appbar.Header
       theme={{
@@ -27,7 +33,7 @@ const Header = ({ scene, navigation, previous }) => {
       }}
     >
       {previous ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-      <Appbar.Content title={scene.route?.name} />
+      <Appbar.Content title={title} />
       <TouchableRipple onPress={() => toggleTheme()}>
         <Switch value={isThemeDark} />
       </TouchableRipple>

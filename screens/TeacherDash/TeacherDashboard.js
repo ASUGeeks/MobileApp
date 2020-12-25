@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Assignments">
+    <Stack.Navigator initialRouteName="TeacherDashboard">
       <Stack.Screen
         name="TeacherDashboard"
         component={Main}

@@ -6,20 +6,23 @@ import {
   Title,
   Paragraph,
   TouchableRipple,
-  IconButton
+  IconButton,
 } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 
-const LeftContent = (props) => <Avatar.Icon {...props}  icon="folder" />;
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 const RightContent = (props) => (
   <IconButton {...props} icon="menu" onPress={() => {}} />
 );
 
 // const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-const MyComponent = ({ title, subtitle }) => (
-  <TouchableRipple onPress={()=>console.log("clicked heeeh")}>
-    <Card elevation={4} style={styles.root}  onPress={()=>console.log("clicked heeeh")}>
+const MyComponent = ({ title, subtitle, imgURL, handleNavigation }) => (
+    <Card
+      elevation={4}
+      style={styles.root}
+      onPress={() =>handleNavigation(title,subtitle)}
+    >
       <Card.Title
         title={title}
         subtitle={subtitle}
@@ -30,7 +33,7 @@ const MyComponent = ({ title, subtitle }) => (
         {/* <Title>Card title</Title>
       <Paragraph>Card content</Paragraph> */}
       </Card.Content>
-      <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+      <Card.Cover source={{ uri: imgURL }} />
       {/* <Card.Actions>
       <Button>Lectures</Button>
       <Button>Videos</Button>
@@ -38,7 +41,6 @@ const MyComponent = ({ title, subtitle }) => (
       <Button>Assignments</Button>
     </Card.Actions> */}
     </Card>
-  </TouchableRipple>
 );
 
 const styles = StyleSheet.create({

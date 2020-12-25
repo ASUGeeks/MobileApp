@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Main from "./screens/Main/Main";
-// import Announce from "./screens/Announce/Announce";
+import CourseMaterial from "./screens/CourseMaterial/CourseMaterial";
 
 
 import Header from "../../navigation/Header";
@@ -16,12 +16,12 @@ export default () => {
         component={Main}
         options={{ header: (props) => <Header {...props} /> }}
       />
-      {/* <Stack.Screen
-        name="CreateAnnouncement"
-        component={Announce}
+      <Stack.Screen
+        name="CourseMaterial"
+        component={CourseMaterial}
         options={{ header: (props) => <Header {...props} /> }}
       />
-      */}
+     
     </Stack.Navigator>
   );
 };
