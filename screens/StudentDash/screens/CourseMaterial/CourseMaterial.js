@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
+import ContentList from "./components/ContentList";
 
 export default ({ route }) => {
   const [Title, setTitle] = useState("");
@@ -17,8 +18,7 @@ export default ({ route }) => {
 
   return (
     <ScrollView style={styles.root}>
-      <Text>{title}</Text>
-      <Text>{id}</Text>
+      <ContentList />
     </ScrollView>
   );
 };
