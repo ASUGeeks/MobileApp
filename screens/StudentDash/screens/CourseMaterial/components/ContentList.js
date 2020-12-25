@@ -20,11 +20,6 @@ const MyComponent = () => {
             title="Lecture 1"
             left={(props) => <List.Icon {...props} icon="video" />}
           ></List.Item>
-
-          <List.Item
-            title="Lecture 2"
-            left={(props) => <List.Icon {...props} icon="video" />}
-          />
         </List.Accordion>
         <List.Accordion
           title="Written summary"
@@ -63,18 +58,6 @@ const MyComponent = () => {
         >
           <List.Item
             title="Lecture 1"
-            left={(props) => <List.Icon {...props} icon="file-pdf" />}
-          />
-          <List.Item
-            title="Lecture 2"
-            left={(props) => <List.Icon {...props} icon="file-pdf" />}
-          />
-          <List.Item
-            title="Lecture 3"
-            left={(props) => <List.Icon {...props} icon="file-pdf" />}
-          />
-          <List.Item
-            title="Lecture 4"
             left={(props) => <List.Icon {...props} icon="file-pdf" />}
           />
         </List.Accordion>
