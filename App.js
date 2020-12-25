@@ -1,28 +1,48 @@
 // import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { Provider as PaperProvider ,DefaultTheme } from "react-native-paper";
-
 
 import BottomNavigation from "./navigation/BottomNavigation";
+import {
+  NavigationContainer,
+  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationDefaultTheme,
+} from "@react-navigation/native";
+import {
+  DarkTheme as PaperDarkTheme,
+  DefaultTheme as PaperDefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
+import merge from "deepmerge";
+import {PreferencesContext} from "./shared/PreferencesContext"
+const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
+const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#1958a7',
-    accent: '#22806f',
-    secondary: '#ddb92a',
-    thrid: '#5c105d',
-  },
-};
+
 export default function App() {
+  const [isThemeDark, setIsThemeDark] = React.useState(true);
+
+  let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
+
+  const toggleTheme = React.useCallback(() => {
+    return setIsThemeDark(!isThemeDark);
+  }, [isThemeDark]);
+
+  const preferences = React.useMemo(
+    () => ({
+      toggleTheme,
+      isThemeDark,
+    }),
+    [toggleTheme, isThemeDark]
+  );
+
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <BottomNavigation />
-      </NavigationContainer>
-    </PaperProvider>
+    <PreferencesContext.Provider value={preferences}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={theme}>
+          <BottomNavigation />
+        </NavigationContainer>
+      </PaperProvider>
+    </PreferencesContext.Provider>
   );
 }

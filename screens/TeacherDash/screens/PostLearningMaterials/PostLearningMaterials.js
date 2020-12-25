@@ -1,27 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-
-import Input from "../../../../shared/Input";
 import Submit from "../../../../shared/Submit";
+import Input from "../../../../shared/Input";
 export default () => {
   const [Title, setTitle] = React.useState("");
-  const [Body, setBody] = React.useState("");
+  const [URL, setURL] = React.useState("");
 
   function handleSubmit() {
-    const announcement = {
-      Title,
-      Body,
-    };
-    // TODO 
-    // make an http post request here
-    console.log("HEEEEEEH , this is the announcet LOL", announcement);
+    console.log("Submit");
   }
 
   return (
     <View style={styles.root}>
       <Input label="Title" value={Title} setValue={setTitle} />
-      <Input label="Body" numberOfLines={3} value={Body} setValue={setBody} />
-      <Submit handleSubmit={handleSubmit}/>
+      <Input label="URL" value={URL} setValue={setURL} />
+      <Submit handleSubmit={handleSubmit} />
     </View>
   );
 };

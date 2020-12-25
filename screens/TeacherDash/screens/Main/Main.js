@@ -2,8 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 
-export default ({navigation}) => {
-  
+export default ({ navigation }) => {
   return (
     <View>
       <Button
@@ -16,9 +15,16 @@ export default ({navigation}) => {
       <Button
         style={styles.Button}
         mode="outlined"
-        onPress={() => console.log("Pressed")}
+        onPress={() => navigation.navigate("PostLearningMaterials")}
       >
         post learning materials
+      </Button>
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("CourseSpecification")}
+      >
+        Specify / Edit course specifications
       </Button>
       <Button
         style={styles.Button}
@@ -32,7 +38,7 @@ export default ({navigation}) => {
         style={styles.Button}
         compact={true}
         mode="contained"
-        onPress={() => console.log("Pressed")}
+        onPress={() => navigation.navigate("Assignments")}
       >
         create assignments
       </Button>
@@ -49,7 +55,7 @@ export default ({navigation}) => {
         mode="contained"
         onPress={() => console.log("Pressed")}
       >
-        enroll students to the course
+        Enroll students to the course
       </Button>
       {/* <Button
         style={styles.Button}
@@ -58,13 +64,6 @@ export default ({navigation}) => {
       >
         add student’s grades
       </Button> */}
-      <Button
-        style={styles.Button}
-        mode="contained"
-        onPress={() => console.log("Pressed")}
-      >
-        specify / Edit course specifications
-      </Button>
     </View>
   );
 };
