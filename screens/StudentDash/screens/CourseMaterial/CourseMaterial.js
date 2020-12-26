@@ -2,113 +2,44 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import ContentList from "./components/ContentList";
 
-
-
 const content = [
   {
-    title: "Week 1",
+    title: "Week1",
     data: [
       {
-        title: "recorded lectures",
+        title: "Recorded lectures",
+        type: "vid",
         data: [
           {
             title: "Lecture 1",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
+            URL: "https://www.youtube.com/watch?v=OMMXrmMsjAk",
           },
           {
             title: "Lecture 2",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-          {
-            title: "Lecture 3",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
+            URL: "https://www.youtube.com/watch?v=OMMXrmMsjAk",
           },
         ],
       },
       {
         title: "Written lectures",
+        type: "pdf",
         data: [
           {
-            title: "Lecture 1 pdf",
-            description: "Ignore this description for now",
+            title: "Lecture 1",
             URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
+              "https://drive.google.com/open?id=1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0",
           },
           {
             title: "Lecture 2",
-            description: "Ignore this description for now",
             URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-          {
-            title: "Lecture 3",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Week 1",
-    data: [
-      {
-        title: "recorded lectures",
-        data: [
-          {
-            title: "Lecture 4",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-          {
-            title: "Lecture 5",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-          {
-            title: "Lecture 6",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-        ],
-      },
-      {
-        title: "Written lectures",
-        data: [
-          {
-            title: "Lecture 4 pdf",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-          {
-            title: "Lecture 5",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
-          },
-          {
-            title: "Lecture 6",
-            description: "Ignore this description for now",
-            URL:
-              "https://drive.google.com/file/d/1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0/view",
+              "https://drive.google.com/open?id=1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0",
           },
         ],
       },
     ],
   },
 ];
-export default ({ route }) => {
+export default ({ route,navigation }) => {
   const [Title, setTitle] = useState("");
   const { title, id } = route.params;
   console.log("THISI IS PROPS", route);
@@ -124,7 +55,7 @@ export default ({ route }) => {
 
   return (
     <ScrollView style={styles.root}>
-      <ContentList content={content} />
+      <ContentList content={content} navigation={navigation}/>
     </ScrollView>
   );
 };

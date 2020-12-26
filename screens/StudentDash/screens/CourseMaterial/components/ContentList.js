@@ -23,21 +23,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const SectionListBasics = () => {
+
+
+const SectionListBasics = ({ content,navigation }) => {
+  // console.log("HOW IS ME",navigation.navigate("OpenMaterial"));
+  function handleNavigation(name, id) {
+    navigation.navigate("OpenMaterial", {
+      name,
+      id,
+    });
+  }
+
   return (
     <List.Section title="Study material">
       <FlatList
-        data={[
-          {
-            title: "Week1",
-            data: [
-              {
-                title: "Recorded lectures",
-                data: [{ title: "Lecture 1" }, { title: "Lecture 2" }],
-              },
-            ],
-          },
-        ]}
+        data={content}
         renderItem={({ item }) => (
           <List.Accordion
             title={item.title}
@@ -56,6 +56,7 @@ const SectionListBasics = () => {
                       <List.Item
                         title={item.title}
                         left={(props) => <List.Icon {...props} icon="video" />}
+                        onPress={() => handleNavigation(item.title,item.URL)}
                       ></List.Item>
                     )}
                   />
