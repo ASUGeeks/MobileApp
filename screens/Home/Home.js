@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const Home = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="home"
         component={MyHome}
         options={{ header: (props) => <Header {...props} /> }}
@@ -30,7 +30,7 @@ const Home = () => {
         name="Login"
         component={Login}
         options={{ header: (props) => <Header {...props} /> }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };
