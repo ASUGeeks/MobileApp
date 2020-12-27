@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="TeacherDashboard">
+    <Stack.Navigator initialRouteName="PostLearningMaterials">
       <Stack.Screen
         name="TeacherDashboard"
         component={Main}

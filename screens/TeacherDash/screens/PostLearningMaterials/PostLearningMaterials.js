@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, FlatList, Text, StyleSheet ,ScrollView} from "react-native";
+import { View, FlatList, Text, StyleSheet, ScrollView } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 
@@ -43,24 +43,37 @@ export default () => {
   const [Week, setWeek] = useState("");
   const [URL, setURL] = useState("");
 
+  function handleWeekTitleChange(fuck,index){
+    const oldContent = [...Content]
+    oldContent[index].title=fuck
+    setContent(oldContent)
+  }
+  function handleTypeChange(fuck,index){
+    
+  }
+  
   function handleSubmit() {
     console.log("Submit");
   }
 
   return (
     <ScrollView style={styles.root}>
+      {/*********** Week start ***********/}
+
       <View style={[styles.week]}>
         <FlatList
           data={Content}
           renderItem={(week) => (
-            <View style={[styles.week,styles.BL1]}>
-              <Input label="Title" value={week.item.title} setValue={setURL} />
-              {/* type start */}
+            <View style={[styles.week, styles.BL1]}>
+              <Input label="Title" value={week.item.title} setValue={handleWeekTitleChange} index={week.index}/>
+
+              {/*********** type start ***********/}
+
               <View style={styles.week}>
                 <FlatList
                   data={week.item.data}
                   renderItem={(type) => (
-                    <View style={[styles.week,styles.BL2]}>
+                    <View style={[styles.week, styles.BL2]}>
                       <Input
                         label="Title"
                         value={type.item.title}
@@ -71,7 +84,10 @@ export default () => {
                         value={type.item.type}
                         setValue={setURL}
                       />
-                      <View style={[styles.week,styles.BL3]}>
+
+                      {/*********** Content start ***********/}
+
+                      <View style={[styles.week, styles.BL3]}>
                         <FlatList
                           data={type.item.data}
                           renderItem={(content) => (
@@ -90,15 +106,20 @@ export default () => {
                           )}
                         />
                       </View>
+
+                      {/*********** Content end ***********/}
                     </View>
                   )}
                 />
               </View>
-              {/* type End */}
+
+              {/*********** type End ***********/}
             </View>
           )}
         />
       </View>
+      {/*********** Week End ***********/}
+
       <Submit handleSubmit={handleSubmit} />
     </ScrollView>
   );
@@ -110,15 +131,15 @@ const styles = StyleSheet.create({
   },
   week: {
     margin: 10,
-    borderLeftWidth:2,
+    borderLeftWidth: 2,
   },
-  BL1:{
-    borderLeftColor:"#ff0",
+  BL1: {
+    borderLeftColor: "#ff0",
   },
-  BL2:{
-    borderLeftColor:"#f00",
+  BL2: {
+    borderLeftColor: "#f00",
   },
-  BL3:{
-    borderLeftColor:"#f0f",
-  }
+  BL3: {
+    borderLeftColor: "#f0f",
+  },
 });
