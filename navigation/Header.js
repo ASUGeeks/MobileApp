@@ -12,7 +12,6 @@ const Header = ({ scene, navigation, previous }) => {
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
   const [visible, setVisible] = React.useState(false);
-  console.log("FUCKKKK", scene);
   function openMenu() {
     setVisible(true);
   }

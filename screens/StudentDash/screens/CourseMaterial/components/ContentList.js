@@ -2,35 +2,34 @@ import React from "react";
 import { SectionList, FlatList, StyleSheet, Text, View } from "react-native";
 import { List } from "react-native-paper";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22,
-  },
-  sectionHeader: {
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 14,
-    fontWeight: "bold",
-    backgroundColor: "rgba(247,247,247,1.0)",
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: 22,
+//   },
+//   sectionHeader: {
+//     paddingTop: 2,
+//     paddingLeft: 10,
+//     paddingRight: 10,
+//     paddingBottom: 2,
+//     fontSize: 14,
+//     fontWeight: "bold",
+//     backgroundColor: "rgba(247,247,247,1.0)",
+//   },
+//   item: {
+//     padding: 10,
+//     fontSize: 18,
+//     height: 44,
+//   },
+// });
 
-
-
-const SectionListBasics = ({ content,navigation }) => {
+const SectionListBasics = ({ content, navigation }) => {
   // console.log("HOW IS ME",navigation.navigate("OpenMaterial"));
-  function handleNavigation(name, id) {
+  function handleNavigation(name,type ,id) {
     navigation.navigate("OpenMaterial", {
       name,
       id,
+      type
     });
   }
 
@@ -38,25 +37,27 @@ const SectionListBasics = ({ content,navigation }) => {
     <List.Section title="Study material">
       <FlatList
         data={content}
-        renderItem={({ item }) => (
+        renderItem={(week) => (
           <List.Accordion
-            title={item.title}
+            title={week.item.title}
             left={(props) => <List.Icon {...props} icon="folder" />}
           >
             <FlatList
-              data={item.data}
-              renderItem={({ item }) => (
+              data={week.item.data}
+              renderItem={(type) => (
                 <List.Accordion
-                  title={item.title}
+                  title={type.item.title}
                   left={(props) => <List.Icon {...props} icon="folder" />}
                 >
                   <FlatList
-                    data={item.data}
+                    data={type.item.data}
                     renderItem={({ item }) => (
                       <List.Item
                         title={item.title}
                         left={(props) => <List.Icon {...props} icon="video" />}
-                        onPress={() => handleNavigation(item.title,item.URL)}
+                        onPress={() =>
+                          handleNavigation(item.title, type.item.type, item.URL)
+                        }
                       ></List.Item>
                     )}
                   />
