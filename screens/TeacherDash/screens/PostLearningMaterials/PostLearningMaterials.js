@@ -76,22 +76,41 @@ const Fuck = () => {
   const [Week, setWeek] = useState("");
   const [URL, setURL] = useState("");
 
-  function addWeek(){
-    console.log("WEEEK IS BEING ADDED")
-  }
-  
-  function addType(){
-    console.log("Type IS BEING ADDED")
-  }
-  
-  function addContent(weekIndex,typeIndex){
-
-    console.log("Content IS BEING ADDED")
+  function addWeek() {
     const oldContent = [...Content];
-    oldContent[weekIndex].data[typeIndex].data.push({title:"",URL:""})
-    console.log(weekIndex,typeIndex)
+    console.log("FHFHFHF", oldContent);
+    oldContent.push(
+      {
+        title: "",
+        data: [
+          {
+            title: "",
+            type: "",
+            data: [{ title: "", URL: "" }],
+          },
+        ],
+      },
+    );
+    console.log("HEY HO YA WALLA",oldContent)
     setContent(oldContent);
+  }
 
+  function addType(weekIndex) {
+    const oldContent = [...Content];
+    oldContent[weekIndex].data.push({
+      title: "",
+      type: "",
+      data: [{ title: "", URL: "" }],
+    });
+    setContent(oldContent);
+  }
+
+  function addContent(weekIndex, typeIndex) {
+    console.log("Content IS BEING ADDED");
+    const oldContent = [...Content];
+    oldContent[weekIndex].data[typeIndex].data.push({ title: "", URL: "" });
+    console.log(weekIndex, typeIndex);
+    setContent(oldContent);
   }
 
   function handleWeekTitleChange(lable, fuck, index) {
@@ -174,13 +193,19 @@ const Fuck = () => {
                           />
                         </View>
                       ))}
-                      <Submit handleSubmit={()=>addContent(week.index,typeindex)} label="Add Content" />
+                      <Submit
+                        handleSubmit={() => addContent(week.index, typeindex)}
+                        label="Add Content"
+                      />
                     </View>
 
                     {/*********** Content end ***********/}
                   </View>
                 ))}
-                <Submit handleSubmit={addType} label="Add Type" />
+                <Submit
+                  handleSubmit={() => addType(week.index)}
+                  label="Add Type"
+                />
               </View>
 
               {/*********** type End ***********/}
