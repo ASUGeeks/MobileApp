@@ -13,24 +13,24 @@ const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="TeacherDashboard">
+    <Stack.Navigator initialRouteName="Teacher Dashboard">
       <Stack.Screen
-        name="TeacherDashboard"
+        name="Teacher Dashboard"
         component={Main}
         options={{ header: (props) => <Header {...props} /> }}
       />
       <Stack.Screen
-        name="CreateAnnouncement"
+        name="Create Announcement"
         component={Announce}
         options={{ header: (props) => <Header {...props} /> }}
       />
       <Stack.Screen
-        name="PostLearningMaterials"
+        name="Post Learning Materials"
         component={PostLearningMaterials}
         options={{ header: (props) => <Header {...props} /> }}
       />
       <Stack.Screen
-        name="CourseSpecification"
+        name="Course Specification"
         component={CourseSpecification}
         options={{ header: (props) => <Header {...props} /> }}
       />
@@ -40,7 +40,7 @@ export default () => {
         options={{ header: (props) => <Header {...props} /> }}
       />
             <Stack.Screen
-        name="CreateQuiz"
+        name="Create Quiz"
         component={CreateQuiz}
         options={{ header: (props) => <Header {...props} /> }}
       />
