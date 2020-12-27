@@ -43,30 +43,22 @@ const Fuck = () => {
   const [Week, setWeek] = useState("");
   const [URL, setURL] = useState("");
 
-  function handleWeekTitleChange(fuck, index) {
+  function handleWeekTitleChange(lable,fuck, index) {
     const oldContent = [...Content];
     oldContent[index].title = fuck;
-    oldContent[index].data[0].title=fuck
     setContent(oldContent);
   }
 
-  function handleTypeChange(fuck, index, parentIndex) {
-    console.log("F!",fuck)
+  function handleTypeChange(lable, fuck, index, parentIndex) {
     const oldContent = [...Content];
-    // oldContent[index].title = fuck;
-    oldContent[parentIndex].title=fuck
-    oldContent[parentIndex].data[index].title="fuck"
-    
-     
- console.log("PLEaAAAAAAse",oldContent)
+    oldContent[parentIndex].data[index][lable] = fuck;
     setContent(oldContent);
-    // console.log("ahahahaha",oldContent[parentIndex].data[index].title)
-    // // console.log("Please",please)
-    // console.log("Please",text)
-    // console.log();
-    // console.log("heeeeeh text", text);
-    // console.log("heeeeeh index", index);
-    // console.log("heeeeeh parentIndex", parentIndex);
+  }
+
+  function handleContentChange(lable, fuck, index, parentIndex,grandIndex) {
+    const oldContent = [...Content];
+    oldContent[grandIndex].data[parentIndex].data[index][lable] = fuck;
+    setContent(oldContent);
   }
 
   function handleSubmit() {
@@ -76,7 +68,7 @@ const Fuck = () => {
   return (
     <ScrollView style={styles.root}>
       {/*********** Week start ***********/}
-{console.log("re render occured",Content)}
+      {console.table( Content[0].data)}
       <View style={[styles.week]}>
         <FlatList
           data={Content}
@@ -92,57 +84,51 @@ const Fuck = () => {
               {/*********** type start ***********/}
 
               <View style={styles.week}>
-                <FlatList
-                  data={week.item.data}
-                  renderItem={(type) => (
-                    <View style={[styles.week, styles.BL2]}>
-                      <Input
-                        label="Title"
-                        value={type.item.title}
-                        index={type.index}
-                        parentIndex={week.index}
-                        setValue={handleTypeChange}
-                      />
-                      <Input
-                        label="Type"
-                        value={type.item.type}
-                        index={type.index}
-                        parentIndex={week.index}
-                        setValue={handleTypeChange}
-                      />
+                {week.item.data.map((type, typeindex) => (
+                  <View key={typeindex} style={[styles.week, styles.BL2]}>
+                    <Input
+                      label="title"
+                      value={type.title}
+                      index={typeindex}
+                      parentIndex={week.index}
+                      setValue={handleTypeChange}
+                    />
+                    <Input
+                      label="type"
+                      value={type.type}
+                      index={typeindex}
+                      parentIndex={week.index}
+                      setValue={handleTypeChange}
+                    />
 
-                      {/*********** Content start ***********/}
+                    {/*********** Content start ***********/}
 
-                      <View style={[styles.week, styles.BL3]}>
-                        <FlatList
-                          data={type.item.data}
-                          renderItem={(content) => (
-                            <View style={styles.week}>
-                              <Input
-                                label="Title"
-                                value={content.item.title}
-                                index={content.index}
-                                parentIndex={type.index}
-                                grandIndex={week.index}
-                                setValue={setURL}
-                              />
-                              <Input
-                                label="Url"
-                                value={content.item.URL}
-                                index={content.index}
-                                parentIndex={type.index}
-                                grandIndex={week.index}
-                                setValue={setURL}
-                              />
-                            </View>
-                          )}
-                        />
-                      </View>
-
-                      {/*********** Content end ***********/}
+                    <View style={[styles.week, styles.BL3]}>
+                      {type.data.map((content, contentindex) => (
+                        <View key={contentindex} style={styles.week}>
+                          <Input
+                            label="title"
+                            value={content.title}
+                            index={contentindex}
+                            parentIndex={typeindex}
+                            grandIndex={week.index}
+                            setValue={handleContentChange}
+                          />
+                          <Input
+                            label="URL"
+                            value={content.URL}
+                            index={contentindex}
+                            parentIndex={typeindex}
+                            grandIndex={week.index}
+                            setValue={handleContentChange}
+                          />
+                        </View>
+                      ))}
                     </View>
-                  )}
-                />
+
+                    {/*********** Content end ***********/}
+                  </View>
+                ))}
               </View>
 
               {/*********** type End ***********/}
@@ -176,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Fuck
+export default Fuck;
