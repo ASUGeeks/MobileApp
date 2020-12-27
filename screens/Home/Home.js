@@ -9,13 +9,20 @@ import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
 
 const Home = () => {
-  return (
+  return <Login />;
+};
+
+export default Home;
+
+{
+  /*
     <Stack.Navigator>
       <Stack.Screen
-        name="home"
-        component={MyHome}
-        options={{ header: (props) => <Header {...props} /> }}
-      />
+       name="login"
+       component={Login}
+       options={{ header: (props) => <Header {...props} /> }}
+     />
+      
       <Stack.Screen
         name="TeacherDashboard"
         component={TeacherDashboard}
@@ -30,9 +37,7 @@ const Home = () => {
         name="Login"
         component={Login}
         options={{ header: (props) => <Header {...props} /> }}
-      />
-    </Stack.Navigator>
-  );
-};
-
-export default Home;
+      /> 
+      </Stack.Navigator>
+    */
+}
