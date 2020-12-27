@@ -23,7 +23,7 @@ export default () => {
       <Input label="Body" numberOfLines={3} value={Body} setValue={setBody} />
       <Submit handleSubmit={handleSubmit}/>
     </View>
-  );//dsds
+  );
 };
 
 const styles = StyleSheet.create({
