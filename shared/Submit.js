@@ -2,9 +2,9 @@ import * as React from "react";
 import { Button } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
-export default ({ handleSubmit }) => (
+export default ({ handleSubmit ,label}) => (
   <Button style={styles.root} mode="contained" onPress={handleSubmit}>
-    Submit
+    {label===undefined?"Submit":label}
   </Button>
 );
 

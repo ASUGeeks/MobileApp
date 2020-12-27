@@ -38,12 +38,63 @@ const Fuck = () => {
         },
       ],
     },
+    {
+      title: "Week2",
+      data: [
+        {
+          title: "Recorded lectures",
+          type: "vid",
+          data: [
+            {
+              title: "Lecture 1",
+              URL: "OMMXrmMsjAk",
+            },
+            {
+              title: "Lecture 2",
+              URL: "OMMXrmMsjAk",
+            },
+          ],
+        },
+        {
+          title: "Written lectures",
+          type: "pdf",
+          data: [
+            {
+              title: "Lecture 1",
+              URL: "1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0",
+            },
+            {
+              title: "Lecture 2",
+              URL: "id=1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0",
+            },
+          ],
+        },
+      ],
+    },
   ]);
 
   const [Week, setWeek] = useState("");
   const [URL, setURL] = useState("");
 
-  function handleWeekTitleChange(lable,fuck, index) {
+  function addWeek(){
+    console.log("WEEEK IS BEING ADDED")
+  }
+  
+  function addType(){
+    console.log("Type IS BEING ADDED")
+  }
+  
+  function addContent(weekIndex,typeIndex){
+
+    console.log("Content IS BEING ADDED")
+    const oldContent = [...Content];
+    oldContent[weekIndex].data[typeIndex].data.push({title:"",URL:""})
+    console.log(weekIndex,typeIndex)
+    setContent(oldContent);
+
+  }
+
+  function handleWeekTitleChange(lable, fuck, index) {
     const oldContent = [...Content];
     oldContent[index].title = fuck;
     setContent(oldContent);
@@ -55,7 +106,7 @@ const Fuck = () => {
     setContent(oldContent);
   }
 
-  function handleContentChange(lable, fuck, index, parentIndex,grandIndex) {
+  function handleContentChange(lable, fuck, index, parentIndex, grandIndex) {
     const oldContent = [...Content];
     oldContent[grandIndex].data[parentIndex].data[index][lable] = fuck;
     setContent(oldContent);
@@ -68,7 +119,6 @@ const Fuck = () => {
   return (
     <ScrollView style={styles.root}>
       {/*********** Week start ***********/}
-      {console.table( Content[0].data)}
       <View style={[styles.week]}>
         <FlatList
           data={Content}
@@ -124,17 +174,20 @@ const Fuck = () => {
                           />
                         </View>
                       ))}
+                      <Submit handleSubmit={()=>addContent(week.index,typeindex)} label="Add Content" />
                     </View>
 
                     {/*********** Content end ***********/}
                   </View>
                 ))}
+                <Submit handleSubmit={addType} label="Add Type" />
               </View>
 
               {/*********** type End ***********/}
             </View>
           )}
         />
+        <Submit handleSubmit={addWeek} label="Add Week" />
       </View>
       {/*********** Week End ***********/}
 
@@ -149,16 +202,20 @@ const styles = StyleSheet.create({
   },
   week: {
     margin: 10,
-    borderLeftWidth: 2,
+    borderWidth: 2,
+    borderRadius: 8,
   },
   BL1: {
-    borderLeftColor: "#ff0",
+    borderColor: "#ff0",
+    backgroundColor: "#ff04",
   },
   BL2: {
-    borderLeftColor: "#f00",
+    borderColor: "#f00",
+    backgroundColor: "#f004",
   },
   BL3: {
-    borderLeftColor: "#f0f",
+    borderColor: "#f0f",
+    backgroundColor: "#f0f4",
   },
 });
 
