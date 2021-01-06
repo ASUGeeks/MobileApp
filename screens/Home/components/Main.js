@@ -50,18 +50,20 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   root: {
-    margin: 10,
+	  
     padding: 10,
+    margin: 10,
+    borderRadius: 3,
     backgroundColor: "#333",
     color: "#eee",
-    borderRadius: 3,
   },
   surface: {
+	  
     padding: 8,
-    height: 80,
+	height: 80,
     width: 80,
+	justifyContent: "center",
     alignItems: "center",
-    justifyContent: "center",
     elevation: 4,
   },
 });
