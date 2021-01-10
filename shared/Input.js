@@ -18,7 +18,11 @@ const MyComponent = ({
       value={value}
       multiline={true}
       numberOfLines={numberOfLines}
-      onChangeText={(text) => setValue(label,text, index, parentIndex, grandIndex)}
+      onChangeText={(text) => {
+        index === undefined
+          ? setValue(text)
+          : setValue(label, text, index, parentIndex, grandIndex);
+      }}
     />
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { SectionList, FlatList, StyleSheet, Text, View } from "react-native";
-import { List } from "react-native-paper";
+import { List, Divider } from "react-native-paper";
 
 const SectionListBasics = ({ content, navigation }) => {
   // console.log("HOW IS ME",navigation.navigate("OpenMaterial"));
@@ -21,6 +21,8 @@ const SectionListBasics = ({ content, navigation }) => {
             title={week.item.title}
             left={(props) => <List.Icon {...props} icon="folder" />}
           >
+            <Divider />
+
             <FlatList
               data={week.item.data}
               renderItem={(type) => (
@@ -31,25 +33,35 @@ const SectionListBasics = ({ content, navigation }) => {
                   <FlatList
                     data={type.item.data}
                     renderItem={({ item }) => (
-                      <List.Item
-                        title={item.title}
-                        left={(props) => (
-                          <List.Icon
-                            {...props}
-                            icon={
-                              type.item.type === "vid" ? "video" : "file-pdf"
-                            }
-                          />
-                        )}
-                        onPress={() =>
-                          handleNavigation(item.title, type.item.type, item.URL)
-                        }
-                      ></List.Item>
+                      <React.Fragment>
+                        <Divider />
+
+                        <List.Item
+                          title={item.title}
+                          left={(props) => (
+                            <List.Icon
+                              {...props}
+                              icon={
+                                type.item.type === "vid" ? "video" : "file-pdf"
+                              }
+                            />
+                          )}
+                          onPress={() =>
+                            handleNavigation(
+                              item.title,
+                              type.item.type,
+                              item.URL
+                            )
+                          }
+                        ></List.Item>
+                      </React.Fragment>
                     )}
                   />
+                  <Divider />
                 </List.Accordion>
               )}
             />
+            <Divider />
           </List.Accordion>
         )}
       />

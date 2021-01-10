@@ -18,10 +18,9 @@ import {PreferencesContext} from "./shared/PreferencesContext"
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
-
 export default function App() {
   const [isThemeDark, setIsThemeDark] = React.useState(true);
-
+  
   let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
 
   const toggleTheme = React.useCallback(() => {
@@ -29,7 +28,7 @@ export default function App() {
   }, [isThemeDark]);
 
   const preferences = React.useMemo(
-    () => ({
+    () => ({ 
       toggleTheme,
       isThemeDark,
     }),
