@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {  StyleSheet,ScrollView } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
-import Radio from "../../../../shared/Radio"
-const admin = {
-    username: "username",
-    email: "email@exmaple.com",
-    role: "teacher",
-    password: "somepassword",
-  };
-  
+import Radio from "../../../../shared/Radio"; 
+
 export default () => {
-  const [userName, setuserName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Role, setRole] = useState("");
+  const [username, setusername] = useState("");
+  const [email, setemail] = useState("");
+  const [role, setrole] = useState("");
   const [password, setpassword] = useState("");
 
   useEffect(() => {
@@ -23,31 +17,23 @@ export default () => {
   }, []);
 
   function handleSubmit() {
-    console.log("Submit");
+    const admin = {
+        username,
+        email,
+        role,
+        password,
+      };
+    console.log("Submit",admin);
   }
 
   return (
-    <View style={styles.root}>
-      <Input
-        label="User Name"
-        value={userName}
-        setValue={setuserName}
-      /><Input
-      label="E-mail"
-      value={Email}
-      setValue={setEmail}
-    /><Input
-    label="Role"
-    value={Role}
-    setValue={setRole}
-  /><Input
-  label="Password"
-  value={password}
-  setValue={setpassword}
-/>
-<Radio options={["Student","Teacher"]} value={Role} setValue={setRole}/>
+    <ScrollView style={styles.root}>
+      <Input label="User Name" value={username} setValue={setusername} />
+      <Input label="E-mail" value={email} setValue={setemail} />
+      <Input label="Password" value={password} setValue={setpassword} />
+      <Radio title="Roles" options={["Student", "Teacher"]} value={role} setValue={setrole} />
       <Submit handleSubmit={handleSubmit} />
-    </View>
+    </ScrollView>
   );
 };
 
