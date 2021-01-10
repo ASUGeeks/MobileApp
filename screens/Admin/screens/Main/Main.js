@@ -13,6 +13,13 @@ export default ({ navigation }) => {
         Create User
       </Button>
 
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("Create course")}
+      >
+        Create course
+      </Button>
       {/* <Button
         style={styles.Button}
         mode="contained"

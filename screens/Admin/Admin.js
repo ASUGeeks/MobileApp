@@ -5,19 +5,13 @@ import Main from "./screens/Main/Main";
 import Header from "../../navigation/Header";
 
 import CreateUser from "./screens/CreateUser/CreateUser"
-
-const admin = {
-  username: "username",
-  email: "email@exmaple.com",
-  role: "teacher",
-  password: "somepassword",
-};
+import CreateCourse from "./screens/CreateCourse/CreateCourse"
 
 const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Create user">
+    <Stack.Navigator initialRouteName="Main">
       <Stack.Screen
         name="Main"
         component={Main}
@@ -28,17 +22,11 @@ export default () => {
         component={CreateUser}
         options={{ header: (props) => <Header {...props} /> }}
       />
-      {/* <Stack.Screen
-        name="Create Announcement"
-        component={Announce}
+            <Stack.Screen
+        name="Create course"
+        component={CreateCourse}
         options={{ header: (props) => <Header {...props} /> }}
       />
-      <Stack.Screen
-        name="Post Learning Materials"
-        component={PostLearningMaterials}
-        options={{ header: (props) => <Header {...props} /> }}
-      /> */}
-      {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}
     </Stack.Navigator>
   );
 };
