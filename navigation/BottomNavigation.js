@@ -11,7 +11,7 @@ import Admin from "../screens/Admin/Admin";
 
 export default function MyTabs() {
   return (
-    <Tab.Navigator initialRouteName="StudentDashboard">
+    <Tab.Navigator initialRouteName="Admin">
       {/* <Tab.Screen name="Home" component={Home} /> */}
       <Tab.Screen name="StudentDashboard" component={StudentDashboard} />
       <Tab.Screen name="TeacherDashboard" component={TeacherDashboard} />

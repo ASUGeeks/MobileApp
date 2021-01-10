@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Main">
+    <Stack.Navigator initialRouteName="Create user">
       <Stack.Screen
         name="Main"
         component={Main}
