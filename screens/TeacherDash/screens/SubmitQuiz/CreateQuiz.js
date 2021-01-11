@@ -7,16 +7,20 @@ import Input from "../../../../shared/Input";
 
 export default () => {
   const [form, updateForm] = useState([]);
-  const [question, setQuestion] = useState("");
 
-  const putAnswerFn = () => {
-    let arr = [...answerText];
-    arr.push(answerText);
-    updateForm(arr);
+  const addQuestion = () => {
+    const temp = {
+      hash: "",
+      quesiton: "",
+      answers: ["a", "", "", ""],
+    };
+    updateForm((oldArr) => [...oldArr, temp]);
   };
 
-  const handleQuestionText = (text) => {
-    updateForm([(oldArr) => [...oldArr, text]]);
+  const handleQuestionText = (lable, text, index) => {
+    const oldContent = [...form];
+    oldContent[index].question = text;
+    updateForm(oldContent);
   };
 
   return (
@@ -24,44 +28,34 @@ export default () => {
       <Surface style={styles.root}>
         <FlatList
           data={form}
-          renderItem={(form) => {
+          renderItem={({ item, index }) => (
             <View>
+              {console.log(item)}
               <Input
                 label="type a question"
-                value={form.questionTitle}
+                value={item.questionTitle}
                 setValue={handleQuestionText}
                 style={styles.text}
+                index={index}
               />
-              <Input
-                label="type an answer"
-                type="outlined"
-                value={answerText}
-                onChangeText={(text) => setAnswerText(text)}
-                style={styles.text}
-              />
-            </View>;
-          }}
+              {item.answers.map((item) => (
+                <Button mode="outlined" uppercase={false}>
+                  <Text style={styles.text}>{item}</Text>
+                </Button>
+              ))}
+            </View>
+          )}
         />
 
-        {form.map((Answer) => {
-          <View style={styles.answers}>
-            <Button
-              mode="outlined"
-              uppercase={false}
-              onPress={() => correctCheck(Answer, Questions.hash)}
-            >
-              <Text style={styles.text}>{Answer}</Text>
-            </Button>
-          </View>;
-        })}
         <Button
           type="text"
           mode="text"
           onPress={() => {
-            putAnswerFn();
+            addQuestion();
+            console.log(form);
           }}
         >
-          Submit
+          Add Question
         </Button>
       </Surface>
     </ScrollView>
