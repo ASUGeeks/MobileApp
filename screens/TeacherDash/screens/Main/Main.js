@@ -8,21 +8,21 @@ export default ({ navigation }) => {
       <Button
         style={styles.Button}
         mode="contained"
-        onPress={() => navigation.navigate("CreateAnnouncement")}
+        onPress={() => navigation.navigate("Create Announcement")}
       >
         create announcements
       </Button>
       <Button
         style={styles.Button}
         mode="outlined"
-        onPress={() => navigation.navigate("PostLearningMaterials")}
+        onPress={() => navigation.navigate("Post Learning Materials")}
       >
         post learning materials
       </Button>
       <Button
         style={styles.Button}
         mode="contained"
-        onPress={() => navigation.navigate("CourseSpecification")}
+        onPress={() => navigation.navigate("Course Specification")}
       >
         Specify / Edit course specifications
       </Button>
@@ -61,9 +61,9 @@ export default ({ navigation }) => {
       <Button
         style={styles.Button}
         mode="contained"
-        onPress={() => navigation.navigate("CreateQuiz")}
+        onPress={() => navigation.navigate("Create Quiz")}
       >
-        CreateQuiz
+        Create Quiz
       </Button>
 
       {/* <Button

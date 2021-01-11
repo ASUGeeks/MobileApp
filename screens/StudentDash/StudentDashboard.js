@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Main from "./screens/Main/Main";
 import CourseMaterial from "./screens/CourseMaterial/CourseMaterial";
-
+import OpenMaterial from "./screens/OpenMaterial/OpenMaterial";
 
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
@@ -21,7 +21,11 @@ export default () => {
         component={CourseMaterial}
         options={{ header: (props) => <Header {...props} /> }}
       />
-     
+      <Stack.Screen
+        name="OpenMaterial"
+        component={OpenMaterial}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
     </Stack.Navigator>
   );
 };
