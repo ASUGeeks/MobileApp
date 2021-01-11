@@ -1,36 +1,23 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, ScrollView } from "react-native";
 import { Surface, Text, Button } from "react-native-paper";
+import axios from "axios";
 
 import Submit from "../../../../shared/Submit";
 
 const quiz = [
   {
     question: "hey this quesiton 1 ",
-    answers: [
-      ["answer1", false],
-      ["answer2", false],
-      ["answer3", true],
-      ["answer4", false],
-    ],
+    answers: ["answer1", "answer2", "answer3", "answer4"],
   },
   {
     question: "hey this quesiton 2 ",
-    answers: [
-      ["answer1", false],
-      ["answer2", false],
-      ["answer3", true],
-      ["answer4", false],
-    ],
+    answers: ["answer1", "answer2", "answer3", "answer4"],
   },
   {
     question: "hey this quesiton 3 ",
-    answers: [
-      ["answer1", false],
-      ["answer2", false],
-      ["answer3", true],
-      ["answer4", false],
-    ],
+    answers: ["answer1", "answer2", "answer3", "answer4"],
   },
 ];
 
@@ -38,7 +25,15 @@ export default () => {
   function handleSubmit() {
     console.log(quiz[0]);
   }
-  const [correct, setCorrect] = useState(false);
+  const correctCheck = (item) => {
+    axios.post("/url", { studentAnswer: item }).then(() =>
+      console.log("sent").catch((e) => {
+        console.log(e);
+      })
+    );
+  };
+
+  const [correct, setCorrect] = useState([]);
 
   return (
     <ScrollView style={styles.root}>
@@ -53,18 +48,13 @@ export default () => {
               <Button
                 mode="outlined"
                 uppercase={false}
-                onPress={() => setCorrect(true)}
+                onPress={() => correctCheck(item)}
               >
-                <Text
-                  onPress={() => console.log(item[1], correct)}
-                  style={styles.text}
-                >
-                  {item[0]}
-                </Text>
+                <Text style={styles.text}>{item}</Text>
               </Button>
-              {correct ? <Text>Correct !!</Text> : null}
             </View>
           ))}
+          {correct ? <Text>Correct !!</Text> : null}
         </Surface>
       ))}
 
