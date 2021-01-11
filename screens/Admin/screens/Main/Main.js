@@ -1,8 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
-
+import axios from "axios";
 export default ({ navigation }) => {
+  axios
+    .get("/")
+    .then((r) => console.log("hey", r))
+    .catch((bug) => console.log("BUBUBUUB", bug));
   return (
     <View>
       <Button
