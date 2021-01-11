@@ -3,7 +3,7 @@ import { View, FlatList, Text, StyleSheet, ScrollView } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 
-const Fuck = () => {
+const text = () => {
   const [Content, setContent] = useState([
     {
       title: "Week1",
@@ -79,19 +79,17 @@ const Fuck = () => {
   function addWeek() {
     const oldContent = [...Content];
     console.log("FHFHFHF", oldContent);
-    oldContent.push(
-      {
-        title: "",
-        data: [
-          {
-            title: "",
-            type: "",
-            data: [{ title: "", URL: "" }],
-          },
-        ],
-      },
-    );
-    console.log("HEY HO YA WALLA",oldContent)
+    oldContent.push({
+      title: "",
+      data: [
+        {
+          title: "",
+          type: "",
+          data: [{ title: "", URL: "" }],
+        },
+      ],
+    });
+    console.log("HEY HO YA WALLA", oldContent);
     setContent(oldContent);
   }
 
@@ -113,26 +111,26 @@ const Fuck = () => {
     setContent(oldContent);
   }
 
-  function handleWeekTitleChange(lable, fuck, index) {
+  function handleWeekTitleChange(lable, text, index) {
     const oldContent = [...Content];
-    oldContent[index].title = fuck;
+    oldContent[index].title = text;
     setContent(oldContent);
   }
 
-  function handleTypeChange(lable, fuck, index, parentIndex) {
+  function handleTypeChange(lable, text, index, parentIndex) {
     const oldContent = [...Content];
-    oldContent[parentIndex].data[index][lable] = fuck;
+    oldContent[parentIndex].data[index][lable] = text;
     setContent(oldContent);
   }
 
-  function handleContentChange(lable, fuck, index, parentIndex, grandIndex) {
+  function handleContentChange(lable, text, index, parentIndex, grandIndex) {
     const oldContent = [...Content];
-    oldContent[grandIndex].data[parentIndex].data[index][lable] = fuck;
+    oldContent[grandIndex].data[parentIndex].data[index][lable] = text;
     setContent(oldContent);
   }
 
   function handleSubmit() {
-    console.log("Submit");
+    console.log("Submit", Content);
   }
 
   return (
@@ -244,4 +242,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Fuck;
+export default text;

@@ -1,41 +1,49 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, ScrollView } from "react-native";
-import { Text, Button, TextInput, Surface } from "react-native-paper";
+import { Text, Button, Surface } from "react-native-paper";
 import QuizComponent from "./QuizComponent/QuizComponent";
+import Input from "../../../../shared/Input";
 
 export default () => {
   const [form, updateForm] = useState([]);
-  const [questionText, setQuestionText] = useState("");
-  const [answerText, setAnswerText] = useState("");
-  const [answers, setAnswers] = useState([]);
+  const [question, setQuestion] = useState("");
 
   const putAnswerFn = () => {
     let arr = [...answerText];
     arr.push(answerText);
-    setAnswers(arr);
-    console.log(answerText);
-    console.log(answers);
+    updateForm(arr);
   };
+
+  const handleQuestionText = (text) => {
+    updateForm([(oldArr) => [...oldArr, text]]);
+  };
+
   return (
     <ScrollView style={styles.root}>
       <Surface style={styles.root}>
-        <TextInput
-          label="type a question"
-          type="outlined"
-          value={questionText}
-          onChangeText={(text) => setQuestionText(text)}
-          style={styles.text}
-        />
-        <TextInput
-          label="type an answer"
-          type="outlined"
-          value={answerText}
-          onChangeText={(text) => setAnswerText(text)}
-          style={styles.text}
+        <FlatList
+          data={form}
+          renderItem={(form) => {
+            <View>
+              <Input
+                label="type a question"
+                value={form.questionTitle}
+                setValue={handleQuestionText}
+                style={styles.text}
+              />
+              <Input
+                label="type an answer"
+                type="outlined"
+                value={answerText}
+                onChangeText={(text) => setAnswerText(text)}
+                style={styles.text}
+              />
+            </View>;
+          }}
         />
 
-        {answers.map((Answer) => {
+        {form.map((Answer) => {
           <View style={styles.answers}>
             <Button
               mode="outlined"
@@ -53,18 +61,9 @@ export default () => {
             putAnswerFn();
           }}
         >
-          Add Answers
+          Submit
         </Button>
       </Surface>
-      <Button
-        type="text"
-        mode="text"
-        onPress={() => {
-          updateForm((oldArray) => [...oldArray, QuizComponent]);
-        }}
-      >
-        Add Question
-      </Button>
     </ScrollView>
   );
 };
