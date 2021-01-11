@@ -7,30 +7,38 @@ import Submit from "../../../../shared/Submit";
 
 const quiz = [
   {
+    hash: "1",
     question: "hey this quesiton 1 ",
     answers: ["answer1", "answer2", "answer3", "answer4"],
   },
   {
+    hash: "2",
     question: "hey this quesiton 2 ",
     answers: ["answer1", "answer2", "answer3", "answer4"],
   },
   {
+    hash: "3",
     question: "hey this quesiton 3 ",
     answers: ["answer1", "answer2", "answer3", "answer4"],
   },
 ];
 
 export default () => {
-  function handleSubmit() {
+  function handleSubmit(answers) {
     axios
-      .post("/url", { studentAnswer: item })
+      .post(
+        "/student/submitquiz",
+        { studentAnswer: answers },
+        { token: localStorage.getItem(token) }
+      )
       .then(() => console.log("sent"))
       .catch((e) => {
         console.log(e);
       });
   }
-  const correctCheck = (item) => {
-    setCorrect((oldArr) => [...oldArr, item]);
+  const correctCheck = (answer, hash) => {
+    setCorrect((oldArr) => [...oldArr, { [hash]: answer }]);
+    console.log(correct);
   };
 
   const [correct, setCorrect] = useState([]);
@@ -39,26 +47,25 @@ export default () => {
     <ScrollView style={styles.root}>
       {console.log(correct)}
       <Text style={styles.header}>Quiz</Text>
-      {quiz.map((item) => (
+      {quiz.map((Questions) => (
         <Surface style={styles.root}>
-          <Text style={styles.text}>{item.question}</Text>
+          <Text style={styles.text}>{Questions.question}</Text>
 
-          {item.answers.map((item) => (
+          {Questions.answers.map((Answer) => (
             <View style={styles.answers}>
               <Button
                 mode="outlined"
                 uppercase={false}
-                onPress={() => correctCheck(item)}
+                onPress={() => correctCheck(Answer, Questions.hash)}
               >
-                <Text style={styles.text}>{item}</Text>
+                <Text style={styles.text}>{Answer}</Text>
               </Button>
             </View>
           ))}
-          {correct ? <Text>Correct !!</Text> : null}
         </Surface>
       ))}
 
-      <Submit handleSubmit={handleSubmit} />
+      <Submit handleSubmit={handleSubmit(correct)} />
     </ScrollView>
   );
 };
