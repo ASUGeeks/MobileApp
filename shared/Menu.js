@@ -10,7 +10,7 @@ import {
 import { View, StyleSheet } from "react-native";
 import { PreferencesContext } from "./PreferencesContext";
 
-const Header = ({ items, handlePress, title, index }) => {
+const Header = ({ items, handlePress, title, index ,isNotif}) => {
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
   const [visible, setVisible] = React.useState(false);
@@ -29,7 +29,7 @@ const Header = ({ items, handlePress, title, index }) => {
       onDismiss={closeMenu}
       anchor={
         <Appbar.Action
-          icon="menu"
+          icon={isNotif===true?"bullhorn":"menu"}
           color={isThemeDark ? "#fff" : "#333"}
           onPress={openMenu}
         />

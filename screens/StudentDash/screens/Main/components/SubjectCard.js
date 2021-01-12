@@ -28,7 +28,7 @@ const MyComponent = ({
     showModal();
     setDisplayedAnnouncement(message);
   }
-  
+
   return (
     <Card
       elevation={4}
@@ -39,9 +39,11 @@ const MyComponent = ({
         title={title}
         subtitle={subtitle}
         left={LeftContent}
-        right={() => (
-          <Menu items={announcements} handlePress={handleAnnouncePress} />
-        )}
+        right={() =>
+          announcements.length ? (
+            <Menu isNotif={true} items={announcements} handlePress={handleAnnouncePress} />
+          ) : null
+        }
       />
       <Card.Content>
         {/* <Title>Card title</Title>

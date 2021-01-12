@@ -15,6 +15,8 @@ import {
 } from "react-native-paper";
 import merge from "deepmerge";
 import {PreferencesContext} from "./shared/PreferencesContext"
+import Snack from "./shared/Snack";
+
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
@@ -40,6 +42,7 @@ export default function App() {
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
           <BottomNavigation />
+          <Snack/>
         </NavigationContainer>
       </PaperProvider>
     </PreferencesContext.Provider>
