@@ -58,6 +58,12 @@ export default () => {
     //   .catch((bug) => console.log("BUBUBUUB", bug));
   }
 
+  const handleCheck = (index, state) => {
+    const oldContent = [...Studnets];
+    oldContent[index].selected = !state;
+    setStudnets(oldContent);
+  };
+
   function handeSubjectSelect(index) {
     console.log("subject number ", index);
     setSelectedCoursesIndex(index);
@@ -74,7 +80,7 @@ export default () => {
       <Menu items={Courses} handlePress={handeSubjectSelect} />
 
       <Text>Select Students</Text>
-      <StudentList  />
+      <StudentList items={Studnets} handleCheck={handleCheck} />
 
       {/* Students */}
       <Divider />
