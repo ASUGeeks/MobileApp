@@ -4,7 +4,7 @@ import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import axios from "axios";
 import SubjectCard from "./components/SubjectCard";
-
+import Modal from "./components/Modal"
 export default ({ navigation }) => {
   const [Title, setTitle] = useState("");
   const [Details, setDetails] = useState("");
@@ -16,9 +16,16 @@ export default ({ navigation }) => {
       imgURL: "https://i.imgflip.com/2xlcka.png",
       announcements: [
         { name: "this is sparta", body: "this is the body of sparta" },
+        { name: "this is lol", body: "this is the body of sparta" },
+        { name: "take quiz number 1", body: "this is the body of sparta" },
+        { name: "Welcome to the course", body: "this is the body of sparta" },
       ],
     },
   ]);
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+
 
   function getContent() {
     const adminToken =
@@ -52,6 +59,7 @@ export default ({ navigation }) => {
 
   return (
     <ScrollView style={styles.root}>
+      <Modal visible={visible} setVisible={setVisible}/>
       {Courses.map((course) => (
         <SubjectCard
           title={course.title}
@@ -59,6 +67,7 @@ export default ({ navigation }) => {
           imgURL={course.imgURL}
           announcements={course.announcements}
           handleNavigation={handleNavigation}
+          showModal={showModal}
         />
       ))}
       {/*     

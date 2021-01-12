@@ -7,47 +7,59 @@ import {
   Paragraph,
   TouchableRipple,
   IconButton,
-  
 } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
-import Menu from "../../../../../shared/Menu"
-function handleAnnouncePress (index){
-  console.log("INDEXIS ",index)
-}
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+import Menu from "../../../../../shared/Menu";
 
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
 // const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-const MyComponent = ({ title, subtitle, imgURL, handleNavigation ,announcements}) => (
-  <Card
-    elevation={4}
-    style={styles.root}
-    onPress={() => handleNavigation(title, subtitle)}
-  >
-    <Card.Title
-      title={title}
-      subtitle={subtitle}
-      left={LeftContent}
-      right={()=><Menu items={announcements} handlePress={handleAnnouncePress}/>}
-    />
-    <Card.Content>
-      {/* <Title>Card title</Title>
+const MyComponent = ({
+  title,
+  subtitle,
+  imgURL,
+  handleNavigation,
+  announcements,
+  showModal,
+}) => {
+  function handleAnnouncePress(index) {
+    console.log("INDEXIS ", index);
+    showModal();
+  }
+  return (
+    <Card
+      elevation={4}
+      style={styles.root}
+      onPress={() => handleNavigation(title, subtitle)}
+    >
+      <Card.Title
+        title={title}
+        subtitle={subtitle}
+        left={LeftContent}
+        right={() => (
+          <Menu items={announcements} handlePress={handleAnnouncePress} />
+        )}
+      />
+      <Card.Content>
+        {/* <Title>Card title</Title>
       <Paragraph>Card content</Paragraph> */}
-    </Card.Content>
-    <Card.Cover source={{ uri: imgURL }} />
-    {/* <Card.Actions>
+      </Card.Content>
+      <Card.Cover source={{ uri: imgURL }} />
+      {/* <Card.Actions>
       <Button>Lectures</Button>
       <Button>Videos</Button>
       <Button>Quizzes</Button>
       <Button>Assignments</Button>
     </Card.Actions> */}
-  </Card>
-);
+    </Card>
+  );
+};
 
 const styles = StyleSheet.create({
   root: {
     margin: 20,
+    zIndex: 1,
   },
 });
 
