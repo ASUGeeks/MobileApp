@@ -5,6 +5,8 @@ import Input from "../../../../shared/Input";
 import axios from "axios";
 import SubjectCard from "./components/SubjectCard";
 import Modal from "./components/Modal";
+import { Button } from "react-native-paper";
+
 export default ({ navigation }) => {
   const [Title, setTitle] = useState("");
   const [Details, setDetails] = useState("");
@@ -22,7 +24,8 @@ export default ({ navigation }) => {
     {
       title: "Science",
       subtitle: "3rd primary",
-      imgURL: "http://projects.nyujournalism.org/ontheroadinthecitygroup3/wp-content/uploads/sites/43/2018/04/science-03-1024x364.png",
+      imgURL:
+        "http://projects.nyujournalism.org/ontheroadinthecitygroup3/wp-content/uploads/sites/43/2018/04/science-03-1024x364.png",
       announcements: [
         { name: "this is sparta", body: "this is the body of sparta" },
       ],
@@ -72,7 +75,13 @@ export default ({ navigation }) => {
 
   return (
     <ScrollView style={styles.root}>
-
+      <Button
+        style={styles.Button}
+        mode="outlined"
+        onPress={() => navigation.navigate("Discussion")}
+      >
+        Discussion forum
+      </Button>
       <Modal
         visible={visible}
         setVisible={setVisible}

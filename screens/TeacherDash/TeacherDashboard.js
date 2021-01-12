@@ -7,7 +7,7 @@ import PostLearningMaterials from "./screens/PostLearningMaterials/PostLearningM
 import CourseSpecification from "./screens/CourseSpecification/CourseSpecification";
 import Assignments from "./screens/Assignments/Assignments";
 import CreateQuiz from "./screens/CreateQuiz/CreateQuiz"
-
+import Discussion from "../StudentDash/screens/Discussion/Discussion"
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
 
@@ -43,6 +43,11 @@ export default () => {
             <Stack.Screen
         name="Create Quiz"
         component={CreateQuiz}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+        <Stack.Screen
+        name="Discussion"
+        component={Discussion}
         options={{ header: (props) => <Header {...props} /> }}
       />
       {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}

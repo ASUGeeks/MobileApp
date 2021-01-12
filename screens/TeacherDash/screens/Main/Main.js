@@ -7,6 +7,13 @@ export default ({ navigation }) => {
     <View>
       <Button
         style={styles.Button}
+        mode="outlined"
+        onPress={() => navigation.navigate("Discussion")}
+      >
+        Discussion forum
+      </Button>
+      <Button
+        style={styles.Button}
         mode="contained"
         onPress={() => navigation.navigate("Create Announcement")}
       >
@@ -49,7 +56,6 @@ export default ({ navigation }) => {
       >
         create discussion forums.
       </Button> */}
-
       <Button
         style={styles.Button}
         mode="contained"
@@ -57,7 +63,6 @@ export default ({ navigation }) => {
       >
         Enroll students to the course
       </Button>
-
       <Button
         style={styles.Button}
         mode="contained"
@@ -65,7 +70,6 @@ export default ({ navigation }) => {
       >
         Create Quiz
       </Button>
-
       {/* <Button
         style={styles.Button}
         mode="contained"
