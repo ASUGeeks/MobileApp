@@ -6,7 +6,7 @@ import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import Radio from "../../../../shared/Radio";
 import axios from "axios";
-import Menu from "./components/Menu";
+import Menu from "../../../../shared/Menu";
 import StudentList from "./components/StudentsList";
 
 export default () => {
