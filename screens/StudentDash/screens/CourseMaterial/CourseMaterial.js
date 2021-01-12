@@ -1,50 +1,37 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
+
 // import { View, StyleSheet, ScrollView, Text } from "react-native";
 import ContentList from "./components/ContentList";
 
 export default ({ route, navigation }) => {
-  const [Content, setContent] = useState([
-    {
-      title: "Week1",
-      data: [
-        {
-          title: "Recorded lectures",
-          type: "vid",
-          data: [
-            {
-              title: "Lecture 1",
-              URL: "OMMXrmMsjAk",
-            },
-            {
-              title: "Lecture 2",
-              URL: "OMMXrmMsjAk",
-            },
-          ],
-        },
-        {
-          title: "Written lectures",
-          type: "pdf",
-          data: [
-            {
-              title: "Lecture 1",
-              URL:
-                "1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0",
-            },
-            {
-              title: "Lecture 2",
-              URL:
-                "id=1qBs_Y1Yhc_lZhQ8ru3l3kSdmoo_6gBE0",
-            },
-          ],
-        },
-      ],
-    },
-  ]);
+  const [Content, setContent] = useState([]);
+
+  function getContent() {
+    const adminToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E";
+      const simpo = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDg0YTRmM2E4OTAyOGQ5ZDdkOWI1IiwidXNlcm5hbWUiOiJzaW1wbyIsImVtYWlsIjoic2ltcG9AZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2MTA0NTU1NzZ9.AAoguuRWiTyyPYPV7Dn1LH275-4ki1XTpVHPqe8hlh4"
+
+      axios
+      .get(
+        "http://localhost:5100/courses",
+        { headers: { token: simpo } }
+      )
+      .then((r) => {
+       
+        console.log("get", r.data.courses[0].content);
+        const contetnlol = r.data.courses[0].content
+        setContent(contetnlol)
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+  }
   console.log("THISI IS PROPS", route);
   useEffect(() => {
     // TODO make http request to get course specification
     // set the response body to setTitle
     // setAssignments("hello, this is the course specification");
+    getContent();
   }, []);
 
   return <ContentList content={Content} navigation={navigation} />;

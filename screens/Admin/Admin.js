@@ -4,20 +4,16 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Main from "./screens/Main/Main";
 import Header from "../../navigation/Header";
 
-import CreateUser from "./screens/CreateUser/CreateUser"
-
-const admin = {
-  username: "username",
-  email: "email@exmaple.com",
-  role: "teacher",
-  password: "somepassword",
-};
+import CreateUser from "./screens/CreateUser/CreateUser";
+import CreateCourse from "./screens/CreateCourse/CreateCourse";
+import Login from "./screens/Login/Login"
+import AcceptUser from "./screens/AcceptUser/AcceptUser"
 
 const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Create user">
+    <Stack.Navigator initialRouteName="accept user">
       <Stack.Screen
         name="Main"
         component={Main}
@@ -28,17 +24,21 @@ export default () => {
         component={CreateUser}
         options={{ header: (props) => <Header {...props} /> }}
       />
-      {/* <Stack.Screen
-        name="Create Announcement"
-        component={Announce}
-        options={{ header: (props) => <Header {...props} /> }}
-      />
       <Stack.Screen
-        name="Post Learning Materials"
-        component={PostLearningMaterials}
+        name="Create course"
+        component={CreateCourse}
         options={{ header: (props) => <Header {...props} /> }}
-      /> */}
-      {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}
+      />    
+       <Stack.Screen
+      name="login2"
+      component={Login}
+      options={{ header: (props) => <Header {...props} /> }}
+    />
+         <Stack.Screen
+      name="accept user"
+      component={AcceptUser}
+      options={{ header: (props) => <Header {...props} /> }}
+    />
     </Stack.Navigator>
   );
 };
