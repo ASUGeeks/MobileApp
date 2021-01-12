@@ -8,7 +8,6 @@ import Home from "../screens/Home/Home";
 import StudentDashboard from "../screens/StudentDash/StudentDashboard";
 import TeacherDashboard from "../screens/TeacherDash/TeacherDashboard";
 import Admin from "../screens/Admin/Admin";
-
 export default function MyTabs() {
   return (
     <Tab.Navigator initialRouteName="StudentDashboard">
@@ -19,4 +18,3 @@ export default function MyTabs() {
     </Tab.Navigator>
   );
 }
-
