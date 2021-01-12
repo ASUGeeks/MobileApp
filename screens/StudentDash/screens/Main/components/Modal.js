@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "react-native-paper";
 import { View } from "react-native";
-const MyComponent = ({ visible, setVisible }) => {
+const MyComponent = ({ visible, setVisible ,message}) => {
   const hideModal = () => {
     console.log("hide the modal");
     setVisible(false);
@@ -32,12 +32,8 @@ const MyComponent = ({ visible, setVisible }) => {
             contentContainerStyle={containerStyle}
           >
             <Text>
-              Example Modal. Click outside this Click outside this Click outside
-              this Click outside this Click outside this Click outside this/n
-              Click outside this Click outside this Click outside this Click
-              outside this Click outside this Click outside this area to
-              dismiss.
-            </Text>{" "}
+             {message}
+            </Text>
             <IconButton
               icon="close"
               size={20}

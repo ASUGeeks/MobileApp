@@ -9,6 +9,7 @@ export default ({ navigation }) => {
   const [Title, setTitle] = useState("");
   const [Details, setDetails] = useState("");
   const [Assignments, setAssignments] = useState([]);
+  const [DisplayedAnnouncement, setDisplayedAnnouncement] = useState("");
   const [Courses, setCourses] = useState([
     {
       title: "Mathematics",
@@ -18,7 +19,7 @@ export default ({ navigation }) => {
         { name: "this is sparta", body: "this is the body of sparta" },
         { name: "this is lol", body: "this is the body of sparta" },
         { name: "take quiz number 1", body: "this is the body of sparta" },
-        { name: "Welcome to the course", body: "this is the body of sparta" },
+        { name: "Welcome to the course", body: "Hello world this is the body of sparta" },
       ],
     },
   ]);
@@ -59,7 +60,7 @@ export default ({ navigation }) => {
 
   return (
     <ScrollView style={styles.root}>
-      <Modal visible={visible} setVisible={setVisible}/>
+      <Modal visible={visible} setVisible={setVisible} message={DisplayedAnnouncement}/>
       {Courses.map((course) => (
         <SubjectCard
           title={course.title}
@@ -68,6 +69,7 @@ export default ({ navigation }) => {
           announcements={course.announcements}
           handleNavigation={handleNavigation}
           showModal={showModal}
+          setDisplayedAnnouncement={setDisplayedAnnouncement}
         />
       ))}
       {/*     

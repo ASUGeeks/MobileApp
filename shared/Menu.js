@@ -38,7 +38,7 @@ const Header = ({ items, handlePress, title, index }) => {
       {items.map((item, index) => (
         <Menu.Item
           onPress={() => {
-            handlePress(index);
+            handlePress(item.body);
             closeMenu();
           }}
           title={item.name}

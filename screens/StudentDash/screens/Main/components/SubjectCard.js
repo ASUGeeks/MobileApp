@@ -22,11 +22,13 @@ const MyComponent = ({
   handleNavigation,
   announcements,
   showModal,
+  setDisplayedAnnouncement,
 }) => {
-  function handleAnnouncePress(index) {
-    console.log("INDEXIS ", index);
+  function handleAnnouncePress(message) {
     showModal();
+    setDisplayedAnnouncement(message);
   }
+  
   return (
     <Card
       elevation={4}
