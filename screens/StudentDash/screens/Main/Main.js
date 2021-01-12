@@ -14,14 +14,18 @@ export default ({ navigation }) => {
       title: "Mathematics",
       subtitle: "3rd primary",
       imgURL: "https://i.imgflip.com/2xlcka.png",
+      announcements: [
+        { name: "this is sparta", body: "this is the body of sparta" },
+      ],
     },
   ]);
 
   function getContent() {
     const adminToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E";
-   const simpo = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDg0YTRmM2E4OTAyOGQ5ZDdkOWI1IiwidXNlcm5hbWUiOiJzaW1wbyIsImVtYWlsIjoic2ltcG9AZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2MTA0NTU1NzZ9.AAoguuRWiTyyPYPV7Dn1LH275-4ki1XTpVHPqe8hlh4"
-      axios
+    const simpo =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDg0YTRmM2E4OTAyOGQ5ZDdkOWI1IiwidXNlcm5hbWUiOiJzaW1wbyIsImVtYWlsIjoic2ltcG9AZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2MTA0NTU1NzZ9.AAoguuRWiTyyPYPV7Dn1LH275-4ki1XTpVHPqe8hlh4";
+    axios
       .get("http://localhost:5100/me", { headers: { token: simpo } })
       .then((r) => {
         console.log("get subjectsss", r);
@@ -53,6 +57,7 @@ export default ({ navigation }) => {
           title={course.title}
           subtitle={course.subtitle}
           imgURL={course.imgURL}
+          announcements={course.announcements}
           handleNavigation={handleNavigation}
         />
       ))}

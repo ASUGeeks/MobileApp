@@ -7,17 +7,19 @@ import {
   Paragraph,
   TouchableRipple,
   IconButton,
+  
 } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
-
+import Menu from "../../../../../shared/Menu"
+function handleAnnouncePress (index){
+  console.log("INDEXIS ",index)
+}
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
-const RightContent = (props) => (
-  <IconButton {...props} icon="menu" onPress={() => {}} />
-);
+
 
 // const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-const MyComponent = ({ title, subtitle, imgURL, handleNavigation }) => (
+const MyComponent = ({ title, subtitle, imgURL, handleNavigation ,announcements}) => (
   <Card
     elevation={4}
     style={styles.root}
@@ -27,7 +29,7 @@ const MyComponent = ({ title, subtitle, imgURL, handleNavigation }) => (
       title={title}
       subtitle={subtitle}
       left={LeftContent}
-      right={RightContent}
+      right={()=><Menu items={announcements} handlePress={handleAnnouncePress}/>}
     />
     <Card.Content>
       {/* <Title>Card title</Title>

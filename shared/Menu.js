@@ -8,7 +8,7 @@ import {
   Text,
 } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
-import { PreferencesContext } from "../../../../../shared/PreferencesContext";
+import { PreferencesContext } from "./PreferencesContext";
 
 const Header = ({ items, handlePress, title, index }) => {
   const theme = useTheme();
@@ -72,9 +72,5 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   menu:{
-    // width:100,
-    // borderColor:"#f00",
-    // borderWidth:2,
-    // borderStyle:"solid"
   }
 });
