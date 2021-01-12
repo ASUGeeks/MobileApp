@@ -32,6 +32,13 @@ export default ({ navigation }) => {
       >
         Login
       </Button>
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("accept user")}
+      >
+        accept user
+      </Button>
       {/* <Button
         style={styles.Button}
         mode="contained"
