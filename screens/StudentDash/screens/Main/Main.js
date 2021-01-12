@@ -4,24 +4,51 @@ import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import axios from "axios";
 import SubjectCard from "./components/SubjectCard";
+import Modal from "./components/Modal";
+import { Button } from "react-native-paper";
 
 export default ({ navigation }) => {
   const [Title, setTitle] = useState("");
   const [Details, setDetails] = useState("");
   const [Assignments, setAssignments] = useState([]);
+  const [DisplayedAnnouncement, setDisplayedAnnouncement] = useState("");
   const [Courses, setCourses] = useState([
     {
       title: "Mathematics",
       subtitle: "3rd primary",
+      imgURL: "https://ngegypt.net/wp-content/uploads/2020/12/Math-001.png",
+      announcements: [
+        { name: "this is sparta", body: "this is the body of sparta" },
+      ],
+    },
+    {
+      title: "Science",
+      subtitle: "3rd primary",
+      imgURL:
+        "http://projects.nyujournalism.org/ontheroadinthecitygroup3/wp-content/uploads/sites/43/2018/04/science-03-1024x364.png",
+      announcements: [
+        { name: "this is sparta", body: "this is the body of sparta" },
+      ],
+    },
+    {
+      title: "Mathematics",
+      subtitle: "3rd primary",
       imgURL: "https://i.imgflip.com/2xlcka.png",
+      announcements: [
+        { name: "this is sparta", body: "this is the body of sparta" },
+      ],
     },
   ]);
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
 
   function getContent() {
     const adminToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E";
-   const simpo = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDg0YTRmM2E4OTAyOGQ5ZDdkOWI1IiwidXNlcm5hbWUiOiJzaW1wbyIsImVtYWlsIjoic2ltcG9AZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2MTA0NTU1NzZ9.AAoguuRWiTyyPYPV7Dn1LH275-4ki1XTpVHPqe8hlh4"
-      axios
+    const simpo =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDg0YTRmM2E4OTAyOGQ5ZDdkOWI1IiwidXNlcm5hbWUiOiJzaW1wbyIsImVtYWlsIjoic2ltcG9AZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2MTA0NTU1NzZ9.AAoguuRWiTyyPYPV7Dn1LH275-4ki1XTpVHPqe8hlh4";
+    axios
       .get("http://localhost:5100/me", { headers: { token: simpo } })
       .then((r) => {
         console.log("get subjectsss", r);
@@ -48,14 +75,29 @@ export default ({ navigation }) => {
 
   return (
     <ScrollView style={styles.root}>
+      <Button
+        style={styles.Button}
+        mode="outlined"
+        onPress={() => navigation.navigate("Discussion")}
+      >
+        Discussion forum
+      </Button>
+      <Modal
+        visible={visible}
+        setVisible={setVisible}
+        message={DisplayedAnnouncement}
+      />
       {Courses.map((course) => (
         <SubjectCard
           title={course.title}
           subtitle={course.subtitle}
           imgURL={course.imgURL}
+          announcements={course.announcements}
           handleNavigation={handleNavigation}
+          showModal={showModal}
+          setDisplayedAnnouncement={setDisplayedAnnouncement}
         />
-      ))}
+      ))}{" "}
       {/*     
       <SubjectCard
         title="Science"
