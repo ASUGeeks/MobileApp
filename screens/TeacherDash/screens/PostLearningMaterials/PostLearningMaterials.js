@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, FlatList, Text, StyleSheet, ScrollView } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
+import axios from "axios"
 
 const Fuck = () => {
   const [Content, setContent] = useState([
@@ -131,9 +132,21 @@ const Fuck = () => {
     setContent(oldContent);
   }
 
+
+
+  const adminToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E"
   function handleSubmit() {
-    console.log("Submit");
+
+    axios
+    .post("http://localhost:5100/update-course",{code:"CSE2020",content:Content},{headers:
+    {token:adminToken}})
+    .then((r) => {
+        console.log("login",r.data)
+        // storeToken()
+    })
+    .catch((bug) => console.log("BUBUBUUB", bug))
   }
+
 
   return (
     <ScrollView style={styles.root}>
