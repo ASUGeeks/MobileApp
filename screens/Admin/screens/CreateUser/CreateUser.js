@@ -33,7 +33,8 @@ export default () => {
   .then((r) => console.log("hey", r))
   .catch((bug) => console.log("BUBUBUUB", bug))
 
-  
+
+  const teacherToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDg0YTRmM2E4OTAyOGQ5ZDdkOWI1IiwidXNlcm5hbWUiOiJzaW1wbyIsImVtYWlsIjoic2ltcG9AZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2MTA0NTAxMzF9.S22l3BPgvRR-lwP4-tK_IjRHVbRSmwzjrrp_fFOcZow"  
 
 
     console.log("Submit",admin);
@@ -44,7 +45,7 @@ export default () => {
       <Input label="User Name" value={username} setValue={setusername} />
       <Input label="E-mail" value={email} setValue={setemail} />
       <Input label="Password" value={password} setValue={setpassword} />
-      <Radio title="Roles" options={["Student", "Teacher"]} value={role} setValue={setrole} />
+      <Radio title="Roles" options={["student", "teacher"]} value={role} setValue={setrole} />
       <Submit handleSubmit={handleSubmit} />
     </ScrollView>
   );
