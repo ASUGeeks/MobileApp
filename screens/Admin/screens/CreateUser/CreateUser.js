@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {  StyleSheet,ScrollView } from "react-native";
+import axios from "axios"
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import Radio from "../../../../shared/Radio"; 
@@ -17,12 +18,24 @@ export default () => {
   }, []);
 
   function handleSubmit() {
+
     const admin = {
-        username,
-        email,
-        role,
-        password,
-      };
+      username,
+      email,
+      role,
+      password,
+    };
+
+  axios
+  .post("http://localhost:5100/create-account",admin,{headers:
+   {token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E"}
+  })
+  .then((r) => console.log("hey", r))
+  .catch((bug) => console.log("BUBUBUUB", bug))
+
+  
+
+
     console.log("Submit",admin);
   }
 

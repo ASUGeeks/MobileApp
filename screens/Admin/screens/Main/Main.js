@@ -4,9 +4,10 @@ import { Button } from "react-native-paper";
 import axios from "axios";
 export default ({ navigation }) => {
   axios
-    .get("/")
+    .post("http://localhost:5100/login",{username:"adminadmin",password:"adminadmin"})
     .then((r) => console.log("hey", r))
     .catch((bug) => console.log("BUBUBUUB", bug));
+    // axios.get("/").then(f=>console.log("HEEEY",f))
   return (
     <View>
       <Button
@@ -23,6 +24,13 @@ export default ({ navigation }) => {
         onPress={() => navigation.navigate("Create course")}
       >
         Create course
+      </Button>
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("login2")}
+      >
+        Login
       </Button>
       {/* <Button
         style={styles.Button}

@@ -6,7 +6,7 @@ import Header from "../../navigation/Header";
 
 import CreateUser from "./screens/CreateUser/CreateUser";
 import CreateCourse from "./screens/CreateCourse/CreateCourse";
-
+import Login from "./screens/Login/Login"
 const Stack = createStackNavigator();
 
 export default () => {
@@ -26,7 +26,12 @@ export default () => {
         name="Create course"
         component={CreateCourse}
         options={{ header: (props) => <Header {...props} /> }}
-      />
+      />    
+       <Stack.Screen
+      name="login2"
+      component={Login}
+      options={{ header: (props) => <Header {...props} /> }}
+    />
     </Stack.Navigator>
   );
 };
