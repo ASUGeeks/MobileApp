@@ -7,6 +7,7 @@ import Input from "../../../../shared/Input";
 import Radio from "../../../../shared/Radio";
 import axios from "axios";
 import Menu from "./components/Menu";
+import StudentList from "./components/StudentsList";
 
 export default () => {
   const [Courses, setCourses] = useState([
@@ -16,18 +17,19 @@ export default () => {
     { name: "Software engineering", code: "CSE2023" },
   ]);
   const [SelectedCoursesIndex, setSelectedCoursesIndex] = useState(null);
+  const [SelectedStudentIndex, setSelectedStudentIndex] = useState(null);
 
   const [Studnets, setStudnets] = useState([
-    { name: "mahmoud" },
-    { name: "Hammad" },
-    { name: "Ali" },
-    { name: "Samir" },
-    { name: "Ramy" },
-    { name: "nader" },
-    { name: "hazem" },
-    { name: "tamer" },
-    { name: "hesham" },
-    { name: "Atout" },
+    { name: "mahmoud", selected: false },
+    { name: "Hammad", selected: false },
+    { name: "Ali", selected: false },
+    { name: "Samir", selected: false },
+    { name: "Ramy", selected: false },
+    { name: "nader", selected: false },
+    { name: "hazem", selected: false },
+    { name: "tamer", selected: false },
+    { name: "hesham", selected: false },
+    { name: "Atout", selected: false },
   ]);
   const [Teacher, setTeacher] = useState([
     { name: "simpo" },
@@ -63,11 +65,16 @@ export default () => {
   return (
     <ScrollView style={styles.root}>
       {/* Course */}
-      <Text style={styles.title}>cat</Text>
+      <Text style={styles.title}>Select subject</Text>
       {SelectedCoursesIndex !== null ? (
-        <Text>{Courses[SelectedCoursesIndex].name}</Text>
+        <Text style={styles.subtitle}>
+          Selected Subject: {Courses[SelectedCoursesIndex].name}
+        </Text>
       ) : null}
       <Menu items={Courses} handlePress={handeSubjectSelect} />
+
+      <Text>Select Students</Text>
+      <StudentList  />
 
       {/* Students */}
       <Divider />
@@ -81,6 +88,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    width: 100,
   },
+  subtitle: {},
 });

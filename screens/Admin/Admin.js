@@ -7,11 +7,13 @@ import Header from "../../navigation/Header";
 import CreateUser from "./screens/CreateUser/CreateUser";
 import CreateCourse from "./screens/CreateCourse/CreateCourse";
 import Login from "./screens/Login/Login"
+import AcceptUser from "./screens/AcceptUser/AcceptUser"
+
 const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Main">
+    <Stack.Navigator initialRouteName="accept user">
       <Stack.Screen
         name="Main"
         component={Main}
@@ -30,6 +32,11 @@ export default () => {
        <Stack.Screen
       name="login2"
       component={Login}
+      options={{ header: (props) => <Header {...props} /> }}
+    />
+         <Stack.Screen
+      name="accept user"
+      component={AcceptUser}
       options={{ header: (props) => <Header {...props} /> }}
     />
     </Stack.Navigator>
