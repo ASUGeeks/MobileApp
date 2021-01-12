@@ -45,6 +45,7 @@ export default () => {
         component={CreateQuiz}
         options={{ header: (props) => <Header {...props} /> }}
       />
+
       {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}
     </Stack.Navigator>
   );
