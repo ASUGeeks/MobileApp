@@ -11,8 +11,9 @@ export default () => {
   const addQuestion = () => {
     const temp = {
       hash: "",
-      quesiton: "",
-      answers: ["a", "", "", ""],
+      question: "",
+      answers: ["", "", "", ""],
+      correctAnswer: "",
     };
     updateForm((oldArr) => [...oldArr, temp]);
   };
@@ -22,27 +23,61 @@ export default () => {
     oldContent[index].question = text;
     updateForm(oldContent);
   };
+  const handleAnswerText = (lable, text, index, parentIndex, grandIndex) => {
+    const oldContent = [...form];
+    console.log(grandIndex, parentIndex, index, oldContent);
+    oldContent[parentIndex].answers[index] = text;
+    updateForm(oldContent);
+  };
+
+  const handleCorrectAnswer = (lable, text, index) => {
+    const oldContent = [...form];
+    oldContent[index].correctAnswer = text;
+    updateForm(oldContent);
+  };
 
   return (
     <ScrollView style={styles.root}>
-      <Surface style={styles.root}>
+      <Surface style={styles.surface}>
         <FlatList
           data={form}
-          renderItem={({ item, index }) => (
-            <View>
-              {console.log(item)}
+          renderItem={(form) => (
+            <View key={form.index}>
+              {console.log(form.item)}
+              <Text style={styles.text}>Question {form.index + 1}</Text>
               <Input
                 label="type a question"
-                value={item.questionTitle}
+                value={form.item.question}
                 setValue={handleQuestionText}
                 style={styles.text}
-                index={index}
+                index={form.index}
               />
-              {item.answers.map((item) => (
-                <Button mode="outlined" uppercase={false}>
-                  <Text style={styles.text}>{item}</Text>
-                </Button>
+
+              {form.item.answers.map((answers, index) => (
+                <View key={index}>
+                  <Input
+                    label="type an answer"
+                    value={answers}
+                    setValue={handleAnswerText}
+                    style={styles.text}
+                    index={index}
+                    parentIndex={form.index}
+                  />
+                </View>
               ))}
+              <Input
+                label="type the correct answer"
+                value={form.item.correctAnswer}
+                setValue={handleCorrectAnswer}
+                style={styles.text}
+                index={form.index}
+              />
+              <View
+                style={{
+                  borderBottomColor: "black",
+                  borderBottomWidth: 1,
+                }}
+              />
             </View>
           )}
         />
@@ -58,6 +93,15 @@ export default () => {
           Add Question
         </Button>
       </Surface>
+      <Button
+        type="text"
+        mode="text"
+        onPress={() => {
+          console.log(form);
+        }}
+      >
+        Submit Quiz
+      </Button>
     </ScrollView>
   );
 };
@@ -68,14 +112,12 @@ const styles = StyleSheet.create({
   },
   surface: {
     padding: 8,
-    height: 80,
-    width: 80,
-    alignItems: "center",
     justifyContent: "center",
     elevation: 4,
+    borderRadius: 10,
   },
   text: {
-    margin: 20,
+    fontSize: "40px",
   },
   answers: {
     margin: 20,
