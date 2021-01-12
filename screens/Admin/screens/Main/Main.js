@@ -1,8 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
-
+import axios from "axios";
 export default ({ navigation }) => {
+  axios
+    .post("http://localhost:5100/login",{username:"adminadmin",password:"adminadmin"})
+    .then((r) => console.log("hey", r))
+    .catch((bug) => console.log("BUBUBUUB", bug));
+    // axios.get("/").then(f=>console.log("HEEEY",f))
   return (
     <View>
       <Button
@@ -13,6 +18,27 @@ export default ({ navigation }) => {
         Create User
       </Button>
 
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("Create course")}
+      >
+        Create course
+      </Button>
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("login2")}
+      >
+        Login
+      </Button>
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("accept user")}
+      >
+        accept user
+      </Button>
       {/* <Button
         style={styles.Button}
         mode="contained"
