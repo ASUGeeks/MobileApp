@@ -53,6 +53,7 @@ const Header = ({ scene, navigation, previous, dropdowmMenu }) => {
             <Menu.Item
               onPress={() => {
                 navigation.navigate(item.navigate);
+                closeMenu()
               }}
               title={item.title}
             />

@@ -7,8 +7,14 @@ import Input from "../../../../shared/Input";
 import axios from "axios";
 // import { Button } from "react-native-paper";
 
-export default ({ }) => {
-  const [Title, setTitle] = useState("");
+export default (props) => {
+  console.log("HEHEHEHE", props);
+  const { params } = props.route;
+  const AssignmentTitle = params.assTitle;
+  const AssignmentID = params.assId;
+
+  console.log("params", params);
+  const [AssUri, setAssUri] = useState("");
 
   useEffect(() => {}, []);
 
@@ -17,8 +23,11 @@ export default ({ }) => {
   }
 
   return (
-    <ScrollView style={styles.root} >
-      <Text>THIS is the assignments screen</Text>
+    <ScrollView style={styles.root}>
+      <Text>{AssignmentTitle}</Text>
+      <Text>{AssignmentID}</Text>
+      <Input label="Assignment URI" value={AssUri} setValue={setAssUri} />
+      <Submit handleSubmit={handleSubmit} label="submit Assignment"/>
     </ScrollView>
   );
 };

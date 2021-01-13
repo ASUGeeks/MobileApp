@@ -9,7 +9,9 @@ import AssCard from "./components/AssCard";
 // import { Button } from "react-native-paper";
 
 export default ({ navigation }) => {
-  const [Title, setTitle] = useState("");
+  const [Assignments, setAssignments] = useState([
+    { title: "Ass1", subtitle: "THE first assignment", assID: "fahiowvoin" },
+  ]);
 
   const showModal = () => setVisible(true);
 
@@ -18,37 +20,20 @@ export default ({ navigation }) => {
   function handleSubmit() {
     console.log("Submit");
   }
-  function handleNavigate() {
-    navigation.navigate("Assignment screen");
+  function handleNavigate(assTitle, assId) {
+    navigation.navigate("Assignment screen", { assId, assTitle });
   }
   return (
     <ScrollView style={styles.root}>
       {/* <Text>THIS is the assignments screen</Text> */}
-      <AssCard
-        handleClick={handleNavigate}
-        title="Ass 1"
-        subtitle="On compinational circuits"
-      />
-      <AssCard
-        handleClick={handleNavigate}
-        title="Ass 2"
-        subtitle="On compinational circuits"
-      />
-      <AssCard
-        handleClick={handleNavigate}
-        title="Ass 3"
-        subtitle="On compinational circuits"
-      />
-      <AssCard
-        handleClick={handleNavigate}
-        title="Ass 4"
-        subtitle="On compinational circuits"
-      />
-      <AssCard
-        handleClick={handleNavigate}
-        title="Ass 5"
-        subtitle="On compinational circuits"
-      />
+      {Assignments.map((ass) => (
+        <AssCard
+          handleClick={handleNavigate}
+          title={ass.title}
+          subtitle={ass.subtitle}
+          assID={ass.assID}
+        />
+      ))}
     </ScrollView>
   );
 };
