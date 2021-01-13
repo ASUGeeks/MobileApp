@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { Text, Button } from "react-native-paper";
-import QuizzCard from "./components/QuizzCard";
 
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import axios from "axios";
 // import { Button } from "react-native-paper";
 
-export default ({ title, subtitle, handleClick, assID, navigation }) => {
-  const [Title, setTitle] = useState("");
+export default (props) => {
+  console.log("HEHEHEHE", props);
+  const { params } = props.route;
+  const AssignmentTitle = params.assTitle;
+  const AssignmentID = params.assId;
 
-  const showModal = () => setVisible(true);
+  console.log("params", params);
+  const [AssUri, setAssUri] = useState("");
 
   useEffect(() => {}, []);
 
   function handleSubmit() {
     console.log("Submit");
   }
-  function handleNavigate(assTitle, assId) {
-    navigation.navigate("Quizz screen", { assId, assTitle });
-  }
+
   return (
     <ScrollView style={styles.root}>
-      <QuizzCard
-        title="Quiz 1"
-        subtitle="hello world"
-        quizzId="23456"
-        handleClick={handleNavigate}
-      />
+      <Text>{AssignmentTitle}</Text>
+      <Text>{AssignmentID}</Text>
+      <Text>THis is the quizz screen</Text>
     </ScrollView>
   );
 };

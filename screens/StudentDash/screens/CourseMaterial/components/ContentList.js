@@ -1,6 +1,7 @@
 import React from "react";
-import { SectionList, FlatList, StyleSheet, Text, View } from "react-native";
-import { List, Divider } from "react-native-paper";
+import { SectionList, FlatList, StyleSheet, View } from "react-native";
+import { List, Divider, Text } from "react-native-paper";
+import FAB from "../../../../../shared/FAB";
 
 const SectionListBasics = ({ content, navigation }) => {
   // console.log("HOW IS ME",navigation.navigate("OpenMaterial"));
@@ -11,61 +12,85 @@ const SectionListBasics = ({ content, navigation }) => {
       type,
     });
   }
+  const subScreens = [
+    // { icon: "plus", onPress: () => console.log("Pressed add") },
+    {
+      icon: "star",
+      label: "Discusstion forum",
+      onPress: () => navigation.navigate("Discussion"),
+    },
+    {
+      icon: "bell",
+      label: "Quizzes",
+      onPress: () => navigation.navigate("Quizzes"),
+    },
+    {
+      icon: "email",
+      label: "Assignments",
+      onPress: () => navigation.navigate("Assignments"),
+      small: false,
+    },
+  ];
 
   return (
-    <List.Section title="Study material">
-      <FlatList
-        data={content}
-        renderItem={(week) => (
-          <List.Accordion
-            title={week.item.title}
-            left={(props) => <List.Icon {...props} icon="folder" />}
-          >
-            <Divider />
+    <React.Fragment>
+      <List.Section title="Study material">
+        <FlatList
+          data={content}
+          renderItem={(week) => (
+            <List.Accordion
+              title={week.item.title}
+              left={(props) => <List.Icon {...props} icon="folder" />}
+            >
+              <Divider />
 
-            <FlatList
-              data={week.item.data}
-              renderItem={(type) => (
-                <List.Accordion
-                  title={type.item.title}
-                  left={(props) => <List.Icon {...props} icon="folder" />}
-                >
-                  <FlatList
-                    data={type.item.data}
-                    renderItem={({ item }) => (
-                      <React.Fragment>
-                        <Divider />
+              <FlatList
+                data={week.item.data}
+                renderItem={(type) => (
+                  <List.Accordion
+                    title={type.item.title}
+                    left={(props) => <List.Icon {...props} icon="folder" />}
+                  >
+                    <FlatList
+                      data={type.item.data}
+                      renderItem={({ item }) => (
+                        <React.Fragment>
+                          <Divider />
 
-                        <List.Item
-                          title={item.title}
-                          left={(props) => (
-                            <List.Icon
-                              {...props}
-                              icon={
-                                type.item.type === "vid" ? "video" : "file-pdf"
-                              }
-                            />
-                          )}
-                          onPress={() =>
-                            handleNavigation(
-                              item.title,
-                              type.item.type,
-                              item.URL
-                            )
-                          }
-                        ></List.Item>
-                      </React.Fragment>
-                    )}
-                  />
-                  <Divider />
-                </List.Accordion>
-              )}
-            />
-            <Divider />
-          </List.Accordion>
-        )}
-      />
-    </List.Section>
+                          <List.Item
+                            title={item.title}
+                            left={(props) => (
+                              <List.Icon
+                                {...props}
+                                icon={
+                                  type.item.type === "vid"
+                                    ? "video"
+                                    : "file-pdf"
+                                }
+                              />
+                            )}
+                            onPress={() =>
+                              handleNavigation(
+                                item.title,
+                                type.item.type,
+                                item.URL
+                              )
+                            }
+                          ></List.Item>
+                        </React.Fragment>
+                      )}
+                    />
+                    <Divider />
+                  </List.Accordion>
+                )}
+              />
+              <Divider />
+            </List.Accordion>
+          )}
+        />
+      </List.Section>
+      <FAB navigation={navigation} subScreens={subScreens} />
+    </React.Fragment>
   );
 };
 
