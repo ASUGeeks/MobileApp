@@ -12,10 +12,28 @@ const SectionListBasics = ({ content, navigation }) => {
       type,
     });
   }
+  const subScreens = [
+    // { icon: "plus", onPress: () => console.log("Pressed add") },
+    {
+      icon: "star",
+      label: "Discusstion forum",
+      onPress: () => navigation.navigate("Discussion"),
+    },
+    {
+      icon: "bell",
+      label: "Quizzes",
+      onPress: () => navigation.navigate("Quizzes"),
+    },
+    {
+      icon: "email",
+      label: "Assignments",
+      onPress: () => navigation.navigate("Assignments"),
+      small: false,
+    },
+  ];
 
   return (
     <React.Fragment>
-
       <List.Section title="Study material">
         <FlatList
           data={content}
@@ -71,8 +89,7 @@ const SectionListBasics = ({ content, navigation }) => {
           )}
         />
       </List.Section>
-      <FAB />
-
+      <FAB navigation={navigation} subScreens={subScreens} />
     </React.Fragment>
   );
 };
