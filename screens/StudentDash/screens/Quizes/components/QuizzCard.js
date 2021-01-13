@@ -8,7 +8,7 @@ const MyComponent = (props) => {
   const { title, subtitle, handleClick ,assID} = props;
 console.log("PROPS", props)
   return (
-    <Card style={styles.root} onPress={() => console.log(title,assID)}>
+    <Card style={styles.root} onPress={() => handleClick(title,assID)}>
       <Card.Title title={title} subtitle={subtitle} left={LeftContent} />
     </Card>
   );
