@@ -4,18 +4,44 @@ import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import axios from "axios";
 import SubjectCard from "./components/SubjectCard";
+import Modal from "./components/Modal";
+// import { Button } from "react-native-paper";
 
 export default ({ navigation }) => {
   const [Title, setTitle] = useState("");
   const [Details, setDetails] = useState("");
   const [Assignments, setAssignments] = useState([]);
+  const [DisplayedAnnouncement, setDisplayedAnnouncement] = useState("");
   const [Courses, setCourses] = useState([
     {
       title: "Mathematics",
       subtitle: "3rd primary",
+      imgURL: "https://ngegypt.net/wp-content/uploads/2020/12/Math-001.png",
+      announcements: [
+        { name: "this is sparta", body: "this is the body of sparta" },
+      ],
+    },
+    {
+      title: "Science",
+      subtitle: "3rd primary",
+      imgURL:
+        "http://projects.nyujournalism.org/ontheroadinthecitygroup3/wp-content/uploads/sites/43/2018/04/science-03-1024x364.png",
+      announcements: [
+        { name: "this is sparta", body: "this is the body of sparta" },
+      ],
+    },
+    {
+      title: "Mathematics",
+      subtitle: "3rd primary",
       imgURL: "https://i.imgflip.com/2xlcka.png",
+      announcements: [
+        { name: "this is sparta", body: "this is the body of sparta" },
+      ],
     },
   ]);
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
 
   function getContent() {
     const adminToken =
@@ -49,14 +75,22 @@ export default ({ navigation }) => {
 
   return (
     <ScrollView style={styles.root}>
+      <Modal
+        visible={visible}
+        setVisible={setVisible}
+        message={DisplayedAnnouncement}
+      />
       {Courses.map((course) => (
         <SubjectCard
           title={course.title}
           subtitle={course.subtitle}
           imgURL={course.imgURL}
+          announcements={course.announcements}
           handleNavigation={handleNavigation}
+          showModal={showModal}
+          setDisplayedAnnouncement={setDisplayedAnnouncement}
         />
-      ))}
+      ))}{" "}
       {/*     
       <SubjectCard
         title="Science"
