@@ -13,32 +13,38 @@ const Stack = createStackNavigator();
 
 export default () => {
   return (
+		
     <Stack.Navigator initialRouteName="accept user">
       <Stack.Screen
         name="Main"
         component={Main}
         options={{ header: (props) => <Header {...props} /> }}
       />
+		
       <Stack.Screen
         name="Create user"
         component={CreateUser}
         options={{ header: (props) => <Header {...props} /> }}
       />
+		
       <Stack.Screen
         name="Create course"
         component={CreateCourse}
         options={{ header: (props) => <Header {...props} /> }}
-      />    
+      />
+		
        <Stack.Screen
       name="login2"
       component={Login}
       options={{ header: (props) => <Header {...props} /> }}
     />
+	  
          <Stack.Screen
       name="accept user"
       component={AcceptUser}
       options={{ header: (props) => <Header {...props} /> }}
     />
+	  
     </Stack.Navigator>
   );
 };
