@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView } from "react-native";
-import { Text, Divider } from "react-native-paper";
+import { StyleSheet, ScrollView, FlatList } from "react-native";
+import { Text, Divider, List } from "react-native-paper";
 
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
@@ -8,6 +8,7 @@ import Radio from "../../../../shared/Radio";
 import axios from "axios";
 import Menu from "./components/Menu";
 import StudentList from "./components/StudentsList";
+import TeacherList from "./components/TeacherList";
 
 export default () => {
   const [Courses, setCourses] = useState([
@@ -17,7 +18,7 @@ export default () => {
     { name: "Software engineering", code: "CSE2023" },
   ]);
   const [SelectedCoursesIndex, setSelectedCoursesIndex] = useState(null);
-  const [SelectedStudentIndex, setSelectedStudentIndex] = useState(null);
+  const [list, seList] = useState(["Students", "Teachers"]);
 
   const [Studnets, setStudnets] = useState([
     { name: "mahmoud", selected: false },
@@ -68,6 +69,13 @@ export default () => {
     console.log("subject number ", index);
     setSelectedCoursesIndex(index);
   }
+  function handleNavigation(name, type, id) {
+    navigation.navigate("OpenMaterial", {
+      name,
+      id,
+      type,
+    });
+  }
   return (
     <ScrollView style={styles.root}>
       {/* Course */}
@@ -78,9 +86,24 @@ export default () => {
         </Text>
       ) : null}
       <Menu items={Courses} handlePress={handeSubjectSelect} />
+      <List.Section title="Accept Menu">
+        <FlatList
+          data={list}
+          extraData={Studnets}
+          renderItem={({ item }) => (
+            <List.Accordion
+              title={item}
+              left={(props) => <List.Icon {...props} icon="account" />}
+            >
+              <Divider />
 
-      <Text>Select Students</Text>
-      <StudentList items={Studnets} handleCheck={handleCheck} />
+              <StudentList items={Studnets} handleCheck={handleCheck} />
+
+              <Divider />
+            </List.Accordion>
+          )}
+        />
+      </List.Section>
 
       {/* Students */}
       <Divider />
