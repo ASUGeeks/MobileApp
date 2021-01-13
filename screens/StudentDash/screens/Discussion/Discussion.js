@@ -1,78 +1,108 @@
 import React, { useState, useEffect } from "react";
 import { Text, Button, Surface, TextInput } from "react-native-paper";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import Input from "../../../../shared/Input";
+
 const MyComponent = ({ route }) => {
   const [uri, seturi] = useState();
-
+  const [questionIndex, setQuestionIndex] = useState(false);
   const [form, setForm] = useState([
     {
+      owner: "simbo",
       body: "This is first discussion",
-      replies: ["first reply", "second reply"],
+      replies: [
+        { user: "hesham", reply: "first reply" },
+        { user: "hmmad", reply: "second reply" },
+      ],
     },
     {
+      owner: "hesham",
       body: "This is 2nd discussion",
-      replies: ["first reply", "second reply"],
+      replies: [
+        { user: "hesham", reply: "first reply" },
+        { user: "hmmad", reply: "second reply" },
+      ],
     },
     {
+      owner: "ghandr",
       body: "This is 3rd discussion",
-      replies: ["first reply", "second reply"],
+      replies: [
+        { user: "hesham", reply: "first reply" },
+        { user: "hmmad", reply: "second reply" },
+      ],
     },
   ]);
 
   function handleSubmit() {
-    const addComment = { uri };
-    // TODO
-    // make an http post request here
-    console.log("HEEEEEEH , this is the Student dis LOL", addComment);
+    console.log(questionIndex, uri);
+    let oldContent = [...form];
+    if (questionIndex === "question") {
+      oldContent = [...oldContent, { owner: "test", body: uri }];
+    } else {
+      if (oldContent[questionIndex].replies == undefined) {
+        console.log(form);
+        oldContent[questionIndex].replies = [];
+        console.log(form);
+      }
+      oldContent[questionIndex].replies.push({ user: "test", reply: uri });
+    }
+
+    setForm(oldContent);
   }
 
   return (
     <ScrollView contentContainerStyle={styles.root}>
+      <TouchableOpacity
+        style={{ padding: 20 }}
+        onPress={() => {
+          setQuestionIndex("question");
+        }}
+      >
+        <Surface style={styles.surfaceQuestion}>
+          <View style={styles.content}>
+            <Text style={styles.bodyText}>Ask a Question</Text>
+          </View>
+        </Surface>
+      </TouchableOpacity>
       <FlatList
         data={form}
         extraData={form}
-        renderItem={({ item }) => (
-          <Surface style={styles.surface}>
-            <View style={styles.content}>
-              <Text style={styles.bodyText}>{item.body}</Text>
-            </View>
-            <FlatList
-              data={item.replies}
-              renderItem={({ item }) => (
-                <Surface style={styles.reply}>
-                  <Text style={styles.text}>{item}</Text>
-                </Surface>
-              )}
-            />
-            <View style={styles.styleOfViewOfTextBox}>
-              <View>
-                <TextInput
-                  style={styles.styleOfTextBox}
-                  clearTextOnFocus={true}
-                  setValue={seturi}
-                  value={uri}
-                  label="Write a reply"
-                ></TextInput>
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{ padding: 20 }}
+            onPress={() => {
+              setQuestionIndex(index);
+            }}
+          >
+            <Surface style={styles.surface}>
+              <View style={styles.content}>
+                <Text style={styles.titleText}>Question {index + 1} : </Text>
+                <View style={styles.avatar}>
+                  <View style={{ width: 40 }}>
+                    <Button style={styles.icon} icon="account" />
+                  </View>
+                  <Text style={{ fontSize: 15 }}>{item.owner} : </Text>
+                </View>
+                <Text style={styles.bodyText}>{item.body}</Text>
               </View>
-              <View>
-                <Button
-                  style={{
-                    marginLeft: 5,
-                    marginTop: 2,
-                    height: 28,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onPress={handleSubmit}
-                  mode="outlined"
-                >
-                  Send
-                </Button>
-              </View>
-            </View>
-          </Surface>
+              <FlatList
+                data={item.replies}
+                renderItem={({ item }) => (
+                  <View>
+                    <Surface style={styles.reply}>
+                      <View style={styles.avatar}>
+                        <View style={{ width: 40 }}>
+                          <Button style={styles.icon} icon="account"></Button>
+                        </View>
+                        <Text style={{ fontSize: 15 }}>{item.user} : </Text>
+                      </View>
+                      <Text style={styles.bodyText}>{item.reply}</Text>
+                    </Surface>
+                  </View>
+                )}
+              />
+            </Surface>
+          </TouchableOpacity>
         )}
       />
 
@@ -81,7 +111,7 @@ const MyComponent = ({ route }) => {
           <TextInput
             style={{ height: "20px !important" }}
             clearTextOnFocus={true}
-            setValue={seturi}
+            onChangeText={(text) => seturi(text)}
             value={uri}
             label="Ask a Question"
           ></TextInput>
@@ -119,9 +149,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 15,
   },
+  titleText: {
+    fontSize: 20,
+    margin: 5,
+  },
+  avatar: {
+    flexDirection: "row",
+    margin: 5,
+  },
+  icon: {
+    width: 10,
+  },
+  surfaceQuestion: {
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+    borderRadius: 15,
+  },
   content: {
     margin: 10,
   },
+
   reply: {
     marginLeft: 20,
     marginBottom: 10,
@@ -129,7 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#393e46",
   },
-  bodyText: { fontSize: 20 },
+  bodyText: { fontSize: 15, margin: 5, paddingLeft: 20 },
   text: {
     padding: 10,
     fontSize: 10,
