@@ -1,37 +1,138 @@
 import React, { useState, useEffect } from "react";
-import { Text, Button} from "react-native-paper";
-import { View, StyleSheet, TextInput } from "react-native";
-//import { grey100 } from "react-native-paper/lib/typescript/styles/colors";
-//import { TextInput } from "react-native-gesture-handler";
-const MyComponent = ({ route }) => {
-  const [uri, seturi] = useState("Write a replay");
+import { Text, Button, Surface, TextInput } from "react-native-paper";
+import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 
-  useEffect(() => {}, []);
+const MyComponent = ({ route }) => {
+  const [uri, seturi] = useState();
+  const [questionIndex, setQuestionIndex] = useState(false);
+  const [form, setForm] = useState([
+    {
+      owner: "simbo",
+      body: "This is first discussion",
+      replies: [
+        { user: "hesham", reply: "first reply" },
+        { user: "hmmad", reply: "second reply" },
+      ],
+    },
+    {
+      owner: "hesham",
+      body: "This is 2nd discussion",
+      replies: [
+        { user: "hesham", reply: "first reply" },
+        { user: "hmmad", reply: "second reply" },
+      ],
+    },
+    {
+      owner: "ghandr",
+      body: "This is 3rd discussion",
+      replies: [
+        { user: "hesham", reply: "first reply" },
+        { user: "hmmad", reply: "second reply" },
+      ],
+    },
+  ]);
 
   function handleSubmit() {
-    const addComment = {uri};
-    // TODO 
-    // make an http post request here
-    console.log("HEEEEEEH , this is the Student dis LOL", addComment);
+    console.log(questionIndex, uri);
+    let oldContent = [...form];
+    if (questionIndex === "question") {
+      oldContent = [...oldContent, { owner: "test", body: uri }];
+    } else {
+      if (oldContent[questionIndex].replies == undefined) {
+        console.log(form);
+        oldContent[questionIndex].replies = [];
+        console.log(form);
+      }
+      oldContent[questionIndex].replies.push({ user: "test", reply: uri });
+    }
+
+    setForm(oldContent);
   }
 
   return (
-    <View style={styles.root}>
-      <View style={styles.styleOfViewOfText}>
-      <Text style={styles.text}>THis is the discussion forum</Text>
-      <Text style={styles.text}>hgghfhgfhfghfghf</Text>
-      <Text style={styles.text}>hgghfhgfhfghfghf</Text>
-      </View>
-      <View style={styles.styleOfViewOfTextBox}>
-        <View style={{flex:7}}>
-          <TextInput style={styles.styleOfTextBox} clearTextOnFocus={true} onChangeText={text => seturi(text)}
-          value={uri}></TextInput>
+    <ScrollView contentContainerStyle={styles.root}>
+      <TouchableOpacity
+        style={{ padding: 20 }}
+        onPress={() => {
+          setQuestionIndex("question");
+        }}
+      >
+        <Surface style={styles.surfaceQuestion}>
+          <View style={styles.content}>
+            <Text style={styles.bodyText}>Ask a Question</Text>
           </View>
-        <View style={{flex:1}}>
-          <Button style={{marginLeft: 5, marginTop: 2}} onPress={handleSubmit} mode="contained"> Send </Button>
+        </Surface>
+      </TouchableOpacity>
+      <FlatList
+        data={form}
+        extraData={form}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{ padding: 20 }}
+            onPress={() => {
+              setQuestionIndex(index);
+            }}
+          >
+            <Surface style={styles.surface}>
+              <View style={styles.content}>
+                <Text style={styles.titleText}>Question {index + 1} : </Text>
+                <View style={styles.avatar}>
+                  <View style={{ width: 40 }}>
+                    <Button style={styles.icon} icon="account" />
+                  </View>
+                  <Text style={{ fontSize: 15 }}>{item.owner} : </Text>
+                </View>
+                <Text style={styles.bodyText}>{item.body}</Text>
+              </View>
+              <FlatList
+                data={item.replies}
+                renderItem={({ item }) => (
+                  <View>
+                    <Surface style={styles.reply}>
+                      <View style={styles.avatar}>
+                        <View style={{ width: 40 }}>
+                          <Button style={styles.icon} icon="account"></Button>
+                        </View>
+                        <Text style={{ fontSize: 15 }}>{item.user} : </Text>
+                      </View>
+                      <Text style={styles.bodyText}>{item.reply}</Text>
+                    </Surface>
+                  </View>
+                )}
+              />
+            </Surface>
+          </TouchableOpacity>
+        )}
+      />
+
+      <View style={styles.styleOfViewOfTextBox}>
+        <View>
+          <TextInput
+            style={{ height: "20px !important" }}
+            clearTextOnFocus={true}
+            onChangeText={(text) => seturi(text)}
+            value={uri}
+            label="Ask a Question"
+          ></TextInput>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Button
+            style={{
+              marginLeft: 5,
+              marginTop: 2,
+              height: 28,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onPress={handleSubmit}
+            mode="contained"
+          >
+            Send
+          </Button>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -40,35 +141,60 @@ export default MyComponent;
 const styles = StyleSheet.create({
   root: {
     display: "flex",
-    justifyContent: "flex-end",
-    //alignItems: "center",
     flex: 1,
     marginHorizontal: 20,
     marginVertical: 10,
-    //backgroundColor: "blue",
   },
+  surface: {
+    marginBottom: 10,
+    borderRadius: 15,
+  },
+  titleText: {
+    fontSize: 20,
+    margin: 5,
+  },
+  avatar: {
+    flexDirection: "row",
+    margin: 5,
+  },
+  icon: {
+    width: 10,
+  },
+  surfaceQuestion: {
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+    borderRadius: 15,
+  },
+  content: {
+    margin: 10,
+  },
+
+  reply: {
+    marginLeft: 20,
+    marginBottom: 10,
+    marginRight: 10,
+    borderRadius: 15,
+    backgroundColor: "#393e46",
+  },
+  bodyText: { fontSize: 15, margin: 5, paddingLeft: 20 },
   text: {
-    textAlign: "center",
-    fontSize: 20,
+    padding: 10,
+    fontSize: 10,
   },
-  styleOfViewOfText: {
-    flex: 5,
-    //justifyContent: "flex-start",
-    //alignSelf: "center",
-  },
+
   styleOfTextBox: {
-    color: "#595c5b",
-    backgroundColor: "#e3e8e7",
-    padding: 5,
-    fontSize: 20,
-    borderRadius: 3,
-    //justifyContent: "flex-end",
+    height: 28,
+
+    borderRadius: 5,
+    justifyContent: "flex-end",
   },
   styleOfViewOfTextBox: {
-    //justifyContent: "center",
-    //alignItems: "flex-end",
-    //flex: 95,
-    //flexWrap: "wrap"
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 5,
+    flexWrap: "wrap",
     flexDirection: "row",
   },
 });

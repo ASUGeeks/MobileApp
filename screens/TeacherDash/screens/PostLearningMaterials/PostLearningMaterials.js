@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, FlatList, Text, StyleSheet, ScrollView } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
-import axios from "axios"
+import axios from "axios";
 
-const Fuck = () => {
+const text = () => {
   const [Content, setContent] = useState([
     {
       title: "Week1",
@@ -80,19 +80,17 @@ const Fuck = () => {
   function addWeek() {
     const oldContent = [...Content];
     console.log("FHFHFHF", oldContent);
-    oldContent.push(
-      {
-        title: "",
-        data: [
-          {
-            title: "",
-            type: "",
-            data: [{ title: "", URL: "" }],
-          },
-        ],
-      },
-    );
-    console.log("HEY HO YA WALLA",oldContent)
+    oldContent.push({
+      title: "",
+      data: [
+        {
+          title: "",
+          type: "",
+          data: [{ title: "", URL: "" }],
+        },
+      ],
+    });
+    console.log("HEY HO YA WALLA", oldContent);
     setContent(oldContent);
   }
 
@@ -114,39 +112,39 @@ const Fuck = () => {
     setContent(oldContent);
   }
 
-  function handleWeekTitleChange(lable, fuck, index) {
+  function handleWeekTitleChange(lable, text, index) {
     const oldContent = [...Content];
-    oldContent[index].title = fuck;
+    oldContent[index].title = text;
     setContent(oldContent);
   }
 
-  function handleTypeChange(lable, fuck, index, parentIndex) {
+  function handleTypeChange(lable, text, index, parentIndex) {
     const oldContent = [...Content];
-    oldContent[parentIndex].data[index][lable] = fuck;
+    oldContent[parentIndex].data[index][lable] = text;
     setContent(oldContent);
   }
 
-  function handleContentChange(lable, fuck, index, parentIndex, grandIndex) {
+  function handleContentChange(lable, text, index, parentIndex, grandIndex) {
     const oldContent = [...Content];
-    oldContent[grandIndex].data[parentIndex].data[index][lable] = fuck;
+    oldContent[grandIndex].data[parentIndex].data[index][lable] = text;
     setContent(oldContent);
   }
 
-
-
-  const adminToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E"
+  const adminToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E";
   function handleSubmit() {
-
     axios
-    .post("http://localhost:5100/update-course",{code:"CSE2020",content:Content},{headers:
-    {token:adminToken}})
-    .then((r) => {
-        console.log("login",r.data)
+      .post(
+        "http://localhost:5100/update-course",
+        { code: "CSE2020", content: Content },
+        { headers: { token: adminToken } }
+      )
+      .then((r) => {
+        console.log("login", r.data);
         // storeToken()
-    })
-    .catch((bug) => console.log("BUBUBUUB", bug))
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
   }
-
 
   return (
     <ScrollView style={styles.root}>
@@ -257,4 +255,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Fuck;
+export default text;
