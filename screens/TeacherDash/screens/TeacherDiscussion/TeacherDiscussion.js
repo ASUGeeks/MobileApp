@@ -13,7 +13,6 @@ export default () => {
     };
     // TODO 
     // make an http post request here
-    console.log("HEEEEEH , this is the teacher dis LOL", forum);
   }
 
   return (
