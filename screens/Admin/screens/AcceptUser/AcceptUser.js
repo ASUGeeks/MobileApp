@@ -130,6 +130,7 @@ export default () => {
         type="text"
         mode="text"
         onPress={() => handleCheckedNames(Students, Teacher)}
+        mode="contained"
       >
         Accept
       </Button>
