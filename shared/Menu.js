@@ -14,6 +14,7 @@ const Header = ({ items, handlePress, title, index ,isNotif}) => {
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
   const [visible, setVisible] = React.useState(false);
+  
   function openMenu() {
     setVisible(true);
   }

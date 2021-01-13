@@ -8,7 +8,7 @@ import {
 } from "react-native-paper";
 import { PreferencesContext } from "../shared/PreferencesContext";
 
-const Header = ({ scene, navigation, previous }) => {
+const Header = ({ scene, navigation, previous, dropdowmMenu }) => {
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
   const [visible, setVisible] = React.useState(false);
@@ -19,6 +19,7 @@ const Header = ({ scene, navigation, previous }) => {
   function closeMenu() {
     setVisible(false);
   }
+
   const title =
     scene.route.params !== undefined
       ? scene.route.params.name
@@ -36,7 +37,7 @@ const Header = ({ scene, navigation, previous }) => {
       <TouchableRipple onPress={() => toggleTheme()}>
         <Switch value={isThemeDark} />
       </TouchableRipple>
-      {!previous ? (
+      {dropdowmMenu !== undefined ? (
         <Menu
           visible={visible}
           onDismiss={closeMenu}
@@ -48,25 +49,14 @@ const Header = ({ scene, navigation, previous }) => {
             />
           }
         >
-          <Menu.Item
-            onPress={() => {
-              console.log("Option 1 was pressed");
-            }}
-            title="Option 1"
-          />
-          <Menu.Item
-            onPress={() => {
-              console.log("Option 2 was pressed");
-            }}
-            title="Option 2"
-          />
-          <Menu.Item
-            onPress={() => {
-              console.log("Option 3 was pressed");
-            }}
-            title="Option 3"
-            disabled
-          />
+          {dropdowmMenu.map((item) => (
+            <Menu.Item
+              onPress={() => {
+                navigation.navigate(item.navigate);
+              }}
+              title={item.title}
+            />
+          ))}
         </Menu>
       ) : null}
     </Appbar.Header>

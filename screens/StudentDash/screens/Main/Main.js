@@ -5,7 +5,7 @@ import Input from "../../../../shared/Input";
 import axios from "axios";
 import SubjectCard from "./components/SubjectCard";
 import Modal from "./components/Modal";
-import { Button } from "react-native-paper";
+// import { Button } from "react-native-paper";
 
 export default ({ navigation }) => {
   const [Title, setTitle] = useState("");
@@ -75,13 +75,6 @@ export default ({ navigation }) => {
 
   return (
     <ScrollView style={styles.root}>
-      <Button
-        style={styles.Button}
-        mode="outlined"
-        onPress={() => navigation.navigate("Discussion")}
-      >
-        Discussion forum
-      </Button>
       <Modal
         visible={visible}
         setVisible={setVisible}
