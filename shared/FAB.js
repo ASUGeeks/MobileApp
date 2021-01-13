@@ -15,13 +15,13 @@ const MyComponent = ({subScreens}) => {
         <FAB.Group
           style={{ zIndex: 100000,}}
           open={open}
-          icon={open ? "calendar-today" : "plus"}
+          icon={open ? "close" : "menu"}
           actions={subScreens}
           onStateChange={onStateChange}
           onPress={() => {
-            if (open) {
-              // do something if the speed dial is open
-            }
+            // if (open) {
+
+            // }
           }}
         />
       </Portal>
