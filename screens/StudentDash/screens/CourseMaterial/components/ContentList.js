@@ -15,7 +15,7 @@ const SectionListBasics = ({ content, navigation }) => {
   
   const subScreens = [
     {
-      icon: "bell",
+      icon: "clipboard-check",
       label: "Quizzes",
       onPress: () => navigation.navigate("Quizzes"),
     },
