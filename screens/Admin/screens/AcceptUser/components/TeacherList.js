@@ -24,7 +24,7 @@ const Header = ({ items, handleCheck, title, index }) => {
             <Checkbox
               status={student.item.selected ? "checked" : "unchecked"}
               onPress={() => {
-                console.log("heyy'", items, student.item.selected);
+                console.log("teacher'", items, student.item.selected);
                 handleCheck(student.index, student.item.selected);
               }}
             />

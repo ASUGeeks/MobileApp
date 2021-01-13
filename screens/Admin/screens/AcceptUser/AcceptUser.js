@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, ScrollView, FlatList, View } from "react-native";
-import { Text, Divider, List } from "react-native-paper";
+import { Text, Divider, List, Button } from "react-native-paper";
 
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
@@ -20,7 +20,7 @@ export default () => {
   const [SelectedCoursesIndex, setSelectedCoursesIndex] = useState(null);
   const [list, seList] = useState(["Students", "Teachers"]);
 
-  const [Studnets, setStudnets] = useState([
+  const [Students, setStudents] = useState([
     { name: "mahmoud", selected: false },
     { name: "Hammad", selected: false },
     { name: "Ali", selected: false },
@@ -33,10 +33,11 @@ export default () => {
     { name: "Atout", selected: false },
   ]);
   const [Teacher, setTeacher] = useState([
-    { name: "simpo" },
-    { name: "Emad" },
-    { name: "Mahmoud ghandor" },
-    { name: "Mahmoud essam" },
+    { name: "mahmoud", selected: false },
+    { name: "Hammad", selected: false },
+    { name: "Ali", selected: false },
+    { name: "Samir", selected: false },
+    { name: "Ramy", selected: false },
   ]);
 
   useEffect(() => {
@@ -60,15 +61,26 @@ export default () => {
   }
 
   const handleCheck = (index, state) => {
-    const oldContent = [...Studnets];
+    const oldContent = [...Students];
     oldContent[index].selected = !state;
-    setStudnets(oldContent);
+    setStudents(oldContent);
   };
-
+  const handleCheckTeacher = (index, state) => {
+    const oldContent = [...Teacher];
+    oldContent[index].selected = !state;
+    setTeacher(oldContent);
+  };
   function handeSubjectSelect(index) {
     console.log("subject number ", index);
     setSelectedCoursesIndex(index);
   }
+  const handleCheckedNames = (Students, Teacher) => {
+    let studentArr = [Students.filter(({ selected }) => selected)];
+    let teacherArr = [Teacher.filter(({ selected }) => selected)];
+    console.log(studentArr);
+    console.log(teacherArr);
+  };
+
   function handleNavigation(name, type, id) {
     navigation.navigate("OpenMaterial", {
       name,
@@ -91,7 +103,7 @@ export default () => {
       <List.Section title="Accept Menu">
         <FlatList
           data={list}
-          extraData={Studnets}
+          extraData={[Students, Teacher]}
           renderItem={({ item }) => (
             <List.Accordion
               title={item}
@@ -99,14 +111,28 @@ export default () => {
             >
               <Divider />
 
-              <StudentList items={Studnets} handleCheck={handleCheck} />
-
+              {SelectedCoursesIndex !== null ? (
+                item == "Teachers" ? (
+                  <TeacherList
+                    items={Teacher}
+                    handleCheck={handleCheckTeacher}
+                  />
+                ) : (
+                  <StudentList items={Students} handleCheck={handleCheck} />
+                )
+              ) : null}
               <Divider />
             </List.Accordion>
           )}
         />
       </List.Section>
-
+      <Button
+        type="text"
+        mode="text"
+        onPress={() => handleCheckedNames(Students, Teacher)}
+      >
+        Submit Quiz
+      </Button>
       {/* Students */}
       <Divider />
     </ScrollView>
