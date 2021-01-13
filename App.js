@@ -18,6 +18,7 @@ import { PreferencesContext } from "./shared/PreferencesContext";
 import Snack from "./shared/Snack";
 
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
+PaperDarkTheme.colors.onBackground = "rgb(68, 68, 68)";
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
 
   return (
     <PreferencesContext.Provider value={preferences}>
+      {console.log(PaperDarkTheme)}
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
           <BottomNavigation
