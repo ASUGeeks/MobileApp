@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView, FlatList } from "react-native";
+import { StyleSheet, ScrollView, FlatList, View } from "react-native";
 import { Text, Divider, List } from "react-native-paper";
 
 import Submit from "../../../../shared/Submit";
@@ -79,13 +79,15 @@ export default () => {
   return (
     <ScrollView style={styles.root}>
       {/* Course */}
-      <Text style={styles.title}>Select subject</Text>
-      {SelectedCoursesIndex !== null ? (
-        <Text style={styles.subtitle}>
-          Selected Subject: {Courses[SelectedCoursesIndex].name}
-        </Text>
-      ) : null}
-      <Menu items={Courses} handlePress={handeSubjectSelect} />
+      <View style={styles.box}>
+        <Text style={styles.title}>Select subject</Text>
+        {SelectedCoursesIndex !== null ? (
+          <Text style={styles.subtitle}>
+            Selected Subject: {Courses[SelectedCoursesIndex].name}
+          </Text>
+        ) : null}
+        <Menu items={Courses} handlePress={handeSubjectSelect} />
+      </View>
       <List.Section title="Accept Menu">
         <FlatList
           data={list}
@@ -118,5 +120,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
   },
-  subtitle: {},
+  box: {
+    display: "flex",
+    flex: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
 });
