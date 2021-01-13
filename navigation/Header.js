@@ -19,6 +19,7 @@ const Header = ({ scene, navigation, previous, dropdowmMenu }) => {
   function closeMenu() {
     setVisible(false);
   }
+
   const title =
     scene.route.params !== undefined
       ? scene.route.params.name
@@ -36,7 +37,7 @@ const Header = ({ scene, navigation, previous, dropdowmMenu }) => {
       <TouchableRipple onPress={() => toggleTheme()}>
         <Switch value={isThemeDark} />
       </TouchableRipple>
-      {!previous && dropdowmMenu !== undefined ? (
+      {dropdowmMenu !== undefined ? (
         <Menu
           visible={visible}
           onDismiss={closeMenu}
