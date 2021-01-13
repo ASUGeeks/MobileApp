@@ -1,37 +1,108 @@
 import React, { useState, useEffect } from "react";
-import { Text, Button} from "react-native-paper";
-import { View, StyleSheet, TextInput } from "react-native";
-//import { grey100 } from "react-native-paper/lib/typescript/styles/colors";
-//import { TextInput } from "react-native-gesture-handler";
+import { Text, Button, Surface, TextInput } from "react-native-paper";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import Input from "../../../../shared/Input";
 const MyComponent = ({ route }) => {
-  const [uri, seturi] = useState("Write a replay");
+  const [uri, seturi] = useState();
 
-  useEffect(() => {}, []);
+  const [form, setForm] = useState([
+    {
+      body: "This is first discussion",
+      replies: ["first reply", "second reply"],
+    },
+    {
+      body: "This is 2nd discussion",
+      replies: ["first reply", "second reply"],
+    },
+    {
+      body: "This is 3rd discussion",
+      replies: ["first reply", "second reply"],
+    },
+  ]);
 
   function handleSubmit() {
-    const addComment = {uri};
-    // TODO 
+    const addComment = { uri };
+    // TODO
     // make an http post request here
     console.log("HEEEEEEH , this is the Student dis LOL", addComment);
   }
 
   return (
-    <View style={styles.root}>
-      <View style={styles.styleOfViewOfText}>
-      <Text style={styles.text}>THis is the discussion forum</Text>
-      <Text style={styles.text}>hgghfhgfhfghfghf</Text>
-      <Text style={styles.text}>hgghfhgfhfghfghf</Text>
-      </View>
+    <ScrollView contentContainerStyle={styles.root}>
+      <FlatList
+        data={form}
+        extraData={form}
+        renderItem={({ item }) => (
+          <Surface style={styles.surface}>
+            <View style={styles.content}>
+              <Text style={styles.bodyText}>{item.body}</Text>
+            </View>
+            <FlatList
+              data={item.replies}
+              renderItem={({ item }) => (
+                <Surface style={styles.reply}>
+                  <Text style={styles.text}>{item}</Text>
+                </Surface>
+              )}
+            />
+            <View style={styles.styleOfViewOfTextBox}>
+              <View>
+                <TextInput
+                  style={styles.styleOfTextBox}
+                  clearTextOnFocus={true}
+                  setValue={seturi}
+                  value={uri}
+                  label="Write a reply"
+                ></TextInput>
+              </View>
+              <View>
+                <Button
+                  style={{
+                    marginLeft: 5,
+                    marginTop: 2,
+                    height: 28,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onPress={handleSubmit}
+                  mode="outlined"
+                >
+                  Send
+                </Button>
+              </View>
+            </View>
+          </Surface>
+        )}
+      />
+
       <View style={styles.styleOfViewOfTextBox}>
-        <View style={{flex:7}}>
-          <TextInput style={styles.styleOfTextBox} clearTextOnFocus={true} onChangeText={text => seturi(text)}
-          value={uri}></TextInput>
-          </View>
-        <View style={{flex:1}}>
-          <Button style={{marginLeft: 5, marginTop: 2}} onPress={handleSubmit} mode="contained"> Send </Button>
+        <View>
+          <TextInput
+            style={{ height: "20px !important" }}
+            clearTextOnFocus={true}
+            setValue={seturi}
+            value={uri}
+            label="Ask a Question"
+          ></TextInput>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Button
+            style={{
+              marginLeft: 5,
+              marginTop: 2,
+              height: 28,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onPress={handleSubmit}
+            mode="contained"
+          >
+            Send
+          </Button>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -40,35 +111,41 @@ export default MyComponent;
 const styles = StyleSheet.create({
   root: {
     display: "flex",
-    justifyContent: "flex-end",
-    //alignItems: "center",
     flex: 1,
     marginHorizontal: 20,
     marginVertical: 10,
-    //backgroundColor: "blue",
   },
+  surface: {
+    marginBottom: 10,
+    borderRadius: 15,
+  },
+  content: {
+    margin: 10,
+  },
+  reply: {
+    marginLeft: 20,
+    marginBottom: 10,
+    marginRight: 10,
+    borderRadius: 15,
+    backgroundColor: "#393e46",
+  },
+  bodyText: { fontSize: 20 },
   text: {
-    textAlign: "center",
-    fontSize: 20,
+    padding: 10,
+    fontSize: 10,
   },
-  styleOfViewOfText: {
-    flex: 5,
-    //justifyContent: "flex-start",
-    //alignSelf: "center",
-  },
+
   styleOfTextBox: {
-    color: "#595c5b",
-    backgroundColor: "#e3e8e7",
-    padding: 5,
-    fontSize: 20,
-    borderRadius: 3,
-    //justifyContent: "flex-end",
+    height: 28,
+
+    borderRadius: 5,
+    justifyContent: "flex-end",
   },
   styleOfViewOfTextBox: {
-    //justifyContent: "center",
-    //alignItems: "flex-end",
-    //flex: 95,
-    //flexWrap: "wrap"
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 5,
+    flexWrap: "wrap",
     flexDirection: "row",
   },
 });
