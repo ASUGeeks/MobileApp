@@ -9,13 +9,17 @@ import Discussion from "./screens/Discussion/Discussion";
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
 
+const dropdowmMenu = [{ title: "Discusstion forum", navigate: "Discussion" }];
+
 export default () => {
   return (
     <Stack.Navigator initialRouteName="StudentDashboard">
       <Stack.Screen
         name="StudentDashboard"
         component={Main}
-        options={{ header: (props) => <Header {...props} /> }}
+        options={{
+          header: (props) => <Header {...props} dropdowmMenu={dropdowmMenu} />,
+        }}
       />
       <Stack.Screen
         name="CourseMaterial"
