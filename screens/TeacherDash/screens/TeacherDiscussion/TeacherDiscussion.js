@@ -13,7 +13,7 @@ export default () => {
     };
     // TODO 
     // make an http post request here
-    console.log("HEEEEEEH , this is the announcet LOL", forum);
+    console.log("HEEEEEH , this is the announcet LOL", forum);
   }
 
   return (
