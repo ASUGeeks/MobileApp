@@ -12,13 +12,9 @@ const SectionListBasics = ({ content, navigation }) => {
       type,
     });
   }
+  
   const subScreens = [
     // { icon: "plus", onPress: () => console.log("Pressed add") },
-    {
-      icon: "star",
-      label: "Discusstion forum",
-      onPress: () => navigation.navigate("Discussion"),
-    },
     {
       icon: "bell",
       label: "Quizzes",
@@ -28,10 +24,14 @@ const SectionListBasics = ({ content, navigation }) => {
       icon: "email",
       label: "Assignments",
       onPress: () => navigation.navigate("Assignments"),
-      small: false,
+    },
+    {
+      icon: "star",
+      label: "Discusstion forum",
+      onPress: () => navigation.navigate("Discussion"),
     },
   ];
-
+  
   return (
     <React.Fragment>
       <List.Section title="Study material">
