@@ -14,19 +14,18 @@ const SectionListBasics = ({ content, navigation }) => {
   }
   
   const subScreens = [
-    // { icon: "plus", onPress: () => console.log("Pressed add") },
     {
       icon: "bell",
       label: "Quizzes",
       onPress: () => navigation.navigate("Quizzes"),
     },
     {
-      icon: "email",
+      icon: "book-open",
       label: "Assignments",
       onPress: () => navigation.navigate("Assignments"),
     },
     {
-      icon: "star",
+      icon: "announcement",
       label: "Discusstion forum",
       onPress: () => navigation.navigate("Discussion"),
     },
