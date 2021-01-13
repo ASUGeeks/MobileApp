@@ -7,6 +7,7 @@ import OpenMaterial from "./screens/OpenMaterial/OpenMaterial";
 import Discussion from "./screens/Discussion/Discussion";
 import Quizzes from "./screens/Quizes/Quizes";
 import Assignments from "./screens/Assignments/Assignments";
+import AssScreen from "./screens/AssScreen/AssScreen";
 
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
@@ -19,7 +20,7 @@ const dropdowmMenu = [
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="StudentDashboard">
+    <Stack.Navigator initialRouteName="Assignments">
       <Stack.Screen
         name="StudentDashboard"
         component={Main}
@@ -54,6 +55,16 @@ export default () => {
         component={Assignments}
         options={{ header: (props) => <Header {...props} /> }}
       />
+          <Stack.Screen
+        name="Assignment screen"
+        component={AssScreen}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+       {/* <Stack.Screen
+        name="Quiz screen"
+        component={Assignments}
+        options={{ header: (props) => <Header {...props} /> }}
+      /> */}
     </Stack.Navigator>
   );
 };
