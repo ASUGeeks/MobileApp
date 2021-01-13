@@ -13,23 +13,25 @@ export default () => {
       Title,
       Body,
     };
+	
     // TODO
     // make an http post request here
-    console.log("HEEEEEEH , this is the announcet LOL", announcement);
+    console.log("HEEEEEEH , this is the announcment LOL", announcement);
+	
   }
 
   return (
     <View style={styles.root}>
       <Text>Login </Text>
       <Input
-        label="UserName"
+        label=" UserName "
         secureTextEntry={true}
         value={Title}
         setValue={setTitle}
         Masker= {InputMask}
       />
       <Input
-        label="Password"
+        label=" Password "
         value={Body}
         setValue={setBody}
         Masker={ InputMask}
