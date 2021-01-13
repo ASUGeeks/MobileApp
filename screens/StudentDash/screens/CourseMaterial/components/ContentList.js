@@ -25,7 +25,7 @@ const SectionListBasics = ({ content, navigation }) => {
       onPress: () => navigation.navigate("Assignments"),
     },
     {
-      icon: "announcement",
+      icon: "chat",
       label: "Discusstion forum",
       onPress: () => navigation.navigate("Discussion"),
     },
