@@ -10,9 +10,6 @@ const MyComponent = ({ route }) => {
   const [uri, seturi] = useState("");
 
   useEffect(() => {
-    // TODO make http request to get course specification
-    // set the response body to setTitle
-    // setAssignments("hello, this is the course specification");
     let newuri = "";
     if (type === "vid") {
       newuri += youtubeHash;

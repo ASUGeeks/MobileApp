@@ -49,7 +49,7 @@ const MyComponent = ({
           ) : null
         }
       />
-      <Card.Content></Card.Content>
+      {/* <Card.Content></Card.Content> */}
       <Card.Cover source={{ uri: imgURL }} />
     </Card>
   );

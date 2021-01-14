@@ -6,7 +6,7 @@ import axios from "axios";
 import SubjectCard from "./components/SubjectCard";
 import Modal from "./components/Modal";
 import FAB from "../../../../shared/FAB";
-import {studentToken , teacherToken} from "../../../../Tokens/Tokens"
+import { studentToken, teacherToken } from "../../../../Tokens/Tokens";
 
 // import { Button } from "react-native-paper";
 
@@ -15,44 +15,16 @@ export default ({ navigation }) => {
   const [Details, setDetails] = useState("");
   const [Assignments, setAssignments] = useState([]);
   const [DisplayedAnnouncement, setDisplayedAnnouncement] = useState("");
-  const [Courses, setCourses] = useState([
-    {
-      // math course arguments
-      title: "Mathematics",
-      subtitle: "3rd primary",
-      imgURL: "https://ngegypt.net/wp-content/uploads/2020/12/Math-001.png",
-      announcements: [
-        { name: "this is sparta", body: "this is the body of sparta" },
-      ],
-    },
-    {
-      // science course arguments
-      title: "Science",
-      subtitle: "3rd primary",
-      imgURL:
-        "http://projects.nyujournalism.org/ontheroadinthecitygroup3/wp-content/uploads/sites/43/2018/04/science-03-1024x364.png",
-      announcements: [
-        { name: "this is sparta", body: "this is the body of sparta" },
-      ],
-    },
-    {
-      title: "Mathematics",
-      subtitle: "3rd primary",
-      imgURL: "https://i.imgflip.com/2xlcka.png",
-      announcements: [
-        { name: "this is sparta", body: "this is the body of sparta" },
-      ],
-    },
-  ]);
+  const [Courses, setCourses] = useState([]);
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
 
   function getContent() {
-  
     axios
       .get("http://192.168.1.6:5100/me", { headers: { token: teacherToken } })
       .then((r) => {
+        setCourses(r.data.courses);
         console.log("get LOLLLLLLLLL", r);
         // storeToken()
       })
@@ -66,10 +38,9 @@ export default ({ navigation }) => {
 
     getContent();
   }, []);
-  function handleNavigation(name, id) {
+  function handleNavigation(course) {
     navigation.navigate("CourseMaterial", {
-      name,
-      id,
+      course,
     });
   }
   function handleSubmit() {
@@ -86,11 +57,11 @@ export default ({ navigation }) => {
       <ScrollView style={styles.root}>
         {Courses.map((course) => (
           <SubjectCard
-            title={course.title}
-            subtitle={course.subtitle}
+            title={course.name}
+            subtitle={course.code}
             imgURL={course.imgURL}
             announcements={course.announcements}
-            handleNavigation={handleNavigation}
+            handleNavigation={() => handleNavigation(course)}
             showModal={showModal}
             setDisplayedAnnouncement={setDisplayedAnnouncement}
           />
