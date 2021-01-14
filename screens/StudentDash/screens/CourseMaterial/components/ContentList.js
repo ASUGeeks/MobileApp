@@ -15,17 +15,17 @@ const SectionListBasics = ({ content, navigation }) => {
   const subScreens = [
     // { icon: "plus", onPress: () => console.log("Pressed add") },
     {
-      icon: "star",
-      label: "Discusstion forum",
+      icon: require('../../../../../icons/discussion.svg'),
+      label: "Discussion forum",
       onPress: () => navigation.navigate("Discussion"),
     },
     {
-      icon: "bell",
+      icon: require('../../../../../icons/exam.svg'),
       label: "Quizzes",
       onPress: () => navigation.navigate("Quizzes"),
     },
     {
-      icon: "email",
+      icon: require('../../../../../icons/pen.svg'),
       label: "Assignments",
       onPress: () => navigation.navigate("Assignments"),
       small: false,

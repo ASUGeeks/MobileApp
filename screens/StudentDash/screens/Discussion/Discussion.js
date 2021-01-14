@@ -36,9 +36,13 @@ const MyComponent = ({ route }) => {
   function handleSubmit() {
     console.log(questionIndex, uri);
     let oldContent = [...form];
-    if (questionIndex === "question") {
+    if (questionIndex === "question" && uri !== undefined) {
       oldContent = [...oldContent, { owner: "test", body: uri }];
     } else {
+      if (questionIndex === false || uri === undefined) {
+        console.log("Nothing");
+        return false;
+      }
       if (oldContent[questionIndex].replies == undefined) {
         console.log(form);
         oldContent[questionIndex].replies = [];
@@ -82,8 +86,8 @@ const MyComponent = ({ route }) => {
                     <Button style={styles.icon} icon="account" />
                   </View>
                   <Text style={{ fontSize: 15 }}>{item.owner} : </Text>
+                  <Text style={styles.bodyText}>{item.body}</Text>
                 </View>
-                <Text style={styles.bodyText}>{item.body}</Text>
               </View>
               <FlatList
                 data={item.replies}
@@ -95,8 +99,8 @@ const MyComponent = ({ route }) => {
                           <Button style={styles.icon} icon="account"></Button>
                         </View>
                         <Text style={{ fontSize: 15 }}>{item.user} : </Text>
+                        <Text style={styles.bodyText}>{item.reply}</Text>
                       </View>
-                      <Text style={styles.bodyText}>{item.reply}</Text>
                     </Surface>
                   </View>
                 )}
@@ -107,7 +111,7 @@ const MyComponent = ({ route }) => {
       />
 
       <View style={styles.styleOfViewOfTextBox}>
-        <View>
+        <View style={{ flex: 7 }}>
           <TextInput
             style={{ height: "20px !important" }}
             clearTextOnFocus={true}
@@ -116,19 +120,24 @@ const MyComponent = ({ route }) => {
             label="Ask a Question"
           ></TextInput>
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, width: 5}}>
           <Button
-            style={{
-              marginLeft: 5,
+            style={{ 
+              marginLeft: 10,
               marginTop: 2,
+              marginRight: 15,
+              paddingTop: 1,
+              paddingBottom: 1,
+              paddingLeft: 20,
               height: 28,
               alignItems: "center",
               justifyContent: "center",
             }}
             onPress={handleSubmit}
             mode="contained"
+            icon="send"
           >
-            Send
+            
           </Button>
         </View>
       </View>
@@ -176,9 +185,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginRight: 10,
     borderRadius: 15,
-    backgroundColor: "#393e46",
+    backgroundColor: "#a2a5a8",
   },
-  bodyText: { fontSize: 15, margin: 5, paddingLeft: 20 },
+  bodyText: { 
+    fontSize: 15, 
+    // margin: 5, 
+    // paddingLeft: 20 
+    marginLeft: 4,
+  },
   text: {
     padding: 10,
     fontSize: 10,
@@ -186,7 +200,6 @@ const styles = StyleSheet.create({
 
   styleOfTextBox: {
     height: 28,
-
     borderRadius: 5,
     justifyContent: "flex-end",
   },

@@ -15,7 +15,7 @@ const MyComponent = ({subScreens}) => {
         <FAB.Group
           style={{ zIndex: 100000,}}
           open={open}
-          icon={open ? "calendar-today" : "plus"}
+          icon={open ? require('../icons/clear.svg') : require('../icons/list.svg')}
           actions={subScreens}
           onStateChange={onStateChange}
           onPress={() => {
