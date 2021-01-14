@@ -90,7 +90,7 @@ export default () => {
         headers: { token: adminToken },
       })
       .then((r) => {
-        console.log("users", r);
+        console.log("u*******sers", r);
         // storeToken()
       })
       .catch((bug) => console.log("BUBUBUUB", bug));
@@ -105,8 +105,8 @@ export default () => {
       })
       .catch((bug) => console.log("BUBUBUUB", bug));
 
-    assignTeacher();
-    assginStudents();
+    // assignTeacher();
+    // assginStudents();
   }
 
   const handleCheck = (index, state) => {

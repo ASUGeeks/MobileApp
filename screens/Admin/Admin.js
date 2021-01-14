@@ -13,9 +13,9 @@ const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Main">
+    <Stack.Navigator initialRouteName="Admin Dashboard">
       <Stack.Screen
-        name="Main"
+        name="Admin Dashboard"
         component={Main}
         options={{ header: (props) => <Header {...props} /> }}
       />

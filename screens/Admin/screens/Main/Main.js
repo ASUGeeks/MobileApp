@@ -1,15 +1,37 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Button } from "react-native-paper";
+import IMG from "./I.png";
 import axios from "axios";
 export default ({ navigation }) => {
   axios
-    .post("http://192.168.1.6:5100/login",{username:"adminadmin",password:"adminadmin"})
+    .post("http://192.168.1.6:5100/login", {
+      username: "adminadmin",
+      password: "adminadmin",
+    })
     .then((r) => console.log("hey", r))
     .catch((bug) => console.log("BUBUBUUB", bug));
-    // axios.get("/").then(f=>console.log("HEEEY",f))
+  // axios.get("/").then(f=>console.log("HEEEY",f))
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Image
+        style={{ width: 400, height: 400 }}
+        source={{
+          uri: "https://i.imgur.com/wBAxXZB.png",
+        }}
+      />
+      {/* <Text
+        style={{
+          fontSize: 30,
+          marginHorizontal: 20,
+          marginBottom: 60,
+          borderColor: "#333",
+          borderBottomWidth: 2,
+          borderStyle: "solid",
+        }}
+      >
+        Learning is more than easy...
+      </Text> */}
       <Button
         style={styles.Button}
         mode="contained"
@@ -25,13 +47,13 @@ export default ({ navigation }) => {
       >
         Create course
       </Button>
-      <Button
+      {/* <Button
         style={styles.Button}
         mode="contained"
         onPress={() => navigation.navigate("login2")}
       >
         Login
-      </Button>
+      </Button> */}
       <Button
         style={styles.Button}
         mode="contained"
@@ -68,5 +90,6 @@ const styles = StyleSheet.create({
   Button: {
     marginVertical: 10,
     marginHorizontal: 50,
+    width: 300,
   },
 });
