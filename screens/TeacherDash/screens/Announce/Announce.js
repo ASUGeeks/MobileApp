@@ -3,25 +3,48 @@ import { View, Text, StyleSheet } from "react-native";
 
 import Input from "../../../../shared/Input";
 import Submit from "../../../../shared/Submit";
+
+import axios from "axios";
+import {
+  adminToken,
+  teacherToken,
+  studentToken,
+} from "../../../../Tokens/Tokens";
+
 export default () => {
-  const [Title, setTitle] = React.useState("");
-  const [Body, setBody] = React.useState("");
+  const [Title, setTitle] = React.useState("something is going to happen");
+  const [Body, setBody] = React.useState(
+    "hold on to you hats, little pieces of human trash. You need to submit a very large project in two days, and I will take no excuses"
+  );
 
   function handleSubmit() {
-    const announcement = {
-      Title,
-      Body,
+    const announce = {
+      course_code: "CSE202",
+      announcement: {
+        title: Title,
+        body: Body,
+      },
     };
-    // TODO 
+
+    // TODO
     // make an http post request here
-    console.log("HEEEEEEH , this is the announcet LOL", announcement);
+
+    axios
+      .post("http://192.168.1.6:5100/create-announcement", announce, {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("annonce pust", r);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
   }
 
   return (
     <View style={styles.root}>
       <Input label="Title" value={Title} setValue={setTitle} />
       <Input label="Body" numberOfLines={3} value={Body} setValue={setBody} />
-      <Submit handleSubmit={handleSubmit}/>
+      <Submit handleSubmit={handleSubmit} />
     </View>
   );
 };

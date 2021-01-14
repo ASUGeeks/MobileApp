@@ -5,10 +5,16 @@ import { Text, Divider, List, Button } from "react-native-paper";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import Radio from "../../../../shared/Radio";
-import axios from "axios";
 import Menu from "../../../../shared/Menu";
 import StudentList from "./components/StudentsList";
 import TeacherList from "./components/TeacherList";
+
+import axios from "axios";
+import {
+  adminToken,
+  teacherToken,
+  studentToken,
+} from "../../../../Tokens/Tokens";
 
 export default () => {
   const [Courses, setCourses] = useState([
@@ -41,23 +47,66 @@ export default () => {
   ]);
 
   useEffect(() => {
-    // TODO make http request to get course specification
-    // set the response body to setspecifications
-    // setspecifications("hello, this is the course specification");fbsszm.k;likil;ki8k.    ERE´FJFIF
+    getUsers();
   }, []);
 
-  function handleSubmit() {
-    // const adminToken =
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E";
-    // axios
-    //   .post("http://localhost:5100/create-course", course, {
-    //     headers: { token: adminToken },
-    //   })
-    //   .then((r) => {
-    //     console.log("login", r.data);
-    //     // storeToken()
-    //   })
-    //   .catch((bug) => console.log("BUBUBUUB", bug));
+  function assignTeacher(assholes = ["5ffd84a4f3a89028d9d7d9b5"]) {
+    const course = {
+      course_code: "CSE202",
+      teachers: assholes,
+    };
+
+    axios
+      .post("http://192.168.1.6:5100/users/assign-teachers", course, {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("lololo", r);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+  }
+
+  function assginStudents(students = ["60000a755455f71dbfcf366f"]) {
+    const course = {
+      course_code: "CSE202",
+      students,
+    };
+
+    axios
+      .post("http://192.168.1.6:5100/users/enroll-students", course, {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("lololo", r);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+  }
+
+  function getUsers() {
+    axios
+      .get("http://192.168.1.6:5100/list-users", {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("users", r);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+
+    axios
+      .get("http://192.168.1.6:5100/courses", {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("courses", r);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+
+    assignTeacher();
+    assginStudents();
   }
 
   const handleCheck = (index, state) => {

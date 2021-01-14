@@ -113,7 +113,7 @@ const MyComponent = ({ route }) => {
       <View style={styles.styleOfViewOfTextBox}>
         <View style={{ flex: 7 }}>
           <TextInput
-            style={{ height: "20px !important" }}
+            style={{ height: 20 }}
             clearTextOnFocus={true}
             onChangeText={(text) => seturi(text)}
             value={uri}
@@ -122,9 +122,7 @@ const MyComponent = ({ route }) => {
         </View>
 
         <View style={{ flex: 1 }}>
-          <
-			// Button style
-			Button
+          <Button
             style={{
               marginLeft: 5,
               marginTop: 2,

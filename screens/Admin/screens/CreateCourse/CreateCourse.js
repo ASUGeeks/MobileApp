@@ -3,46 +3,55 @@ import { StyleSheet, ScrollView } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import Radio from "../../../../shared/Radio";
-import axios from "axios"
+import axios from "axios";
+
+import {
+  adminToken,
+  teacherToken,
+  studentToken,
+} from "../../../../Tokens/Tokens";
+
 
 export default () => {
-  const [coursename, setcoursename] = useState("");
-  const [teacher, setteacher] = useState("");
-  const [role, setrole] = useState("");
-  const [avatarURL, setavatarURL] = useState("");
+  const [name, setname] = useState("logic");
+  const [code, setcode] = useState("CSE202");
+  const [credit_hours, setcredit_hours] = useState(2);
+  const [avatarURL, setavatarURL] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgMFeuWcfwWDbZA4gAc-QtZf0989QM0YfoMA&usqp=CAU");
+
 
   useEffect(() => {
-    // TODO make http request to get course specification
-    // set the response body to setspecifications
-    // setspecifications("hello, this is the course specification");fbsszm.k;likil;ki8k.    ERE´FJFIF
-  }, []);
+     }, []);
 
   function handleSubmit() {
-    
-    const course={
-      name:"computer organization",
-      code:"CSE2020",
-      profs:["simpo"],
-      TAs:[],
-      credit_hours:3,
-    }
-    const adminToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E"
-    axios
-    .post("http://localhost:5100/create-course",course,{headers:
-    {token:adminToken}})
-    .then((r) => {
-        console.log("login",r.data)
-        // storeToken()
-    })
-    .catch((bug) => console.log("BUBUBUUB", bug))
-  }
+    const course = {
+      name,
+      code,
+      TAs: [],
+      credit_hours,
+      imgURL:avatarURL,
+    };
 
+    axios
+      .post("http://192.168.1.6:5100/create-course", course, {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("login", r.data);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+  }
 
   return (
     <ScrollView style={styles.root}>
-      <Input label="Course Name" value={coursename} setValue={setcoursename} />
-      <Input label="teacher" value={teacher} setValue={setteacher} />
+      <Input label="Course Name" value={name} setValue={setname} />
+      <Input label="teacher" value={code} setValue={setcode} />
       <Input label="avatarURL" value={avatarURL} setValue={setavatarURL} />
+      <Input
+        label="avatarURL"
+        value={credit_hours}
+        setValue={setcredit_hours}
+      />
       <Submit handleSubmit={handleSubmit} />
     </ScrollView>
   );

@@ -4,7 +4,7 @@ import { Button } from "react-native-paper";
 import axios from "axios";
 export default ({ navigation }) => {
   axios
-    .post("http://localhost:5100/login",{username:"adminadmin",password:"adminadmin"})
+    .post("http://192.168.1.6:5100/login",{username:"adminadmin",password:"adminadmin"})
     .then((r) => console.log("hey", r))
     .catch((bug) => console.log("BUBUBUUB", bug));
     // axios.get("/").then(f=>console.log("HEEEY",f))

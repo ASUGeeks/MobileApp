@@ -70,6 +70,15 @@ export default ({ navigation }) => {
       >
         Create Quiz
       </Button>
+
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("Display Assignment")}
+      >
+        Display Assignment
+      </Button>
+
       {/* <Button
         style={styles.Button}
         mode="contained"
