@@ -22,7 +22,7 @@ export default ({ navigation }) => {
 
   function getContent() {
     axios
-      .get("http://192.168.1.6:5100/me", { headers: { token: teacherToken } })
+      .get("http://192.168.1.6:5100/me", { headers: { token: studentToken } })
       .then((r) => {
         setCourses(r.data.courses);
         console.log("get LOLLLLLLLLL", r);
@@ -38,9 +38,10 @@ export default ({ navigation }) => {
 
     getContent();
   }, []);
-  function handleNavigation(course) {
+  function handleNavigation(content) {
+    console.log("CONTENT", content);
     navigation.navigate("CourseMaterial", {
-      course,
+      course: content,
     });
   }
   function handleSubmit() {
@@ -60,6 +61,7 @@ export default ({ navigation }) => {
             title={course.name}
             subtitle={course.code}
             imgURL={course.imgURL}
+            content={course.content}
             announcements={course.announcements}
             handleNavigation={() => handleNavigation(course)}
             showModal={showModal}

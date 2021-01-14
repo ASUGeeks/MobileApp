@@ -44,12 +44,13 @@ export default function App() {
     }),
     [toggleTheme, isThemeDark]
   );
-
   return (
     <PreferencesContext.Provider value={preferences}>
       <PaperProvider theme={newTHeme}>
         <NavigationContainer theme={newTHeme}>
-          <Admin />
+          <StudentDashboard />
+          {/* <TeacherDashboard/> */}
+          {/* <Admin/> */}
           {/* <BottomNavigation
             setSnackMessage={setSnackMessage}
             setVisible={setVisible}

@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Admin Dashboard">
+    <Stack.Navigator initialRouteName="Main">
       <Stack.Screen
         name="Admin Dashboard"
         component={Main}
@@ -33,7 +33,7 @@ export default () => {
       />
 
       <Stack.Screen
-        name="login2"
+        name="login"
         component={Login}
         options={{ header: (props) => <Header {...props} /> }}
       />

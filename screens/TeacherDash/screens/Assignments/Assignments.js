@@ -16,7 +16,7 @@ export default () => {
 
   function createAss(ass) {
     const assignment = {
-      course_code: "CSE202",
+      course_code: "CSE219",
       assignment: {
         descreption: Details,
         url: AdditionalLink,
@@ -56,7 +56,7 @@ export default () => {
         setValue={setDetails}
         numberOfLines={5}
       />
-      <Text>{AdditionalLink}</Text>
+      {/* <Text>{AdditionalLink}</Text> */}
       <Submit handleSubmit={handleSubmit} />
     </View>
   );

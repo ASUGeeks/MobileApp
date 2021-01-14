@@ -8,9 +8,10 @@ import ContentList from "./components/ContentList";
 import { studentToken } from "../../../../Tokens/Tokens";
 
 export default ({ route, navigation }) => {
-  const [Content, setContent] = useState([]);
-  const course = route.params.course;
+  // const [Content, setContent] = useState([]);
+  const {course} = route.params;
   console.log("CCCCC", course);
+  const {content} = course
   function getContent() {
     axios
       .get("http://192.168.1.6:5100/courses", {
@@ -34,7 +35,7 @@ export default ({ route, navigation }) => {
 
   return (
     <React.Fragment>
-      <ContentList content={Content} navigation={navigation} course={course} />
+      <ContentList content={content} navigation={navigation} course={course} />
       {/* <FAB/> */}
     </React.Fragment>
   );

@@ -34,7 +34,6 @@ console.log(token); // output: sahdkfjaskdflas$%^&
 
   return (
     <View style={styles.root}>
-      <Text>Login </Text>
       <Input
         label="UserName"
         secureTextEntry={true}

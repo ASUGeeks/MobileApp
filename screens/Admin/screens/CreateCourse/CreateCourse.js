@@ -12,12 +12,11 @@ import {
 } from "../../../../Tokens/Tokens";
 import Feedback from "../../../../shared/Feedback";
 export default () => {
-  const [name, setname] = useState("logic");
-  const [code, setcode] = useState("CSE202");
-  const [credit_hours, setcredit_hours] = useState(2);
+  const [name, setname] = useState("Mathematics");
+  const [code, setcode] = useState("CSE219");
+  const [credit_hours, setcredit_hours] = useState(3);
   const [avatarURL, setavatarURL] = useState(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgMFeuWcfwWDbZA4gAc-QtZf0989QM0YfoMA&usqp=CAU"
-  );
+   "https://ngegypt.net/wp-content/uploads/2020/12/Math-001.png"  );
 
   const [IsFail, setIsFail] = useState(null);
 

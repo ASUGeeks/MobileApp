@@ -4,7 +4,7 @@ import { RadioButton, Text } from "react-native-paper";
 
 const MyRadio = ({ IsFail, success, fail }) => {
   return (
-    <View>
+    <View style={{marginVertical:30}}>
       {IsFail !== null ? (
         !IsFail ? (
           <Text
@@ -15,7 +15,7 @@ const MyRadio = ({ IsFail, success, fail }) => {
               alignItems: "center",
             }}
           >
-            hey 
+            {success} 
           </Text>
         ) : (
           <Text

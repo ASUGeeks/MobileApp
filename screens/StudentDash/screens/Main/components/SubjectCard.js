@@ -23,6 +23,7 @@ const MyComponent = ({
   announcements,
   showModal,
   setDisplayedAnnouncement,
+  content
 }) => {
   function handleAnnouncePress(message) {
     showModal();
@@ -33,7 +34,7 @@ const MyComponent = ({
     <Card
       elevation={4}
       style={styles.root}
-      onPress={() => handleNavigation(title, subtitle)}
+      onPress={() => handleNavigation(title, subtitle,content)}
     >
       <Card.Title
         title={title}
