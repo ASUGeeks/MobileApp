@@ -41,21 +41,16 @@ const MyComponent = ({
         left={LeftContent}
         right={() =>
           announcements.length ? (
-            <Menu isNotif={true} items={announcements} handlePress={handleAnnouncePress} />
+            <Menu
+              isNotif={true}
+              items={announcements}
+              handlePress={handleAnnouncePress}
+            />
           ) : null
         }
       />
-      <Card.Content>
-        {/* <Title>Card title</Title>
-      <Paragraph>Card content</Paragraph> */}
-      </Card.Content>
+      <Card.Content></Card.Content>
       <Card.Cover source={{ uri: imgURL }} />
-      {/* <Card.Actions>
-      <Button>Lectures</Button>
-      <Button>Videos</Button>
-      <Button>Quizzes</Button>
-      <Button>Assignments</Button>
-    </Card.Actions> */}
     </Card>
   );
 };

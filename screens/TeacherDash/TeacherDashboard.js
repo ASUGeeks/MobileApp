@@ -9,6 +9,8 @@ import Assignments from "./screens/Assignments/Assignments";
 
 import CreateQuiz from "./screens/CreateQuiz/CreateQuiz";
 import Discussion from "../TeacherDash/screens/TeacherDiscussion/TeacherDiscussion";
+import DisplayASS from "../TeacherDash/screens/DIsplayAsses/DIsplayAsses";
+import GradeAss from "./screens/GradeAss/GradeAss";
 
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
@@ -49,6 +51,16 @@ export default () => {
       <Stack.Screen
         name="Discussion"
         component={Discussion}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+      <Stack.Screen
+        name="Display Assignment"
+        component={DisplayASS}
+        options={{ header: (props) => <Header {...props} /> }}
+      />
+      <Stack.Screen
+        name="Grade Assignment"
+        component={GradeAss}
         options={{ header: (props) => <Header {...props} /> }}
       />
       {/* <Stack.Screen name="TeacherDashboard" component={Main} /> */}
