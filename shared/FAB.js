@@ -16,12 +16,13 @@ const MyComponent = ({subScreens}) => {
           style={{ zIndex: 100000,}}
           open={open}
           icon={open ? require('../icons/clear.svg') : require('../icons/list.svg')}
+
           actions={subScreens}
           onStateChange={onStateChange}
           onPress={() => {
-            if (open) {
-              // do something if the speed dial is open
-            }
+            // if (open) {
+
+            // }
           }}
         />
       </Portal>
