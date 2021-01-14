@@ -21,7 +21,7 @@ export default ({ navigation }) => {
       subtitle: "3rd primary",
       imgURL: "https://ngegypt.net/wp-content/uploads/2020/12/Math-001.png",
       announcements: [
-        { name: "this is sparta", body: "this is the body of sparta" },
+        { name: "Mathematics Announcements", body: "this is the body of sparta" },
       ],
     },
     {
@@ -31,15 +31,15 @@ export default ({ navigation }) => {
       imgURL:
         "http://projects.nyujournalism.org/ontheroadinthecitygroup3/wp-content/uploads/sites/43/2018/04/science-03-1024x364.png",
       announcements: [
-        { name: "this is sparta", body: "this is the body of sparta" },
+        { name: "Science Announcements", body: "this is the body of sparta" },
       ],
     },
     {
-      title: "Mathematics",
+      title: "History",
       subtitle: "3rd primary",
-      imgURL: "https://i.imgflip.com/2xlcka.png",
+      imgURL: "https://i.guim.co.uk/img/media/e3d9827f235ac40064f15d7df25024aec60500cb/0_134_5616_3370/master/5616.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=a88796716cbfc08fa76316a14044fc29",
       announcements: [
-        { name: "this is sparta", body: "this is the body of sparta" },
+        { name: "History Announcements", body: "this is the body of sparta" },
       ],
     },
   ]);
@@ -97,7 +97,6 @@ export default ({ navigation }) => {
             setDisplayedAnnouncement={setDisplayedAnnouncement}
           />
         ))}
-        }
       </ScrollView>
     </React.Fragment>
   );

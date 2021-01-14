@@ -49,7 +49,7 @@ const MyComponent = ({
         {/* <Title>Card title</Title>
       <Paragraph>Card content</Paragraph> */}
       </Card.Content>
-      <Card.Cover source={{ uri: imgURL }} />
+      <Card.Cover style={styles.image} resizeMode='contain' source={{ uri: imgURL }} />
       {/* <Card.Actions>
       <Button>Lectures</Button>
       <Button>Videos</Button>
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
   root: {
     margin: 20,
     zIndex: 1,
+  },
+  image: {
+    maxHeight: "100%",
+    maxWidth: "100%",
   },
 });
 
