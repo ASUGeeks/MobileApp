@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   header: {
-    margin: "auto",
-    fontSize: 12,
+    margin: 20,
+    fontSize: 20,
   },
 });
