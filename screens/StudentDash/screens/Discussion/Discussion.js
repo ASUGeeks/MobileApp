@@ -120,10 +120,13 @@ const MyComponent = ({ route }) => {
             label="Ask a Question"
           ></TextInput>
         </View>
-        <View style={{ flex: 1, width: 5}}>
-          <Button
-            style={{ 
-              marginLeft: 10,
+
+        <View style={{ flex: 1 }}>
+          <
+			// Button style
+			Button
+            style={{
+              marginLeft: 5,
               marginTop: 2,
               marginRight: 15,
               paddingTop: 1,
@@ -169,6 +172,8 @@ const styles = StyleSheet.create({
   icon: {
     width: 10,
   },
+  
+  // style of the question in the discussion form
   surfaceQuestion: {
     alignContent: "center",
     justifyContent: "center",
@@ -179,7 +184,8 @@ const styles = StyleSheet.create({
   content: {
     margin: 10,
   },
-
+  
+  // style of the reply textbox
   reply: {
     marginLeft: 20,
     marginBottom: 10,
@@ -203,9 +209,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: "flex-end",
   },
+  
+  //style of the discussion textbox
   styleOfViewOfTextBox: {
-    justifyContent: "center",
+    
     alignItems: "center",
+	justifyContent: "center",
     margin: 5,
     flexWrap: "wrap",
     flexDirection: "row",
