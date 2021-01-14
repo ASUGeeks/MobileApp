@@ -1,11 +1,11 @@
 import * as React from "react";
-import { View ,StyleSheet} from "react-native";
+import { View, StyleSheet } from "react-native";
 import { RadioButton, Text } from "react-native-paper";
 
-const MyRadio = ({title, options, value, setValue }) => {
+const MyRadio = ({ title, options, value, setValue }) => {
   return (
     <View style={styles.root}>
-        <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{title}</Text>
       {options.map((o) => (
         <View>
           <Text style={styles.lable}>{o}</Text>
@@ -22,17 +22,19 @@ const MyRadio = ({title, options, value, setValue }) => {
 };
 
 const styles = StyleSheet.create({
-    root: {
-      margin: 20,
-    },title:{
-        fontSize:20
-    },lable:{
-        marginTop:10
-    },radio:{
-        margin:20
-    }
-  });
-  
-
+  root: {
+    marginVertical: 40,
+    marginHorizontal: 20,
+  },
+  title: {
+    fontSize: 20,
+  },
+  lable: {
+    marginTop: 10,
+  },
+  radio: {
+    margin: 20,
+  },
+});
 
 export default MyRadio;

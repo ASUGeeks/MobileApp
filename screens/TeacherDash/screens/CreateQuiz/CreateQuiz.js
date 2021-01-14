@@ -24,7 +24,7 @@ export default () => {
 
   function handleSubmit() {
     const sk = {
-      course_code: "CSE202",
+      course_code: "CSE219",
       quiz: form,
       start_date: new Date(),
       title: "Quiz N'1",

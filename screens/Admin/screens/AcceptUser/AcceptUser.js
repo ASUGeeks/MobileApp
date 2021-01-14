@@ -8,6 +8,7 @@ import Radio from "../../../../shared/Radio";
 import Menu from "../../../../shared/Menu";
 import StudentList from "./components/StudentsList";
 import TeacherList from "./components/TeacherList";
+import Feedback from "../../../../shared/Feedback";
 
 import axios from "axios";
 import {
@@ -25,6 +26,7 @@ export default () => {
   ]);
   const [SelectedCoursesIndex, setSelectedCoursesIndex] = useState(null);
   const [list, seList] = useState(["Students", "Teachers"]);
+  const [IsFail, setIsFail] = useState(null);
 
   const [Students, setStudents] = useState([
     { name: "mahmoud", selected: false },
@@ -52,7 +54,7 @@ export default () => {
 
   function assignTeacher(assholes = ["5ffd84a4f3a89028d9d7d9b5"]) {
     const course = {
-      course_code: "CSE202",
+      course_code: "CSE219",
       teachers: assholes,
     };
 
@@ -69,7 +71,7 @@ export default () => {
 
   function assginStudents(students = ["60000a755455f71dbfcf366f"]) {
     const course = {
-      course_code: "CSE202",
+      course_code: "CSE219",
       students,
     };
 
@@ -90,7 +92,10 @@ export default () => {
         headers: { token: adminToken },
       })
       .then((r) => {
-        console.log("users", r);
+        console.log("u*******sers", r);
+        const { teachers, students } = r.data;
+        setStudents(students);
+        setTeacher(teachers);
         // storeToken()
       })
       .catch((bug) => console.log("BUBUBUUB", bug));
@@ -101,6 +106,9 @@ export default () => {
       })
       .then((r) => {
         console.log("courses", r);
+        const { courses } = r.data;
+        setCourses(courses);
+
         // storeToken()
       })
       .catch((bug) => console.log("BUBUBUUB", bug));
@@ -124,10 +132,11 @@ export default () => {
     setSelectedCoursesIndex(index);
   }
   const handleCheckedNames = (Students, Teacher) => {
-    let studentArr = [Students.filter(({ selected }) => selected)];
-    let teacherArr = [Teacher.filter(({ selected }) => selected)];
-    console.log(studentArr);
-    console.log(teacherArr);
+    // let studentArr = [Students.filter(({ selected }) => selected)];
+    // let teacherArr = [Teacher.filter(({ selected }) => selected)];
+    // console.log(studentArr);
+    // console.log(teacherArr);
+    setIsFail(false);
   };
 
   function handleNavigation(name, type, id) {
@@ -141,7 +150,7 @@ export default () => {
     <ScrollView style={styles.root}>
       {/* Course */}
       <View style={styles.box}>
-        <Text style={styles.title}>Select subject</Text>
+        <Text style={styles.title}> </Text>
         {SelectedCoursesIndex !== null ? (
           <Text style={styles.subtitle}>
             Selected Subject: {Courses[SelectedCoursesIndex].name}
@@ -185,6 +194,10 @@ export default () => {
       </Button>
       {/* Students */}
       <Divider />
+      <Feedback
+        IsFail={IsFail}
+        success="user are geing assigned to the course"
+      />
     </ScrollView>
   );
 };
@@ -194,7 +207,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   title: {
-    fontSize: 30,
+    fontSize: 0,
   },
   box: {
     display: "flex",

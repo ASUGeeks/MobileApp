@@ -10,17 +10,17 @@ import {
   teacherToken,
   studentToken,
 } from "../../../../Tokens/Tokens";
-
-
+import Feedback from "../../../../shared/Feedback";
 export default () => {
-  const [name, setname] = useState("logic");
-  const [code, setcode] = useState("CSE202");
-  const [credit_hours, setcredit_hours] = useState(2);
-  const [avatarURL, setavatarURL] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgMFeuWcfwWDbZA4gAc-QtZf0989QM0YfoMA&usqp=CAU");
+  const [name, setname] = useState("Mathematics");
+  const [code, setcode] = useState("CSE219");
+  const [credit_hours, setcredit_hours] = useState(3);
+  const [avatarURL, setavatarURL] = useState(
+   "https://ngegypt.net/wp-content/uploads/2020/12/Math-001.png"  );
 
+  const [IsFail, setIsFail] = useState(null);
 
-  useEffect(() => {
-     }, []);
+  useEffect(() => {}, []);
 
   function handleSubmit() {
     const course = {
@@ -28,7 +28,7 @@ export default () => {
       code,
       TAs: [],
       credit_hours,
-      imgURL:avatarURL,
+      imgURL: avatarURL,
     };
 
     axios
@@ -37,22 +37,31 @@ export default () => {
       })
       .then((r) => {
         console.log("login", r.data);
+        setIsFail(false);
         // storeToken()
       })
-      .catch((bug) => console.log("BUBUBUUB", bug));
+      .catch((bug) => {
+        setIsFail(true);
+        console.log("BUBUBUUB", bug);
+      });
   }
 
   return (
     <ScrollView style={styles.root}>
       <Input label="Course Name" value={name} setValue={setname} />
-      <Input label="teacher" value={code} setValue={setcode} />
+      <Input label="Course Code" value={code} setValue={setcode} />
       <Input label="avatarURL" value={avatarURL} setValue={setavatarURL} />
       <Input
-        label="avatarURL"
+        label="Credit hours"
         value={credit_hours}
         setValue={setcredit_hours}
       />
       <Submit handleSubmit={handleSubmit} />
+      <Feedback
+        IsFail={IsFail}
+        sucess="A new course is created sucessfully"
+        fail="An error occured"
+      />
     </ScrollView>
   );
 };

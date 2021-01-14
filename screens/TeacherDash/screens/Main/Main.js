@@ -4,7 +4,7 @@ import { Button } from "react-native-paper";
 
 export default ({ navigation }) => {
   return (
-    <View>
+    <View style={{marginTop:130}}>
       <Button
         style={styles.Button}
         mode="outlined"

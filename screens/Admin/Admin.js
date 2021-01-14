@@ -15,7 +15,7 @@ export default () => {
   return (
     <Stack.Navigator initialRouteName="Main">
       <Stack.Screen
-        name="Main"
+        name="Admin Dashboard"
         component={Main}
         options={{ header: (props) => <Header {...props} /> }}
       />
@@ -33,7 +33,7 @@ export default () => {
       />
 
       <Stack.Screen
-        name="login2"
+        name="login"
         component={Login}
         options={{ header: (props) => <Header {...props} /> }}
       />

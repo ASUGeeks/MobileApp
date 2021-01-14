@@ -34,9 +34,9 @@ const Header = ({ scene, navigation, previous, dropdowmMenu }) => {
     >
       {previous ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
       <Appbar.Content title={title} />
-      <TouchableRipple onPress={() => toggleTheme()}>
+      {/* <TouchableRipple onPress={() => toggleTheme()}>
         <Switch value={isThemeDark} />
-      </TouchableRipple>
+      </TouchableRipple> */}
       {dropdowmMenu !== undefined ? (
         <Menu
           visible={visible}
