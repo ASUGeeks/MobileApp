@@ -22,7 +22,7 @@ const dropdowmMenu = [
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="StudentDashboard">
+    <Stack.Navigator initialRouteName="Quizzes">
       <Stack.Screen
         name="StudentDashboard"
         component={Main}

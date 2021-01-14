@@ -24,7 +24,7 @@ console.log(token); // output: sahdkfjaskdflas$%^&
         password:Body,
     };
     axios
-    .post("http://localhost:5100/login",LoginParams)
+    .post("http://192.168.1.6:5100/login",LoginParams)
     .then((r) => {
         console.log("login",r.data.token)
         // storeToken()
