@@ -43,18 +43,17 @@ export default function App() {
 
   return (
     <PreferencesContext.Provider value={preferences}>
-      {console.log(PaperDarkTheme)}
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
           <BottomNavigation
             setSnackMessage={setSnackMessage}
             setVisible={setVisible}
           />
-          <Snack
+          {/* <Snack
             message={SnackMessage}
             visible={visible}
             onDismissSnackBar={onDismissSnackBar}
-          />
+          /> */}
         </NavigationContainer>
       </PaperProvider>
     </PreferencesContext.Provider>
