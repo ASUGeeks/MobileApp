@@ -15,12 +15,20 @@ const SectionListBasics = ({ content, navigation }) => {
   
   const subScreens = [
     {
-      icon: "clipboard-check",
+
+      icon: require('../../../../../icons/discussion.svg'),
+      label: "Discussion forum",
+      onPress: () => navigation.navigate("Discussion"),
+    },
+    {
+      icon: require('../../../../../icons/exam.svg'),
+
       label: "Quizzes",
       onPress: () => navigation.navigate("Quizzes"),
     },
     {
-      icon: "book-open",
+      icon: require('../../../../../icons/pen.svg'),
+
       label: "Assignments",
       onPress: () => navigation.navigate("Assignments"),
     },

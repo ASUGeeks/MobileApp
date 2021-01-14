@@ -130,8 +130,9 @@ export default () => {
         type="text"
         mode="text"
         onPress={() => handleCheckedNames(Students, Teacher)}
+        mode="contained"
       >
-        Submit Quiz
+        Accept
       </Button>
       {/* Students */}
       <Divider />
