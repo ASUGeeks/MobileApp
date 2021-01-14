@@ -32,11 +32,6 @@ const SectionListBasics = ({ content, navigation }) => {
       label: "Assignments",
       onPress: () => navigation.navigate("Assignments"),
     },
-    {
-      icon: "chat",
-      label: "Discusstion forum",
-      onPress: () => navigation.navigate("Discussion"),
-    },
   ];
   
   return (

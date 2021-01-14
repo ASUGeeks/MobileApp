@@ -95,6 +95,6 @@ const styles = StyleSheet.create({
   },
   header: {
     margin: "auto",
-    fontSize: "2em",
+    fontSize: 12,
   },
 });
