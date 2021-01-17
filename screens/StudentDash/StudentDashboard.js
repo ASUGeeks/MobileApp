@@ -10,15 +10,8 @@ import Assignments from "./screens/Assignments/Assignments";
 import AssScreen from "./screens/AssScreen/AssScreen";
 import QUizzScreen from "./screens/QuizzScreen/QuizzScreen";
 
-
 import Header from "../../navigation/Header";
 const Stack = createStackNavigator();
-
-const dropdowmMenu = [
-  { title: "Discusstion forum", navigate: "Discussion" },
-  { title: "Quizzes", navigate: "Quizzes" },
-  { title: "Assignments", navigate: "Assignments" },
-];
 
 export default () => {
   return (
@@ -32,14 +25,14 @@ export default () => {
         name="CourseMaterial"
         component={CourseMaterial}
         options={{
-          header: (props) => <Header {...props} dropdowmMenu={dropdowmMenu} />,
+          header: (props) => <Header {...props} />,
         }}
       />
       <Stack.Screen
         name="OpenMaterial"
         component={OpenMaterial}
         options={{
-          header: (props) => <Header {...props} dropdowmMenu={dropdowmMenu} />,
+          header: (props) => <Header {...props} />,
         }}
       />
       <Stack.Screen

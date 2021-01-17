@@ -19,8 +19,7 @@ const Header = ({ items, handleCheck, title, index }) => {
         extraData={items}
         renderItem={(student) => (
           <View style={styles.box} key={student.index}>
-            {console.log(student.item.name)}
-            <Text>{student.item.name}</Text>
+            <Text>{student.item.username}</Text>
             <Checkbox
               status={student.item.selected ? "checked" : "unchecked"}
               onPress={() => {

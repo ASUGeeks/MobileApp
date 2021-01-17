@@ -39,7 +39,7 @@ const Header = ({ items, handlePress, title, index ,isNotif}) => {
       {items.map((item, index) => (
         <Menu.Item
           onPress={() => {
-            handlePress(item.body);
+            handlePress(index);
             closeMenu();
           }}
           title={item.name}

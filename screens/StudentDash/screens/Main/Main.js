@@ -5,7 +5,8 @@ import Input from "../../../../shared/Input";
 import axios from "axios";
 import SubjectCard from "./components/SubjectCard";
 import Modal from "./components/Modal";
-import FAB from "../../../../shared/FAB"
+import FAB from "../../../../shared/FAB";
+import { studentToken, teacherToken } from "../../../../Tokens/Tokens";
 
 // import { Button } from "react-native-paper";
 
@@ -14,6 +15,7 @@ export default ({ navigation }) => {
   const [Details, setDetails] = useState("");
   const [Assignments, setAssignments] = useState([]);
   const [DisplayedAnnouncement, setDisplayedAnnouncement] = useState("");
+
   const [Courses, setCourses] = useState([
     { 
 	  // math course arguments	
@@ -43,19 +45,17 @@ export default ({ navigation }) => {
       ],
     },
   ]);
+
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
 
   function getContent() {
-    const adminToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E";
-    const simpo =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDg0YTRmM2E4OTAyOGQ5ZDdkOWI1IiwidXNlcm5hbWUiOiJzaW1wbyIsImVtYWlsIjoic2ltcG9AZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE2MTA0NTU1NzZ9.AAoguuRWiTyyPYPV7Dn1LH275-4ki1XTpVHPqe8hlh4";
     axios
-      .get("http://localhost:5100/me", { headers: { token: simpo } })
+      .get("http://192.168.1.6:5100/me", { headers: { token: studentToken } })
       .then((r) => {
-        console.log("get subjectsss", r);
+        setCourses(r.data.courses);
+        console.log("get LOLLLLLLLLL", r);
         // storeToken()
       })
       .catch((bug) => console.log("BUBUBUUB", bug));
@@ -65,13 +65,13 @@ export default ({ navigation }) => {
     // TODO make http request to get course specification
     // set the response body to setTitle
     // setAssignments("hello, this is the course specification");
-	  
+
     getContent();
   }, []);
-  function handleNavigation(name, id) {
+  function handleNavigation(content) {
+    console.log("CONTENT", content);
     navigation.navigate("CourseMaterial", {
-      name,
-      id,
+      course: content,
     });
   }
   function handleSubmit() {
@@ -88,11 +88,12 @@ export default ({ navigation }) => {
       <ScrollView style={styles.root}>
         {Courses.map((course) => (
           <SubjectCard
-            title={course.title}
-            subtitle={course.subtitle}
+            title={course.name}
+            subtitle={course.code}
             imgURL={course.imgURL}
+            content={course.content}
             announcements={course.announcements}
-            handleNavigation={handleNavigation}
+            handleNavigation={() => handleNavigation(course)}
             showModal={showModal}
             setDisplayedAnnouncement={setDisplayedAnnouncement}
           />

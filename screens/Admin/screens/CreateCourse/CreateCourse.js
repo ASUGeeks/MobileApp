@@ -3,47 +3,65 @@ import { StyleSheet, ScrollView } from "react-native";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import Radio from "../../../../shared/Radio";
-import axios from "axios"
+import axios from "axios";
 
+import {
+  adminToken,
+  teacherToken,
+  studentToken,
+} from "../../../../Tokens/Tokens";
+import Feedback from "../../../../shared/Feedback";
 export default () => {
-  const [coursename, setcoursename] = useState("");
-  const [teacher, setteacher] = useState("");
-  const [role, setrole] = useState("");
-  const [avatarURL, setavatarURL] = useState("");
+  const [name, setname] = useState("Mathematics");
+  const [code, setcode] = useState("CSE219");
+  const [credit_hours, setcredit_hours] = useState(3);
+  const [avatarURL, setavatarURL] = useState(
+   "https://ngegypt.net/wp-content/uploads/2020/12/Math-001.png"  );
 
-  useEffect(() => {
-    // TODO make http request to get course specification
-    // set the response body to setspecifications
-    // setspecifications("hello, this is the course specification");fbsszm.k;likil;ki8k.    ERE´FJFIF
-  }, []);
+  const [IsFail, setIsFail] = useState(null);
+
+  useEffect(() => {}, []);
 
   function handleSubmit() {
-    
-    const course={
-      name:"computer organization",
-      code:"CSE2020",
-      profs:["simpo"],
-      TAs:[],
-      credit_hours:3,
-    }
-    const adminToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E"
-    axios
-    .post("http://localhost:5100/create-course",course,{headers:
-    {token:adminToken}})
-    .then((r) => {
-        console.log("login",r.data)
-        // storeToken()
-    })
-    .catch((bug) => console.log("BUBUBUUB", bug))
-  }
+    const course = {
+      name,
+      code,
+      TAs: [],
+      credit_hours,
+      imgURL: avatarURL,
+    };
 
+    axios
+      .post("http://192.168.1.6:5100/create-course", course, {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("login", r.data);
+        setIsFail(false);
+        // storeToken()
+      })
+      .catch((bug) => {
+        setIsFail(true);
+        console.log("BUBUBUUB", bug);
+      });
+  }
 
   return (
     <ScrollView style={styles.root}>
-      <Input label="Course Name" value={coursename} setValue={setcoursename} />
-      <Input label="teacher" value={teacher} setValue={setteacher} />
+      <Input label="Course Name" value={name} setValue={setname} />
+      <Input label="Course Code" value={code} setValue={setcode} />
       <Input label="avatarURL" value={avatarURL} setValue={setavatarURL} />
+      <Input
+        label="Credit hours"
+        value={credit_hours}
+        setValue={setcredit_hours}
+      />
       <Submit handleSubmit={handleSubmit} />
+      <Feedback
+        IsFail={IsFail}
+        sucess="A new course is created sucessfully"
+        fail="An error occured"
+      />
     </ScrollView>
   );
 };

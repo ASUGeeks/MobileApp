@@ -135,8 +135,8 @@ const text = () => {
   function handleSubmit() {
     axios
       .post(
-        "http://localhost:5100/update-course",
-        { code: "CSE2020", content: Content },
+        "http://192.168.1.6:5100/update-course",
+        { code: "CSE219", content: Content },
         { headers: { token: adminToken } }
       )
       .then((r) => {

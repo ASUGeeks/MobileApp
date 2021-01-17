@@ -5,10 +5,17 @@ import { Text, Divider, List, Button } from "react-native-paper";
 import Submit from "../../../../shared/Submit";
 import Input from "../../../../shared/Input";
 import Radio from "../../../../shared/Radio";
-import axios from "axios";
 import Menu from "../../../../shared/Menu";
 import StudentList from "./components/StudentsList";
 import TeacherList from "./components/TeacherList";
+import Feedback from "../../../../shared/Feedback";
+
+import axios from "axios";
+import {
+  adminToken,
+  teacherToken,
+  studentToken,
+} from "../../../../Tokens/Tokens";
 
 export default () => {
   const [Courses, setCourses] = useState([
@@ -19,6 +26,7 @@ export default () => {
   ]);
   const [SelectedCoursesIndex, setSelectedCoursesIndex] = useState(null);
   const [list, seList] = useState(["Students", "Teachers"]);
+  const [IsFail, setIsFail] = useState(null);
 
   const [Students, setStudents] = useState([
     { name: "mahmoud", selected: false },
@@ -41,23 +49,72 @@ export default () => {
   ]);
 
   useEffect(() => {
-    // TODO make http request to get course specification
-    // set the response body to setspecifications
-    // setspecifications("hello, this is the course specification");fbsszm.k;likil;ki8k.    ERE´FJFIF
+    getUsers();
   }, []);
 
-  function handleSubmit() {
-    // const adminToken =
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWZmZDYzMjc5M2QyYWE1OWU5M2IwYTYzIiwidXNlcm5hbWUiOiJhZG1pbmFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMDQ0NDQwNX0.oQW_kkOz5CzJYPGnDjlUwozJzEIzP7BI7RR2qaI5R9E";
-    // axios
-    //   .post("http://localhost:5100/create-course", course, {
-    //     headers: { token: adminToken },
-    //   })
-    //   .then((r) => {
-    //     console.log("login", r.data);
-    //     // storeToken()
-    //   })
-    //   .catch((bug) => console.log("BUBUBUUB", bug));
+  function assignTeacher(assholes = ["5ffd84a4f3a89028d9d7d9b5"]) {
+    const course = {
+      course_code: "CSE219",
+      teachers: assholes,
+    };
+
+    axios
+      .post("http://192.168.1.6:5100/users/assign-teachers", course, {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("lololo", r);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+  }
+
+  function assginStudents(students = ["60000a755455f71dbfcf366f"]) {
+    const course = {
+      course_code: "CSE219",
+      students,
+    };
+
+    axios
+      .post("http://192.168.1.6:5100/users/enroll-students", course, {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("lololo", r);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+  }
+
+  function getUsers() {
+    axios
+      .get("http://192.168.1.6:5100/list-users", {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("u*******sers", r);
+        const { teachers, students } = r.data;
+        setStudents(students);
+        setTeacher(teachers);
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+
+    axios
+      .get("http://192.168.1.6:5100/courses", {
+        headers: { token: adminToken },
+      })
+      .then((r) => {
+        console.log("courses", r);
+        const { courses } = r.data;
+        setCourses(courses);
+
+        // storeToken()
+      })
+      .catch((bug) => console.log("BUBUBUUB", bug));
+
+    assignTeacher();
+    assginStudents();
   }
 
   const handleCheck = (index, state) => {
@@ -75,10 +132,11 @@ export default () => {
     setSelectedCoursesIndex(index);
   }
   const handleCheckedNames = (Students, Teacher) => {
-    let studentArr = [Students.filter(({ selected }) => selected)];
-    let teacherArr = [Teacher.filter(({ selected }) => selected)];
-    console.log(studentArr);
-    console.log(teacherArr);
+    // let studentArr = [Students.filter(({ selected }) => selected)];
+    // let teacherArr = [Teacher.filter(({ selected }) => selected)];
+    // console.log(studentArr);
+    // console.log(teacherArr);
+    setIsFail(false);
   };
 
   function handleNavigation(name, type, id) {
@@ -92,7 +150,7 @@ export default () => {
     <ScrollView style={styles.root}>
       {/* Course */}
       <View style={styles.box}>
-        <Text style={styles.title}>Select subject</Text>
+        <Text style={styles.title}> </Text>
         {SelectedCoursesIndex !== null ? (
           <Text style={styles.subtitle}>
             Selected Subject: {Courses[SelectedCoursesIndex].name}
@@ -136,6 +194,10 @@ export default () => {
       </Button>
       {/* Students */}
       <Divider />
+      <Feedback
+        IsFail={IsFail}
+        success="user are geing assigned to the course"
+      />
     </ScrollView>
   );
 };
@@ -145,7 +207,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   title: {
-    fontSize: 30,
+    fontSize: 0,
   },
   box: {
     display: "flex",

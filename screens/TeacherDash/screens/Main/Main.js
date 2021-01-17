@@ -4,7 +4,7 @@ import { Button } from "react-native-paper";
 
 export default ({ navigation }) => {
   return (
-    <View>
+    <View style={{marginTop:130}}>
       <Button
         style={styles.Button}
         mode="contained"
@@ -70,6 +70,15 @@ export default ({ navigation }) => {
       >
         Create Quiz
       </Button>
+
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("Display Assignment")}
+      >
+        Display Assignment
+      </Button>
+
       {/* <Button
         style={styles.Button}
         mode="contained"

@@ -3,8 +3,10 @@ import { SectionList, FlatList, StyleSheet, View } from "react-native";
 import { List, Divider, Text } from "react-native-paper";
 import FAB from "../../../../../shared/FAB";
 
-const SectionListBasics = ({ content, navigation }) => {
+const SectionListBasics = (props) => {
+  const { content, navigation, course } = props;
   // console.log("HOW IS ME",navigation.navigate("OpenMaterial"));
+  console.log("ROUTEEE", props);
   function handleNavigation(name, type, id) {
     navigation.navigate("OpenMaterial", {
       name,
@@ -12,23 +14,15 @@ const SectionListBasics = ({ content, navigation }) => {
       type,
     });
   }
-  
+
   const subScreens = [
     {
-
-      icon: require('../../../../../icons/discussion.svg'),
-      label: "Discussion forum",
-      onPress: () => navigation.navigate("Discussion"),
-    },
-    {
-      icon: require('../../../../../icons/exam.svg'),
-
+      icon: "clipboard-check",
       label: "Quizzes",
-      onPress: () => navigation.navigate("Quizzes"),
+      onPress: () => navigation.navigate("Quizzes", { quizes: course.quizes }),
     },
     {
-      icon: require('../../../../../icons/pen.svg'),
-
+      icon: "book-open",
       label: "Assignments",
       onPress: () => navigation.navigate("Assignments"),
     },
@@ -38,7 +32,7 @@ const SectionListBasics = ({ content, navigation }) => {
       onPress: () => navigation.navigate("Discussion"),
     },
   ];
-  
+
   return (
     <React.Fragment>
       <List.Section title="Study material">
