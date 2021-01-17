@@ -50,8 +50,19 @@ const MyComponent = ({
           ) : null
         }
       />
-      {/* <Card.Content></Card.Content> */}
-      <Card.Cover source={{ uri: imgURL }} />
+
+      <Card.Content>
+        {/* <Title>Card title</Title>
+      <Paragraph>Card content</Paragraph> */}
+      </Card.Content>
+      <Card.Cover style={styles.image} resizeMode='contain' source={{ uri: imgURL }} />
+      {/* <Card.Actions>
+      <Button>Lectures</Button>
+      <Button>Videos</Button>
+      <Button>Quizzes</Button>
+      <Button>Assignments</Button>
+    </Card.Actions> */}
+
     </Card>
   );
 };
@@ -60,6 +71,10 @@ const styles = StyleSheet.create({
   root: {
     margin: 20,
     zIndex: 1,
+  },
+  image: {
+    maxHeight: "100%",
+    maxWidth: "100%",
   },
 });
 

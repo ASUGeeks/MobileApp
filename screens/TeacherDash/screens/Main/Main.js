@@ -7,13 +7,6 @@ export default ({ navigation }) => {
     <View style={{marginTop:130}}>
       <Button
         style={styles.Button}
-        mode="outlined"
-        onPress={() => navigation.navigate("Discussion")}
-      >
-        Discussion forum
-      </Button>
-      <Button
-        style={styles.Button}
         mode="contained"
         onPress={() => navigation.navigate("Create Announcement")}
       >
@@ -21,7 +14,7 @@ export default ({ navigation }) => {
       </Button>
       <Button
         style={styles.Button}
-        mode="outlined"
+        mode="contained"
         onPress={() => navigation.navigate("Post Learning Materials")}
       >
         post learning materials
@@ -32,6 +25,13 @@ export default ({ navigation }) => {
         onPress={() => navigation.navigate("Course Specification")}
       >
         Specify / Edit course specifications
+      </Button>
+      <Button
+        style={styles.Button}
+        mode="contained"
+        onPress={() => navigation.navigate("Discussion")}
+      >
+        Discussion forum
       </Button>
       <Button
         style={styles.Button}

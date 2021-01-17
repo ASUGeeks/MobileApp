@@ -238,20 +238,20 @@ const styles = StyleSheet.create({
   },
   week: {
     margin: 10,
-    borderWidth: 2,
+    // borderWidth: 2,
     borderRadius: 8,
   },
   BL1: {
-    borderColor: "#ff0",
-    backgroundColor: "#ff04",
+    // borderColor: "#ff0",
+    backgroundColor: "#cacccf",
   },
   BL2: {
-    borderColor: "#f00",
-    backgroundColor: "#f004",
+    // borderColor: "#f00",
+    backgroundColor: "#919294",
   },
   BL3: {
-    borderColor: "#f0f",
-    backgroundColor: "#f0f4",
+    // borderColor: "#f0f",
+    // backgroundColor: "#f0f4",
   },
 });
 
