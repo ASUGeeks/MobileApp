@@ -1,6 +1,7 @@
 # LMS MobileApp using React-Native framework
 
 ## Project structure:
+```
 .
 ├── App.js
 ├── README.md
@@ -78,7 +79,7 @@
     │          └── TeacherDiscussion.js
     └── Login
        └── Login.js
-
+ ```
 ### Setup the project:
 - ** You should have node.js & expo-cli installed ** if not run npm install expo-cli
 - run git clone {project URL}
